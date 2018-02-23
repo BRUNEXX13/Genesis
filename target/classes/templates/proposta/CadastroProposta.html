@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
+
+<body>
+	<h1>Olá! Thymeleaf configurado!</h1>
+</body>
+
+	<form method="POST" th:object="${proposta}">
+	<span th:text="${#fields.hasAnyErrors()}"></span>
+	
+	<div th:each="erro : ${#fields.detailedErrors()}">
+	<span th:text="${erro.message}"></span>
+	</div>
+	
+	
+		<span th:text="${mensagem}"></span>
+		<br>
+		
+		<label for="codigo">Codigo</label>
+		<input type="text" id="codigo" th:field="*{codigo}">
+		<br>
+		
+		
+		<label for="descricao">Descricao</label>
+	   <input type="text" id="descricao" th:field="*{descricao}">
+		<br>
+		
+
+		
+		
+		
+		<input type="submit" value="Salvar">
+	</form>
+
+</html>
