@@ -1,2 +1,0 @@
-# Genesis
-Projeto Genesis
