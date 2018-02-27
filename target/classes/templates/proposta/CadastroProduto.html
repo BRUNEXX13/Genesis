@@ -10,7 +10,7 @@
 
 			<div class="page-header">
 				<div class="container-fluid">
-					<h1>Cadastro de Bancos</h1>
+					<h1>Cadastro de Produtos</h1>
 				</div>
 			</div>
 
@@ -24,17 +24,17 @@
 					<i class="fa  fa-exclamation-circle"></i>Já existe um banco  com o nome informado.
 				</div>
 
-				<form method="POST" th:object="${banco}" class="form-vertical  js-form-loading">
+				<form method="POST" th:object="${produto}" class="form-vertical  js-form-loading">
 
 					<div class="row">
 						<div class="col-sm-2 form-group">
-							<label for="ade">NÚMERO</label>
+							<label for="ade">CODIGO</label>
 							<input id="ade" type="text" class="form-control">
 					</div>
 					
 					
 						<div class="col-sm-10 form-group">
-								<label for="nome">NOME DO BANCO</label>
+								<label for="nome">NOME DO PRODUTO</label>
 								<input id="nome" type="text" class="form-control">
 							</div>
 						</div>

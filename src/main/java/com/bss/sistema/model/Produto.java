@@ -12,6 +12,12 @@ public class Produto {
 	@NotBlank
 	private String nome;
 	
+	//novo
+	//cartao
+	//refinanciamento
+	//portabilidade 
+	
+	
 
 	public int getCdproduto() {
 		return cdproduto;
