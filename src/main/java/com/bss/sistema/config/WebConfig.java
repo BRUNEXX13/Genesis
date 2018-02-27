@@ -19,8 +19,6 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 
 import com.bss.sistema.controller.PropostasController;
 
-import nz.net.ultraq.thymeleaf.LayoutDialect;
-
 @Configuration
 @ComponentScan(basePackageClasses = { PropostasController.class })
 @EnableWebMvc
@@ -41,14 +39,11 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 		return resolver;
 	}
 
-	//Adicionado Layout Dialect// Thymeleaf Layout Dialect = nz.net.ultraqTyhmeleafDialect
 	@Bean
 	public TemplateEngine templateEngine() {
 		SpringTemplateEngine engine = new SpringTemplateEngine();
 		engine.setEnableSpringELCompiler(true);
 		engine.setTemplateResolver(templateResolver());
-		
-		engine.addDialect(new LayoutDialect());
 		return engine;
 	}
 
