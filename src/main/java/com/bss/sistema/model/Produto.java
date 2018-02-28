@@ -16,8 +16,6 @@ public class Produto {
 	//cartao
 	//refinanciamento
 	//portabilidade 
-	
-	
 
 	public int getCdproduto() {
 		return cdproduto;

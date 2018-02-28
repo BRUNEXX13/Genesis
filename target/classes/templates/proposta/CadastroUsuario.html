@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="'layout/LayoutPadrao'">
+	
+<head>
+<title>Cadastro de Usuário</title>
+</head>
+
+<body>
+<section layout:fragment="conteudo">
+
+		<div class="page-header">
+			<div class="container-fluid">
+				<h1>
+					Cadastro de Usuário
+				</h1>
+			</div>
+		</div>
+
+		<div class="container-fluid">
+
+			<!-- <div class="alert  alert-danger  alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<i class="fa  fa-exclamation-circle"></i> Já existe um produto com o nome informado.
+			</div> -->
+
+			<form method="POST" th:object="${usuario}" class="form-vertical  js-form-loading">
+		
+				<div class="row">
+					<div class="col-sm-3  form-group">
+						<label for="nome">Nome</label>
+						<input id="nome" type="text" class="form-control"/>
+					</div>
+					
+					
+					<div class="col-sm-3  form-group">
+						<label for="sobreone">Sobrenome</label>
+						<input id="sobrenome" type="text" class="form-control"/>
+					</div>
+					
+					
+					<div class="col-sm-4  form-group">
+						<label for="telefone">Telefone</label>
+						<input id="telefone" type="text" class="form-control"/>
+					</div>
+					
+					
+				</div>
+					
+				<div class="row">
+					<div class="col-sm-8  form-group">
+						<label for="nome">E-mail</label>
+						<input id="nome" type="text" class="form-control"/>
+					</div>
+					
+					
+					<div class="col-sm-4  form-group">
+						<label for="dataNascimento">Data de nascimento</label>
+						<input id="dataNascimento" type="date" class="form-control"/>
+					</div>
+				</div>
+				
+				<div class="row">
+				
+				<div class="col-sm-4  form-group">
+						<label for="senha">Senha</label>
+						<input id="senha" type="text" class="form-control"/>
+					</div>
+				
+				<div class="col-sm-4  form-group">
+						<label for="confsenha">Confirmação de senha</label>
+						<input id="confsenha" type="text" class="form-control"/>
+					</div>
+				
+					<div class="col-lg-3  col-sm-6  form-group">
+						<label for="origem">Status</label>
+						<div>
+							<div class="radio  radio-inline">
+								<input type="radio" name="origem"> 
+								<label>Ativo</label>
+								
+							</div>
+							<div class="radio  radio-inline">
+								<input type="radio" name="origem"> 
+								<label>Inativo</label>
+							</div>
+						</div>
+					</div>
+				
+				</div>
+					
+					
+					<div class="row">
+					
+					<div class="col-lg-4  col-sm-6  form-group">
+						<label for="origem">Grupos</label>
+						<div>
+							<div class="radio  radio-inline">
+								<input type="radio"  name="grupos"> 
+								<label>Administrador</label>
+								
+							</div>
+							
+							<div class="radio  radio-inline">
+								<input type="radio"  name="grupos"> 
+								<label>Gerente</label>
+							</div>
+							
+							<div class="radio  radio-inline">
+								<input type="radio" name="grupos"> 
+								<label>Supervisor</label>
+							</div>
+						</div>
+					</div>
+					
+					
+					<div class="col-sm-3  form-group">
+							<label for="equipe">Equipe</label>
+							<div class="gn-field-action">
+								<select id="equipe" class="form-control">
+								<option value="">Selecione a Equipe</option>
+								<option value="1">Master</option>
+								<option value="1">PluS</option>
+								<option value="1">Biruleibes</option>
+						</select>
+							<div class="gn-field-action__icon">
+									<a href="#" data-toggle="modal" data-target="#modalCadastroRapidoBanco">
+									<i class="glyphicon glyphicon-plus-sign  gn-glyphicon-plus-large"></i>
+								</a>
+								</div>
+							</div>
+						</div>
+						
+					
+					
+					</div>
+					
+				
+				<div class="form-group">
+					<button class="btn  btn-primary" type="submit">Salvar</button>
+				</div>
+		
+				
+			</form>
+		</div>
+					<div th:replace="estilo/CadastroRapidoBanco :: modal"></div>
+
+	</section>
+	
+</body>
+</html>
