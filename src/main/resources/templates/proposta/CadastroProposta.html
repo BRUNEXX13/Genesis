@@ -4,7 +4,9 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="'layout/LayoutPadrao'">
 	
-<head></head>
+<head>
+<title>Cadastro de Propostas</title>
+</head>
 
 <body>
 <section layout:fragment="conteudo">
@@ -56,19 +58,24 @@
 						<label for="data">Data Proposta</label>
 						<input id="data" type="date" class="form-control">
 						</div>
-						
-				
-					<div class="col-sm-3  form-group">
-						<label for="estilo">Banco</label>
-						<select id="estilo" class="form-control">
-							<option value="">Selecione o Banco</option>
-							<option value="1">341 -Itau</option>
+		
+							<div class="col-sm-3  form-group">
+							<label for="banco">Banco</label>
+							<div class="gn-field-action">
+								<select id="banco" class="form-control">
+								<option value="">Selecione o Banco</option>
+								<option value="1">341 -Itau</option>
 								<option value="1">222- Banco do Brasil</option>
-									<option value="1">232 -Santander</option>
-										
-											
+								<option value="1">232 -Santander</option>
 						</select>
-					</div>
+							<div class="gn-field-action__icon">
+									<a href="#" data-toggle="modal" data-target="#modalCadastroRapidoBanco">
+									<i class="glyphicon glyphicon-plus-sign  gn-glyphicon-plus-large"></i>
+								</a>
+								</div>
+							</div>
+						</div>
+						
 					
 					<div class="col-sm-3  form-group">
 						<label for="sabor">Produto</label>
@@ -118,16 +125,6 @@
 					</div>
 					
 					<div class="col-sm-3  form-group">
-					<label for="teorAlcoolico">Teor alcoólico</label>
-					<div class="input-group">
-						<input id="teorAlcoolico" type="text" class="form-control  js-plain"/>
-						<div class="input-group-addon">%</div>
-					</div>
-</div>
-					
-					
-					
-					<div class="col-sm-3  form-group">
 						<label for="comissao">Comissão</label>
 						<div class="input-group">
 							<input id="comissao" type="text"  class="form-control  js-plain" />
@@ -143,12 +140,10 @@
 				</div>
 		
 				
-		
-		
-		
-				
 			</form>
 		</div>
+					<div th:replace="estilo/CadastroRapidoBanco :: modal"></div>
+
 	</section>
 	
 </body>
