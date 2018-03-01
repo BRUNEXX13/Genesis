@@ -13,7 +13,7 @@ public class ClienteController {
 	public String novo(Proposta proposta) // Propost Disponivel na Requiscao
 	{
 		// 
-		return "proposta/CadastroCliente";
+		return "cliente/CadastroCliente";
 	}
 
 	

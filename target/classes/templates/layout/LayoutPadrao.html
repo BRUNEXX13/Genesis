@@ -42,12 +42,15 @@
 		
 			</div>
 	
-				<script th:src="@{/layout/javascripts/vendors.min.js}"></script>
-				<script th:src="@{/layout/javascripts/algaworks.min.js}"></script>
+				<script th:src="@{/javascripts/vendors.min.js}"></script>
+				<script th:src="@{/javascripts/algaworks.min.js}"></script>
 
-				<script th:src="@{/layout/javascripts/vendors/jquery.maskMoney.min.js}"></script>
+				<script th:src="@{/javascripts/vendors/jquery.maskMoney.min.js}"></script>
 
-				<script th:src="@{/layout/javascripts/brewer.js}"></script>
+				<script th:src="@{/javascripts/genesis.js}"></script>
+				
+				<!-- JAVASCRIPTS EXTRA -->
+				<th:block layout:fragment="javascript-extra"></th:block>
 			
 			
 </body>

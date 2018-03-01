@@ -15,7 +15,7 @@ public class ProdutoController {
 	public String novo(Proposta proposta) // Propost Disponivel na Requiscao
 	{
 		// 
-		return "proposta/CadastroProduto";
+		return "produto/CadastroProduto";
 	}
 
 	

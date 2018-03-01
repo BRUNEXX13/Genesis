@@ -15,7 +15,7 @@ public class BancoController {
 	public String novo(Proposta proposta) // Propost Disponivel na Requiscao
 	{
 		// 
-		return "proposta/CadastroBanco";
+		return "banco/CadastroBanco";
 	}
 
 	

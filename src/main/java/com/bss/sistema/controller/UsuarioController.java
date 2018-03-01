@@ -15,7 +15,7 @@ public class UsuarioController  {
 	public String novo(Proposta proposta) // Propost Disponivel na Requiscao
 	{
 		// 
-		return "proposta/CadastroUsuario";
+		return "usuario/CadastroUsuario";
 	}
 
 	
