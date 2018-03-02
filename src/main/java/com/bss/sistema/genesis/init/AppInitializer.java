@@ -1,20 +1,22 @@
-package com.bss.sistema.init;
+package com.bss.sistema.genesis.init;
 
 import javax.servlet.Filter;
 
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import com.bss.sistema.config.WebConfig;
+import com.bss.sistema.genesis.config.JPAConfig;
+import com.bss.sistema.genesis.config.WebConfig;
 
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
-	@Override
+	@Override   // 1º Root Configurado // Beans Congfigurados aqui sao disponibilizados para Serverlet
 	protected Class<?>[] getRootConfigClasses() {
-		return null;
+		
+		return new Class<?>[] {JPAConfig.class};
 	}
 
-	@Override
+	@Override   // 2º  O que é de Web configurado em Serveletconfig --
 	protected Class<?>[] getServletConfigClasses() {
 		return new Class<?>[] { WebConfig.class };
 	}

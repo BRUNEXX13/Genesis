@@ -1,4 +1,4 @@
-package com.bss.sistema.model;
+package com.bss.sistema.genesis.model;
 
 import java.math.BigDecimal;
 import java.util.Calendar;

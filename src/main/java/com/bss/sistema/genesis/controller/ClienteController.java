@@ -1,21 +1,19 @@
-package com.bss.sistema.controller;
-
+package com.bss.sistema.genesis.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.bss.sistema.model.Proposta;
+import com.bss.sistema.genesis.model.Proposta;
 
 @Controller
-public class UsuarioController  {
+public class ClienteController {
 
-	
 	//Apontamento para Propostas 
-	@RequestMapping("/propostas/usuario")
+	@RequestMapping("/propostas/cliente")
 	public String novo(Proposta proposta) // Propost Disponivel na Requiscao
 	{
 		// 
-		return "usuario/CadastroUsuario";
+		return "cliente/CadastroCliente";
 	}
 
 	

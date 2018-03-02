@@ -1,4 +1,4 @@
-package com.bss.sistema.config;
+package com.bss.sistema.genesis.config;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -17,7 +17,7 @@ import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
-import com.bss.sistema.controller.PropostasController;
+import com.bss.sistema.genesis.controller.PropostasController;
 
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 
