@@ -1,20 +1,30 @@
 package com.bss.sistema.model;
 
+import java.math.BigDecimal;
 import java.util.Calendar;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+@Entity
+@Table(name = "proposta") // Vou fazer referencia ao flyway //
 public class Proposta {
 
-	@NotBlank
-	private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long codigo;
 
 	@NotBlank(message = "Código é obrigatório")
-	private String codigo;
-
-	private String cliente;
+	private String ade;
 
 	@NotBlank(message = "Descrição é obrigatório") // Nao deixa inserir nulos e espacos
 	@Size(min = 1, max = 50)
@@ -23,50 +33,32 @@ public class Proposta {
 	@NotBlank
 	private Calendar data;
 
-	@NotBlank
-	private double valorParcela;
+	@Column(name = "valor_parcela")
+	private BigDecimal valorParcela;
 
-	@NotBlank
-	private double valorTotal;
+	@Column(name = "valor_total")
+	private BigDecimal valorTotal;
 
-	public Proposta() {
-		super();
-	}
+	private BigDecimal comissao;
 
-	public Proposta(int id, String codigo, String cliente, String descricao, Calendar data, double valorParcela,
-			double valorTotal) {
-		super();
-		this.id = id;
-		this.codigo = codigo;
-		this.cliente = cliente;
-		this.descricao = descricao;
-		this.data = data;
-		this.valorParcela = valorParcela;
-		this.valorTotal = valorTotal;
-	}
+	@ManyToOne /// Uma proposta tem um Banco // Um Banco tem varias propostas
+	@JoinColumn(name = "codigo_banco")
+	private Banco banco;
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getCodigo() {
+	public Long getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(String codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 
-	public String getCliente() {
-		return cliente;
+	public String getAde() {
+		return ade;
 	}
 
-	public void setCliente(String cliente) {
-		this.cliente = cliente;
+	public void setAde(String ade) {
+		this.ade = ade;
 	}
 
 	public String getDescricao() {
@@ -85,20 +77,61 @@ public class Proposta {
 		this.data = data;
 	}
 
-	public double getValorParcela() {
+	public BigDecimal getValorParcela() {
 		return valorParcela;
 	}
 
-	public void setValorParcela(double valorParcela) {
+	public void setValorParcela(BigDecimal valorParcela) {
 		this.valorParcela = valorParcela;
 	}
 
-	public double getValorTotal() {
+	public BigDecimal getValorTotal() {
 		return valorTotal;
 	}
 
-	public void setValorTotal(double valorTotal) {
+	public void setValorTotal(BigDecimal valorTotal) {
 		this.valorTotal = valorTotal;
+	}
+
+	public BigDecimal getComissao() {
+		return comissao;
+	}
+
+	public void setComissao(BigDecimal comissao) {
+		this.comissao = comissao;
+	}
+
+	public Banco getBanco() {
+		return banco;
+	}
+
+	public void setBanco(Banco banco) {
+		this.banco = banco;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Proposta other = (Proposta) obj;
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
+			return false;
+		return true;
 	}
 
 }

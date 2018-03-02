@@ -3,6 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.bss</groupId>
 	<artifactId>genesis</artifactId>
+	
 	<version>0.0.1-SNAPSHOT</version>
 	
 	<packaging>war</packaging>
@@ -16,7 +17,9 @@
 
 		<java.version>1.8</java.version>
 		<maven-compiler-pluging.version>3.2</maven-compiler-pluging.version>
+		
 
+	
 		<!-- Spring MVC -->
 		<spring-framework.version>4.3.0.RELEASE</spring-framework.version>
 
@@ -57,6 +60,15 @@
 					<target>${java.version}</target>
 				</configuration>
 			</plugin>
+		
+		<plugin>
+    <groupId>org.flywaydb</groupId>
+    <artifactId>flyway-maven-plugin</artifactId>
+    <version>5.0.7</version>
+</plugin>
+			
+
+		
 		</plugins>
 	</build>
 
@@ -164,7 +176,23 @@
 		</dependency>
 		
 		
-		
+		<!-- Mysql Connector 5.1.39 -->
+		<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>5.1.39</version>
+</dependency>
+	
+	<!-- Flyway Maven Plugin -->
+	<dependency>
+    <groupId>org.flywaydb</groupId>
+    <artifactId>flyway-maven-plugin</artifactId>
+    <version>4.0</version>
+</dependency>
+	
+	
+	
+	
 	</dependencies>
 	
 	<repositories>

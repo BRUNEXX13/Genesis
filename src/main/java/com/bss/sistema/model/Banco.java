@@ -1,54 +1,40 @@
 package com.bss.sistema.model;
 
-import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-public class Banco {
+@Entity
+@Table(name = "banco")
+public class Banco implements Serializable {
 
-	@NotNull
-	private int id;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
+	@OneToMany(mappedBy = "banco")
+	private List<Proposta> propostas;
+	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long codigo;
+
 	@NotBlank
 	private int numero;
-	
+
 	@NotBlank
 	private String nome;
+
 	
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public int getNumero() {
-		return numero;
-	}
-
-	public void setNumero(int numero) {
-		this.numero = numero;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public Banco(int id, int numero, String nome) {
-		super();
-		this.id = id;
-		this.numero = numero;
-		this.nome = nome;
-	}
-
-	public Banco() {
-		super();
-	}
 
 }
