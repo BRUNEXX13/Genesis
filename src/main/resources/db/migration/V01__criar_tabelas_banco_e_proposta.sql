@@ -10,6 +10,7 @@ CREATE TABLE proposta (
 	descricao TEXT NOT NULL,
 	valor_parcela DECIMAL (10,2) NOT NULL,
 	valor_total  DECIMAL (10,2) NOT NULL,
+	valor_liquido  DECIMAL (10,2) NOT NULL,
 	comissao DECIMAL (10,2) NOT NULL,
 	codigo_banco BIGINT(20) NOT NULL,
 	FOREIGN KEY (codigo_banco) REFERENCES banco(codigo)
