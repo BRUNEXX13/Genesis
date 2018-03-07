@@ -23,7 +23,7 @@ public class PropostasController {
 	// Apontamento para Propostas
 	@RequestMapping("/propostas/novo")
 	public String novo(Proposta proposta) // Propost Disponivel na Requiscao
-	{	propostas.findAll(); // retornando todas cervejas
+	{	//propostas.findAll(); // retornando todas propostas
 		
 		return "proposta/CadastroProposta";
 	}
