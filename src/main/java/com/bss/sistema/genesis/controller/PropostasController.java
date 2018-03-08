@@ -18,49 +18,28 @@ import com.bss.sistema.genesis.repository.Bancos;
 @Controller
 public class PropostasController {
 
-	@Autowired // Chamando meu Repository - Propostas
+	@Autowired
 	private Bancos bancos;
-
-	// Apontamento para Propostas
+	
 	@RequestMapping("/propostas/novo")
-
-	public ModelAndView novo(Proposta proposta) // Propost Disponivel na Requiscao
-	{
-		ModelAndView mv = new ModelAndView("proposta/CadastroProposta");
+	public ModelAndView novo(Proposta proposta) {
+		ModelAndView mv = new ModelAndView("/proposta/CadastroProposta");
 		mv.addObject("sabores", Sabor.values());
-		mv.addObject("bancos", bancos.findAll());
-
-		return mv;
-
-	public String novo(Proposta proposta) // Propost Disponivel na Requiscao
-	{	//propostas.findAll(); // retornando todas propostas
+		mv.addObject("bancos",bancos.findAll());
 		
-		return "proposta/CadastroProposta";
-
+		return mv;
 	}
-
-	// Recebendo do Model //
+	
 	@RequestMapping(value = "/propostas/novo", method = RequestMethod.POST)
-	public ModelAndView cadastrar(@Valid Proposta proposta, BindingResult result, Model model,
-			RedirectAttributes attributes) {
-
+	public ModelAndView cadastrar(@Valid Proposta proposta, BindingResult result, Model model, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
-			return novo(proposta); // Retorna o View novo proposta
-
+			return novo(proposta);
 		}
-
-		// Salvar no banco de Dados//
-		attributes.addFlashAttribute("mensagem", "Proposta Salva com Sucesso !");
-		// Salvo redireciona para pagina Propostas/novo com Redirect // Melhor com que
-		// Forward
-		return new ModelAndView("redirect:/propostas/novo"); // Redireciona para nova pagina
-
-	}
-
-	// Acessando a view
-	@RequestMapping("/propostas/cadastro")
-	public String cadastro() {
-		return "proposta/cadastro-produto";
-	}
-
+		
+		// Salvar no banco de dados...
+		attributes.addFlashAttribute("mensagem", "Proposta Salva com sucesso!");
+		System.out.println(">>> sku: " + proposta.getAde());
+		return new ModelAndView("redirect:/proposta/novo");
+}
+	
 }

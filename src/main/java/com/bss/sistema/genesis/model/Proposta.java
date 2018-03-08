@@ -17,34 +17,31 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-@Table(name = "T_PROPOSTA") // Vou fazer referencia ao flyway //
+@Table(name = "proposta") // Vou fazer referencia ao flyway //
 public class Proposta {
 
 	@Id
-	@Column(name="codigo")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
-	
-	@Column(name="cd_ade")
+
+
 	@NotBlank(message = "Código é obrigatório")
 	private String ade;
 
-	@Column(name="nm_descricao")
+
 	@NotBlank(message = "Descrição é obrigatório") // Nao deixa inserir nulos e espacos
 	@Size(min = 1, max = 50)
 	private String descricao;
 
-	
-	@Column(name = "vl_parcela")
 	private BigDecimal valorParcela;
 
-	@Column(name = "vl_total")
+
 	private BigDecimal valorTotal;
 
-	@Column(name = "vl_liquido")
+
 	private BigDecimal valorLiquido;
 
-	@Column(name="vl_comissao")
+
 	private BigDecimal comissao;
 
 	@Enumerated(EnumType.STRING)
@@ -54,6 +51,8 @@ public class Proposta {
 	@JoinColumn(name = "codigo_banco")
 	private Banco banco;
 
+	
+	
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -94,12 +93,28 @@ public class Proposta {
 		this.valorTotal = valorTotal;
 	}
 
+	public BigDecimal getValorLiquido() {
+		return valorLiquido;
+	}
+
+	public void setValorLiquido(BigDecimal valorLiquido) {
+		this.valorLiquido = valorLiquido;
+	}
+
 	public BigDecimal getComissao() {
 		return comissao;
 	}
 
 	public void setComissao(BigDecimal comissao) {
 		this.comissao = comissao;
+	}
+
+	public Sabor getSabor() {
+		return sabor;
+	}
+
+	public void setSabor(Sabor sabor) {
+		this.sabor = sabor;
 	}
 
 	public Banco getBanco() {
@@ -109,25 +124,6 @@ public class Proposta {
 	public void setBanco(Banco banco) {
 		this.banco = banco;
 	}
-
-
-	
-	public Sabor getSabor() {
-		return sabor;
-	}
-
-	public void setSabor(Sabor sabor) {
-		this.sabor = sabor;
-	}
-
-
-
-	public BigDecimal getValorLiquido() {
-		return valorLiquido;
-	}
-
-	public void setValorLiquido(BigDecimal valorLiquido) {
-		this.valorLiquido = valorLiquido;
 
 	@Override
 	public int hashCode() {

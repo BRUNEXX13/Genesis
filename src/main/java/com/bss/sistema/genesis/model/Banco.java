@@ -15,7 +15,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 //Fix
 @Entity
-@Table(name = "T_BANCO")
+@Table(name = "banco")
 public class Banco implements Serializable {
 
 	/**
@@ -32,11 +32,9 @@ public class Banco implements Serializable {
 	private Long codigo;
 
 	@NotBlank
-	@Column(name="nr_numero")
 	private int numero;
 
 	@NotBlank
-	@Column(name="nm_banco")
 	private String nome;
 
 	public List<Proposta> getPropostas() {

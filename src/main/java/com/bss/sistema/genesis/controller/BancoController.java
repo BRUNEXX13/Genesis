@@ -10,7 +10,7 @@ public class BancoController {
 
 	// Apontamento para Propostas
 	@RequestMapping("/propostas/banco")
-	public String novo(Proposta proposta) // Propost Disponivel na Requiscao
+	public String banco(Proposta proposta) // Propost Disponivel na Requiscao
 	{
 
 		return "banco/CadastroBanco";
