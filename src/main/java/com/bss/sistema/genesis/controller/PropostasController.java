@@ -17,43 +17,43 @@ import com.bss.sistema.genesis.repository.Bancos;
 
 @Controller
 public class PropostasController {
-	
-	//Injetando Bancos  em Propostas Repository-
-	@Autowired
+
+	@Autowired // Chamando meu Repository - Propostas
 	private Bancos bancos;
-	
-<<<<<<< HEAD
-	
-	@RequestMapping("propostas/novo")
-	public ModelAndView novo(Proposta proposta) {
-		ModelAndView mv = new ModelAndView("proposta/CadastroProposta");
-		
-		mv.addObject("bancos",bancos.findAll());
-		//Trazendo todos os bancos para Proposta
-		//<option th:each="banco : ${bancos}" th:value="${banco.codigo}" th:text="{banco.nome}"
-=======
 
 	// Apontamento para Propostas
 	@RequestMapping("/propostas/novo")
-	public String novo(Proposta proposta) // Propost Disponivel na Requiscao
-	{	//propostas.findAll(); // retornando todas propostas
->>>>>>> 135080893c0046c497abc34719686b0a5de080f9
-		
-		
-		mv.addObject("sabores", Sabor.values()); // Passando um Array
-		//<option th:each="sabor : ${sabores}" th:value="${sabor}">Adocicada</option>//
+	public ModelAndView novo(Proposta proposta) // Propost Disponivel na Requiscao
+	{
+		ModelAndView mv = new ModelAndView("proposta/CadastroProposta");
+		mv.addObject("sabores", Sabor.values());
+		mv.addObject("bancos", bancos.findAll());
+
 		return mv;
 	}
 
+	// Recebendo do Model //
 	@RequestMapping(value = "/propostas/novo", method = RequestMethod.POST)
 	public ModelAndView cadastrar(@Valid Proposta proposta, BindingResult result, Model model,
 			RedirectAttributes attributes) {
+
 		if (result.hasErrors()) {
-			return novo(proposta);
+			return novo(proposta); // Retorna o View novo proposta
+
 		}
-		attributes.addFlashAttribute("mensagem", "Proposta salva com sucesso");
-		System.out.println(">>>>>> ade" + proposta.getAde());
-		return new ModelAndView("redirect:/propostas/novo"); 
+
+		// Salvar no banco de Dados//
+		attributes.addFlashAttribute("mensagem", "Proposta Salva com Sucesso !");
+		// Salvo redireciona para pagina Propostas/novo com Redirect // Melhor com que
+		// Forward
+		return new ModelAndView("redirect:/propostas/novo"); // Redireciona para nova pagina
+
+	}
+
+	// Acessando a view
+	@RequestMapping("/propostas/cadastro")
+	public String cadastro() {
+		return "proposta/cadastro-produto";
 	}
 
 }

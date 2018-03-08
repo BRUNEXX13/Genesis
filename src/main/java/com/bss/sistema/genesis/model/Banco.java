@@ -14,29 +14,26 @@ import javax.persistence.Table;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-@Table(name = "T_BANCO")
+@Table(name = "banco")
 public class Banco implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@OneToMany(mappedBy = "banco")
 	@NotBlank
 	private List<Proposta> propostas;
-	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 
 	@NotBlank
-	@Column(name="nr_numero")
 	private int numero;
 
 	@NotBlank
-	@Column(name="nm_banco")
 	private String nome;
 
 	public List<Proposta> getPropostas() {
@@ -74,8 +71,5 @@ public class Banco implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
-	
-	
 
 }

@@ -10,7 +10,7 @@ public class UsuarioController {
 
 	// Apontamento para Propostas
 	@RequestMapping("/propostas/usuario")
-	public String novo(Proposta proposta) // Propost Disponivel na Requiscao
+	public String usuario(Proposta proposta) // Propost Disponivel na Requiscao
 	{
 		return "usuario/CadastroUsuario";
 	}
