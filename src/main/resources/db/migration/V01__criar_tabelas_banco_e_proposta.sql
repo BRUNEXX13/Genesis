@@ -1,3 +1,9 @@
+CREATE TABLE estilo (
+codigo 	BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
+nome	VARCHAR(50) NOT NULL 	
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
 CREATE TABLE banco (
 codigo BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
 numero BIGINT(20) NOT NULL,
@@ -10,11 +16,19 @@ CREATE TABLE proposta (
 	descricao TEXT NOT NULL,
 	valor_parcela DECIMAL (10,2) NOT NULL,
 	valor_total  DECIMAL (10,2) NOT NULL,
+	valor_liquido  DECIMAL (10,2) NOT NULL,
 	comissao DECIMAL (10,2) NOT NULL,
+	sabor VARCHAR(50) NOT NULL,
 	codigo_banco BIGINT(20) NOT NULL,
 	FOREIGN KEY (codigo_banco) REFERENCES banco(codigo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 	
 	
+	INSERT INTO estilo VALUES (0,'Amber');
+	INSERT INTO estilo VALUES (0,'Dark');
+	INSERT INTO estilo VALUES (0,'Lagger');
+	INSERT INTO estilo VALUES (0,'Pilsner');
+
+
 	INSERT INTO banco VALUES (0, 0, 'ITAU');
 	INSERT INTO banco VALUES (0, 0, 'SANTANDER');

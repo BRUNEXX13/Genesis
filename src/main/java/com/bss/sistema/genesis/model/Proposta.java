@@ -1,10 +1,11 @@
 package com.bss.sistema.genesis.model;
 
 import java.math.BigDecimal;
-import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,30 +17,38 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-@Table(name = "proposta") // Vou fazer referencia ao flyway //
+@Table(name = "T_PROPOSTA") // Vou fazer referencia ao flyway //
 public class Proposta {
 
 	@Id
+	@Column(name="codigo")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
-
+	
+	@Column(name="cd_ade")
 	@NotBlank(message = "Código é obrigatório")
 	private String ade;
 
+	@Column(name="nm_descricao")
 	@NotBlank(message = "Descrição é obrigatório") // Nao deixa inserir nulos e espacos
 	@Size(min = 1, max = 50)
 	private String descricao;
 
-	@NotBlank
-	private Calendar data;
-
-	@Column(name = "valor_parcela")
+	
+	@Column(name = "vl_parcela")
 	private BigDecimal valorParcela;
 
-	@Column(name = "valor_total")
+	@Column(name = "vl_total")
 	private BigDecimal valorTotal;
 
+	@Column(name = "vl_liquido")
+	private BigDecimal valorLiquido;
+
+	@Column(name="vl_comissao")
 	private BigDecimal comissao;
+
+	@Enumerated(EnumType.STRING)
+	private Sabor sabor;
 
 	@ManyToOne /// Uma proposta tem um Banco // Um Banco tem varias propostas
 	@JoinColumn(name = "codigo_banco")
@@ -67,14 +76,6 @@ public class Proposta {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
-	}
-
-	public Calendar getData() {
-		return data;
-	}
-
-	public void setData(Calendar data) {
-		this.data = data;
 	}
 
 	public BigDecimal getValorParcela() {
@@ -107,6 +108,23 @@ public class Proposta {
 
 	public void setBanco(Banco banco) {
 		this.banco = banco;
+	}
+
+<<<<<<< HEAD
+	public Sabor getSabor() {
+		return sabor;
+	}
+
+	public void setSabor(Sabor sabor) {
+		this.sabor = sabor;
+=======
+	public BigDecimal getValorLiquido() {
+		return valorLiquido;
+	}
+
+	public void setValorLiquido(BigDecimal valorLiquido) {
+		this.valorLiquido = valorLiquido;
+>>>>>>> 135080893c0046c497abc34719686b0a5de080f9
 	}
 
 	@Override

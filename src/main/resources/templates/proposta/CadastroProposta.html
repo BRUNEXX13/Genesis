@@ -63,11 +63,11 @@
 							<label for="banco">Banco</label>
 							<div class="gn-field-action">
 								<select id="banco" class="form-control">
-								<option value="">Selecione o Banco</option>
-								<option value="1">341 -Itau</option>
-								<option value="1">222- Banco do Brasil</option>
-								<option value="1">232 -Santander</option>
-						</select>
+									<option value="">Selecione o Banco</option>
+									<option th:each="banco : ${bancos}" th:value="${banco.codigo}" th:text="${banco.nome}">Itau</option>
+									
+								</select>
+						
 							<div class="gn-field-action__icon">
 									<a href="#" data-toggle="modal" data-target="#modalCadastroRapidoBanco">
 									<i class="glyphicon glyphicon-plus-sign  gn-glyphicon-plus-large"></i>
@@ -78,8 +78,8 @@
 						
 					
 					<div class="col-sm-3  form-group">
-						<label for="sabor">Produto</label>
-						<select id="sabor" class="form-control">
+						<label for="produto">Produto</label>
+						<select id="produto" class="form-control">
 							<option value="">Selecione o produto</option>
 							<option value="1">Novo</option>
 									<option value="2">Cartão</option>
@@ -108,10 +108,10 @@
 				
 				<div class="row">
 					<div class="col-sm-3  form-group">
-						<label for="preco1">Valor Parcela</label>
+						<label for="valorParcela">Valor Parcela</label>
 						<div class="input-group">
 							<div class="input-group-addon">R$</div>
-							<input id="preco1" type="text" class="form-control js-decimal"/>
+							<input id="valorParcela" type="text" class="form-control js-decimal"/>
 						</div>
 						
 					</div>
@@ -124,6 +124,25 @@
 						</div>
 					</div>
 					
+							<div class="col-sm-3  form-group">
+						<label for="valorLíquido">Valor Líquido</label>
+						<div class="input-group">
+							<input id="valorLíquido" type="text" class="form-control  js-decimal"/>
+							<div class="input-group-addon">R$</div>
+						</div>
+					</div>
+					
+					
+					<div class="col-sm-3  form-group">
+						<label for="valorLíquido">Valor Líquido</label>
+						<div class="input-group">
+							<input id="valorTotal" type="text" class="form-control  js-decimal"/>
+							<div class="input-group-addon">R$</div>
+						</div>
+					</div>
+					
+		
+					
 					<div class="col-sm-3  form-group">
 						<label for="comissao">Comissão</label>
 						<div class="input-group">
@@ -134,6 +153,22 @@
 					
 					
 				</div>
+				
+				<div class="row">
+				<div class="col-sm-3  form-group">
+						<label for="sabor">Sabor</label>
+						<select id="sabor" class="form-control">
+							<option value="">Selecione o sabor</option>
+							<option th:each="sabor : ${sabores}" th:value="${sabor}" th:text="${sabor.descricao}">Adocicada</option>
+									
+						</select>
+					</div>
+				
+				</div>
+				
+				
+				
+				
 				
 				<div class="form-group">
 					<button class="btn  btn-primary" type="submit">Salvar</button>
