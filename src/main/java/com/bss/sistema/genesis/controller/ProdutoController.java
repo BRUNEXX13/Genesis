@@ -14,7 +14,7 @@ public class ProdutoController {
 	@RequestMapping("/propostas/produto")
 	public String novo(Proposta proposta) // Propost Disponivel na Requiscao
 	{
-		// 
+		
 		return "produto/CadastroProduto";
 	}
 

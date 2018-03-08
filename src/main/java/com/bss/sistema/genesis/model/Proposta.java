@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -44,6 +46,9 @@ public class Proposta {
 
 	@Column(name="vl_comissao")
 	private BigDecimal comissao;
+
+	@Enumerated(EnumType.STRING)
+	private Sabor sabor;
 
 	@ManyToOne /// Uma proposta tem um Banco // Um Banco tem varias propostas
 	@JoinColumn(name = "codigo_banco")
@@ -105,13 +110,24 @@ public class Proposta {
 		this.banco = banco;
 	}
 
+
+	
+	public Sabor getSabor() {
+		return sabor;
+	}
+
+	public void setSabor(Sabor sabor) {
+		this.sabor = sabor;
+	}
+
+
+
 	public BigDecimal getValorLiquido() {
 		return valorLiquido;
 	}
 
 	public void setValorLiquido(BigDecimal valorLiquido) {
 		this.valorLiquido = valorLiquido;
-	}
 
 	@Override
 	public int hashCode() {

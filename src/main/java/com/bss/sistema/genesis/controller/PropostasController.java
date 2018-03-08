@@ -8,29 +8,40 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bss.sistema.genesis.model.Proposta;
-import com.bss.sistema.genesis.repository.Propostas;
+import com.bss.sistema.genesis.model.Sabor;
+import com.bss.sistema.genesis.repository.Bancos;
 
 @Controller
 public class PropostasController {
-	
+
 	@Autowired // Chamando meu Repository - Propostas
-	private Propostas propostas;
-	
+	private Bancos bancos;
 
 	// Apontamento para Propostas
 	@RequestMapping("/propostas/novo")
+
+	public ModelAndView novo(Proposta proposta) // Propost Disponivel na Requiscao
+	{
+		ModelAndView mv = new ModelAndView("proposta/CadastroProposta");
+		mv.addObject("sabores", Sabor.values());
+		mv.addObject("bancos", bancos.findAll());
+
+		return mv;
+
 	public String novo(Proposta proposta) // Propost Disponivel na Requiscao
 	{	//propostas.findAll(); // retornando todas propostas
 		
 		return "proposta/CadastroProposta";
+
 	}
 
 	// Recebendo do Model //
 	@RequestMapping(value = "/propostas/novo", method = RequestMethod.POST)
-	public String cadastrar(@Valid Proposta proposta, BindingResult result, Model model,
+	public ModelAndView cadastrar(@Valid Proposta proposta, BindingResult result, Model model,
 			RedirectAttributes attributes) {
 
 		if (result.hasErrors()) {
@@ -42,7 +53,7 @@ public class PropostasController {
 		attributes.addFlashAttribute("mensagem", "Proposta Salva com Sucesso !");
 		// Salvo redireciona para pagina Propostas/novo com Redirect // Melhor com que
 		// Forward
-		return "redirect:/propostas/novo"; // Redireciona para nova pagina
+		return new ModelAndView("redirect:/propostas/novo"); // Redireciona para nova pagina
 
 	}
 
