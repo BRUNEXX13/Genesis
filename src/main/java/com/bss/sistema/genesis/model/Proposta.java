@@ -17,7 +17,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-@Table(name = "proposta") // Vou fazer referencia ao flyway //
+@Table(name = "T_PROPOSTA") // Vou fazer referencia ao flyway //
 public class Proposta {
 
 	@Id
@@ -120,14 +120,14 @@ public class Proposta {
 		this.sabor = sabor;
 	}
 
+
+
 	public BigDecimal getValorLiquido() {
 		return valorLiquido;
 	}
 
 	public void setValorLiquido(BigDecimal valorLiquido) {
 		this.valorLiquido = valorLiquido;
-
-	}
 
 	@Override
 	public int hashCode() {

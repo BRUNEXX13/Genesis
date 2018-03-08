@@ -23,6 +23,7 @@ public class PropostasController {
 
 	// Apontamento para Propostas
 	@RequestMapping("/propostas/novo")
+
 	public ModelAndView novo(Proposta proposta) // Propost Disponivel na Requiscao
 	{
 		ModelAndView mv = new ModelAndView("proposta/CadastroProposta");
@@ -30,6 +31,12 @@ public class PropostasController {
 		mv.addObject("bancos", bancos.findAll());
 
 		return mv;
+
+	public String novo(Proposta proposta) // Propost Disponivel na Requiscao
+	{	//propostas.findAll(); // retornando todas propostas
+		
+		return "proposta/CadastroProposta";
+
 	}
 
 	// Recebendo do Model //
