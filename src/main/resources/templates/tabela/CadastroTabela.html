@@ -5,7 +5,7 @@
 	layout:decorator="'layout/LayoutPadrao'">
 
 <head>
-<title>Cadastro de Usuário</title>
+<title>Cadastro de Tabelas</title>
 
 
 <link rel="stylesheet" type="text/css"
@@ -20,7 +20,7 @@
 
 			<div class="page-header">
 				<div class="container-fluid">
-					<h1>Cadastro de Produtos</h1>
+					<h1>Cadastro de Tabelas</h1>
 				</div>
 			</div>
 
@@ -34,7 +34,7 @@
 					<i class="fa  fa-exclamation-circle"></i>Já Existe um Produto com Nome Informado.
 				</div>
 
-				<form method="POST" th:object="${produto}" class="form-vertical  js-form-loading">
+				<form method="POST" th:object="${tabela}" class="form-vertical  js-form-loading">
 
 					<div class="row">
 						<div class="col-sm-2 form-group">
@@ -58,6 +58,7 @@
 									<option th:each="banco : ${bancos}" th:value="${banco.codigo}" th:text="${banco.nome}">Itau</option>
 									
 						</select>
+						
 							<div class="gn-field-action__icon">
 									<a href="#" data-toggle="modal" data-target="#modalCadastroRapidoBanco">
 									<i class="glyphicon glyphicon-plus-sign  gn-glyphicon-plus-large"></i>
@@ -65,6 +66,38 @@
 								</div>
 							</div>
 					</div>
+					
+					<div class="col-sm-3  form-group">
+							<label for="produto">Produto</label>
+							<div class="gn-field-action">
+								<select id="banco" class="form-control">
+								<option value="">Selecione o produto</option>
+									<option th:each="produto : ${produtos}" th:value="${produto.codigo}" th:text="${produto.descricao}">Cartao</option>
+									
+						</select>
+						
+							<div class="gn-field-action__icon">
+									<a href="#" data-toggle="modal" data-target="#modalCadastroRapidoBanco">
+									<i class="glyphicon glyphicon-plus-sign  gn-glyphicon-plus-large"></i>
+								</a>
+								</div>
+							</div>
+					</div>
+					
+					
+					
+					
+					<div class="col-sm-3  form-group">
+						<label for="coeficiente">Coeficiente</label>
+						<div class="input-group">
+							<input id="coeficiente" type="text"  class="form-control  js-plain" />
+							<div class="input-group-addon">%</div>
+						</div>
+					</div>
+					
+					
+					
+					
 					
 					<!--  
 						<div class="col-sm-3  form-group">

@@ -22,6 +22,10 @@ public class Proposta implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@ManyToOne
+	@JoinColumn(name = "codigo_tabela")
+	private Tabela tabela;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
@@ -43,6 +47,15 @@ public class Proposta implements Serializable {
 
 	@Enumerated(EnumType.STRING)
 	private Sabor sabor;
+
+
+	public Tabela getTabela() {
+		return tabela;
+	}
+
+	public void setTabela(Tabela tabela) {
+		this.tabela = tabela;
+	}
 
 	@ManyToOne
 	@JoinColumn(name = "codigo_tabela")

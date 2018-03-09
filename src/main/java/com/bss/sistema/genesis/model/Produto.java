@@ -28,6 +28,15 @@ public class Produto implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
+
+	@ManyToOne
+	@JoinColumn(name = "codigo_banco")
+	private Banco banco;
+	
+	@OneToMany(mappedBy = "produto")
+	private List<Tabela> tabelas;
+
 	
 
 	@Id
@@ -41,6 +50,15 @@ public class Produto implements Serializable {
 	@NotBlank(message = "Descrição é obrigatório") // Nao deixa inserir nulos e espacos
 	@Size(min = 1, max = 100)
 	private String tipo;
+
+
+	public Banco getBanco() {
+		return banco;
+	}
+
+	public void setBanco(Banco banco) {
+		this.banco = banco;
+	}
 
 	@ManyToOne
 	@JoinColumn(name = "codigo_banco")
@@ -73,14 +91,6 @@ public class Produto implements Serializable {
 		this.tipo = tipo;
 	}
 
-	public Banco getBanco() {
-		return banco;
-	}
-
-	public void setBanco(Banco banco) {
-		this.banco = banco;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -103,7 +113,5 @@ public class Produto implements Serializable {
 		return true;
 	}
 
-	
-	
 
 }

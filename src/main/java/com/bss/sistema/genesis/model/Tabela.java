@@ -1,6 +1,7 @@
 package com.bss.sistema.genesis.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -21,9 +22,19 @@ public class Tabela implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@OneToMany(mappedBy = "tabela")
+	private List<Proposta> propostas;
+	
+	
+	@ManyToOne
+	@JoinColumn(name = "codigo_produto")
+	private Produto produto;
+
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long codigo;
+	
 
 	@NotBlank(message = "Descrição é obrigatório") // Nao deixa inserir nulos e espacos
 	@Size(min = 1, max = 50)
@@ -32,6 +43,17 @@ public class Tabela implements Serializable {
 	@NotBlank(message = "Descrição é obrigatório") // Nao deixa inserir nulos e espacos
 	@Size(min = 1, max = 50)
 	private String tipo;
+
+
+	private BigDecimal coeficiente;
+
+	public Produto getProduto() {
+		return produto;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
 
 	@ManyToOne
 	@JoinColumn(name = "codigo_produto")
@@ -64,12 +86,12 @@ public class Tabela implements Serializable {
 		this.tipo = tipo;
 	}
 
-	public Produto getProduto() {
-		return produto;
+	public BigDecimal getCoeficiente() {
+		return coeficiente;
 	}
 
-	public void setProduto(Produto produto) {
-		this.produto = produto;
+	public void setCoeficiente(BigDecimal coeficiente) {
+		this.coeficiente = coeficiente;
 	}
 
 	@Override
