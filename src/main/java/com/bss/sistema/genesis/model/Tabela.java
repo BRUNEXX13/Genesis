@@ -1,6 +1,7 @@
 package com.bss.sistema.genesis.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -15,20 +16,24 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-import com.bss.sistema.genesis.repository.Propostas;
-
 @Entity
 @Table(name = "tabela")
 public class Tabela implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@OneToMany(mappedBy = "tabela")
-	private List<Propostas> propostas;
+	private List<Proposta> propostas;
+	
+	
+	@ManyToOne
+	@JoinColumn(name = "codigo_produto")
+	private Produto produto;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long codigo;
+	
 
 	@NotBlank(message = "Descrição é obrigatório") // Nao deixa inserir nulos e espacos
 	@Size(min = 1, max = 50)
@@ -38,32 +43,14 @@ public class Tabela implements Serializable {
 	@Size(min = 1, max = 50)
 	private String tipo;
 
-	@ManyToOne
-	@JoinColumn(name = "codigo_produto")
-	private Produto produto;
-	
-	@ManyToOne
-	@JoinColumn(name = "codigo_banco")
-	private Banco banco;
-	
-	
+	private BigDecimal coeficiente;
 
-	
-	
-	public List<Propostas> getPropostas() {
-		return propostas;
+	public Produto getProduto() {
+		return produto;
 	}
 
-	public void setPropostas(List<Propostas> propostas) {
-		this.propostas = propostas;
-	}
-
-	public Banco getBanco() {
-		return banco;
-	}
-
-	public void setBanco(Banco banco) {
-		this.banco = banco;
+	public void setProduto(Produto produto) {
+		this.produto = produto;
 	}
 
 	public long getCodigo() {
@@ -90,12 +77,12 @@ public class Tabela implements Serializable {
 		this.tipo = tipo;
 	}
 
-	public Produto getProduto() {
-		return produto;
+	public BigDecimal getCoeficiente() {
+		return coeficiente;
 	}
 
-	public void setProduto(Produto produto) {
-		this.produto = produto;
+	public void setCoeficiente(BigDecimal coeficiente) {
+		this.coeficiente = coeficiente;
 	}
 
 	@Override

@@ -29,9 +29,12 @@ public class Produto implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	@ManyToOne
+	@JoinColumn(name = "codigo_banco")
+	private Banco banco;
+	
 	@OneToMany(mappedBy = "produto")
 	private List<Tabela> tabelas;
-
 	
 	
 	@Id
@@ -46,16 +49,12 @@ public class Produto implements Serializable {
 	@Size(min = 1, max = 100)
 	private String tipo;
 
-	@ManyToOne
-	@JoinColumn(name = "codigo_banco")
-	private Banco banco;
-
-	public List<Tabela> getTabelas() {
-		return tabelas;
+	public Banco getBanco() {
+		return banco;
 	}
 
-	public void setTabelas(List<Tabela> tabelas) {
-		this.tabelas = tabelas;
+	public void setBanco(Banco banco) {
+		this.banco = banco;
 	}
 
 	public long getCodigo() {
@@ -82,14 +81,6 @@ public class Produto implements Serializable {
 		this.tipo = tipo;
 	}
 
-	public Banco getBanco() {
-		return banco;
-	}
-
-	public void setBanco(Banco banco) {
-		this.banco = banco;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -111,7 +102,5 @@ public class Produto implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
 
 }

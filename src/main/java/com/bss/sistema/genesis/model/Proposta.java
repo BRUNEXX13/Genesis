@@ -18,16 +18,17 @@ import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "proposta") // Vou fazer referencia ao flyway //
-public class Proposta  implements Serializable  {
+public class Proposta implements Serializable {
 
-	
 	private static final long serialVersionUID = 1L;
 
+	@ManyToOne
+	@JoinColumn(name = "codigo_tabela")
+	private Tabela tabela;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
-
 
 	@NotBlank(message = "Código é obrigatório")
 	private String ade;
@@ -38,23 +39,23 @@ public class Proposta  implements Serializable  {
 
 	private BigDecimal valorParcela;
 
-
 	private BigDecimal valorTotal;
 
-
 	private BigDecimal valorLiquido;
-
 
 	private BigDecimal comissao;
 
 	@Enumerated(EnumType.STRING)
 	private Sabor sabor;
 
-	@ManyToOne /// Uma proposta tem um Banco // Um Banco tem varias propostas
-	@JoinColumn(name = "codigo_banco")
-	private Banco banco;
+	public Tabela getTabela() {
+		return tabela;
+	}
 
-	
+	public void setTabela(Tabela tabela) {
+		this.tabela = tabela;
+	}
+
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -117,14 +118,6 @@ public class Proposta  implements Serializable  {
 
 	public void setSabor(Sabor sabor) {
 		this.sabor = sabor;
-	}
-
-	public Banco getBanco() {
-		return banco;
-	}
-
-	public void setBanco(Banco banco) {
-		this.banco = banco;
 	}
 
 	@Override

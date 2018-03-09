@@ -49,7 +49,25 @@
 							</div>
 						
 						
+				
 					<div class="col-sm-3  form-group">
+							<label for="banco">Banco</label>
+							<div class="gn-field-action">
+								<select id="banco" class="form-control">
+								<option value="">Selecione o Banco</option>
+									<option th:each="banco : ${bancos}" th:value="${banco.codigo}" th:text="${banco.nome}">Itau</option>
+									
+						</select>
+							<div class="gn-field-action__icon">
+									<a href="#" data-toggle="modal" data-target="#modalCadastroRapidoBanco">
+									<i class="glyphicon glyphicon-plus-sign  gn-glyphicon-plus-large"></i>
+								</a>
+								</div>
+							</div>
+					</div>
+					
+					<!--  
+						<div class="col-sm-3  form-group">
 							<label for="tabela">Tabela</label>
 							<div class="gn-field-action">
 								<select id="banco" class="form-control" >
@@ -64,24 +82,7 @@
 								</div>
 							</div>
 					</div>
-					
-					<div class="col-sm-3  form-group">
-							<label for="banco">Banco</label>
-							<div class="gn-field-action">
-								<select id="banco" class="form-control">
-								<option value="">Selecione o Banco</option>
-								<option value="1">341 -Itau</option>
-								<option value="1">222- Banco do Brasil</option>
-								<option value="1">232 -Santander</option>
-						</select>
-							<div class="gn-field-action__icon">
-									<a href="#" data-toggle="modal" data-target="#modalCadastroRapidoBanco">
-									<i class="glyphicon glyphicon-plus-sign  gn-glyphicon-plus-large"></i>
-								</a>
-								</div>
-							</div>
-					</div>
-					
+					 -->
 					
 						
 				
