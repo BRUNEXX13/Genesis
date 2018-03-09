@@ -10,13 +10,12 @@ numero BIGINT(20) NOT NULL,
 nome VARCHAR (50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
 CREATE TABLE produto (
-	codigo BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
-	descricao TEXT NOT NULL,
-	tipo TEXT NOT NULL,
-	codigo_banco BIGINT(20) NOT NULL,
-	FOREIGN KEY (codigo_banco) REFERENCES banco(codigo)
+codigo BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
+descricao TEXT NOT NULL,
+tipo TEXT NOT NULL,
+codigo_banco BIGINT(20) NOT NULL,
+FOREIGN KEY (codigo_banco) REFERENCES banco(codigo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -25,8 +24,6 @@ codigo BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
 descricao VARCHAR (50) NOT NULL,
 tipo VARCHAR(50) NOT NULL,
 valor_liquido DECIMAL (10,2) NOT NULL,
-codigo_banco BIGINT(20) NOT NULL,
-FOREIGN KEY (codigo_banco) REFERENCES banco(codigo),
 codigo_produto BIGINT(20) NOT NULL,
 FOREIGN KEY (codigo_produto) REFERENCES produto(codigo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -41,19 +38,13 @@ valor_total  DECIMAL (10,2) NOT NULL,
 valor_liquido  DECIMAL (10,2) NOT NULL,
 comissao DECIMAL (10,2) NOT NULL,
 sabor VARCHAR(50) NOT NULL,
-codigo_banco BIGINT(20) NOT NULL,
-FOREIGN KEY (codigo_banco) REFERENCES banco(codigo),
-codigo_produto BIGINT(20) NOT NULL,
-FOREIGN KEY (codigo_produto) REFERENCES produto(codigo),
 codigo_tabela BIGINT(20) NOT NULL,
 FOREIGN KEY (codigo_tabela) REFERENCES tabela(codigo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-	
 
 
 
 
-	--INSERT INTO banco VALUES (0, 341, 'ITAU');
-	--INSERT INTO banco VALUES (0, 777, 'SANTANDER');
-	--INSERT INTO produto VALUES (0, 'TESTE1', 'CARTAO', 1);
-
+	INSERT INTO banco VALUES (0, 341, 'ITAU');
+	INSERT INTO banco VALUES (0, 777, 'SANTANDER');
+	INSERT INTO produto VALUES (0, 'TESTE1', 'CARTAO', 1);

@@ -40,7 +40,7 @@ public class PropostasController {
 		
 		// Salvar no banco de dados...
 		attributes.addFlashAttribute("mensagem", "Proposta Salva com sucesso!");
-		System.out.println(">>> sku: " + proposta.getAde());
+		//System.out.println(">>> sku: " + proposta.getAde());
 		return new ModelAndView("redirect:/proposta/novo");
 }
 	

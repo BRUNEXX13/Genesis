@@ -20,17 +20,7 @@ public class Banco implements Serializable {
 	/**
 	 * 
 	 */
-	@OneToMany(mappedBy = "banco")
-	private List<Produto>produtos;
-	
-	@OneToMany(mappedBy = "banco")
-	private List<Tabela>tabelas;
-	
-	@OneToMany(mappedBy = "banco")
-	private List<Proposta> propostas;
-	
-	
-	
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -42,6 +32,9 @@ public class Banco implements Serializable {
 
 	@NotBlank
 	private String nome;
+
+	@OneToMany(mappedBy = "banco")
+	private List<Produto> produtos;
 
 	public Long getCodigo() {
 		return codigo;
