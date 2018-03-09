@@ -20,20 +20,18 @@ public class Banco implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-
 	@OneToMany(mappedBy = "banco")
-	@NotBlank
+	private List<Produto>produtos;
+	
+	@OneToMany(mappedBy = "banco")
+	private List<Tabela>tabelas;
+	
+	@OneToMany(mappedBy = "banco")
 	private List<Proposta> propostas;
 	
-	@OneToMany(mappedBy = "banco")
-	@NotBlank
-	private List<Produto> produtos;
 	
-
-	@OneToMany(mappedBy = "banco")
-	@NotBlank
-	private List<Tabela> tabelas;
+	
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,14 +42,6 @@ public class Banco implements Serializable {
 
 	@NotBlank
 	private String nome;
-
-	public List<Proposta> getPropostas() {
-		return propostas;
-	}
-
-	public void setPropostas(List<Proposta> propostas) {
-		this.propostas = propostas;
-	}
 
 	public Long getCodigo() {
 		return codigo;
@@ -77,27 +67,29 @@ public class Banco implements Serializable {
 		this.nome = nome;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		return result;
 	}
 
-	public List<Produto> getProdutos() {
-		return produtos;
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Banco other = (Banco) obj;
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
+			return false;
+		return true;
 	}
 
-	public void setProdutos(List<Produto> produtos) {
-		this.produtos = produtos;
-	}
-
-	public List<Tabela> getTabelas() {
-		return tabelas;
-	}
-
-	public void setTabelas(List<Tabela> tabelas) {
-		this.tabelas = tabelas;
-	}
-	
-	
-
-	
 }

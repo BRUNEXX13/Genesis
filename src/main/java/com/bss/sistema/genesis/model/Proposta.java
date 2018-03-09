@@ -1,5 +1,6 @@
 package com.bss.sistema.genesis.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Entity;
@@ -17,7 +18,11 @@ import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "proposta") // Vou fazer referencia ao flyway //
-public class Proposta {
+public class Proposta  implements Serializable  {
+
+	
+	private static final long serialVersionUID = 1L;
+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,7 +54,6 @@ public class Proposta {
 	@JoinColumn(name = "codigo_banco")
 	private Banco banco;
 
-	
 	
 	public Long getCodigo() {
 		return codigo;

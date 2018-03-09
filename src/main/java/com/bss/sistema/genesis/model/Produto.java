@@ -1,11 +1,15 @@
 package com.bss.sistema.genesis.model;
 
+import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -18,8 +22,18 @@ import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "produto")
-public class Produto {
+public class Produto implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@OneToMany(mappedBy = "produto")
+	private List<Tabela> tabelas;
+
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long codigo;
@@ -31,19 +45,17 @@ public class Produto {
 	@NotBlank(message = "Descrição é obrigatório") // Nao deixa inserir nulos e espacos
 	@Size(min = 1, max = 100)
 	private String tipo;
-	
-	@ManyToOne /// Uma proposta tem um Banco // Um Banco tem varias propostas
+
+	@ManyToOne
 	@JoinColumn(name = "codigo_banco")
 	private Banco banco;
-	
-	
 
-	public Banco getBanco() {
-		return banco;
+	public List<Tabela> getTabelas() {
+		return tabelas;
 	}
 
-	public void setBanco(Banco banco) {
-		this.banco = banco;
+	public void setTabelas(List<Tabela> tabelas) {
+		this.tabelas = tabelas;
 	}
 
 	public long getCodigo() {
@@ -70,15 +82,12 @@ public class Produto {
 		this.tipo = tipo;
 	}
 
-	public Produto(long codigo, String descricao, String tipo) {
-		super();
-		this.codigo = codigo;
-		this.descricao = descricao;
-		this.tipo = tipo;
+	public Banco getBanco() {
+		return banco;
 	}
 
-	public Produto() {
-		super();
+	public void setBanco(Banco banco) {
+		this.banco = banco;
 	}
 
 	@Override
@@ -98,9 +107,11 @@ public class Produto {
 		if (getClass() != obj.getClass())
 			return false;
 		Produto other = (Produto) obj;
-		if (codigo != other.codigo)	
+		if (codigo != other.codigo)
 			return false;
 		return true;
 	}
+	
+	
 
 }

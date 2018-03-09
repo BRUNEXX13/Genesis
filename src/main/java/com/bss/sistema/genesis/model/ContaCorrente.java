@@ -1,7 +1,13 @@
 package com.bss.sistema.genesis.model;
 
-public class ContaCorrente {
+import java.io.Serializable;
 
+public class ContaCorrente  implements Serializable  {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int codigconta;
 	private int numero;
 	private String agencia;

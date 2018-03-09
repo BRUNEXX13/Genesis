@@ -1,6 +1,7 @@
 package com.bss.sistema.genesis.model;
 
-import java.math.BigDecimal;
+import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,14 +9,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.bss.sistema.genesis.repository.Propostas;
+
 @Entity
 @Table(name = "tabela")
-public class Tabela {
+public class Tabela implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
+	@OneToMany(mappedBy = "tabela")
+	private List<Propostas> propostas;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,12 +37,26 @@ public class Tabela {
 	@NotBlank(message = "Descrição é obrigatório") // Nao deixa inserir nulos e espacos
 	@Size(min = 1, max = 50)
 	private String tipo;
+
+	@ManyToOne
+	@JoinColumn(name = "codigo_produto")
+	private Produto produto;
 	
-	
-	@ManyToOne /// Uma proposta tem um Banco // Um Banco tem varias propostas
+	@ManyToOne
 	@JoinColumn(name = "codigo_banco")
 	private Banco banco;
 	
+	
+
+	
+	
+	public List<Propostas> getPropostas() {
+		return propostas;
+	}
+
+	public void setPropostas(List<Propostas> propostas) {
+		this.propostas = propostas;
+	}
 
 	public Banco getBanco() {
 		return banco;
@@ -42,8 +65,6 @@ public class Tabela {
 	public void setBanco(Banco banco) {
 		this.banco = banco;
 	}
-
-	private BigDecimal juros;
 
 	public long getCodigo() {
 		return codigo;
@@ -69,17 +90,12 @@ public class Tabela {
 		this.tipo = tipo;
 	}
 
-	public BigDecimal getJuros() {
-		return juros;
+	public Produto getProduto() {
+		return produto;
 	}
 
-	public void setJuros(BigDecimal juros) {
-		this.juros = juros;
-	}
-
-	public Tabela(long codigo) {
-		super();
-		this.codigo = codigo;
+	public void setProduto(Produto produto) {
+		this.produto = produto;
 	}
 
 	@Override
@@ -104,18 +120,4 @@ public class Tabela {
 		return true;
 	}
 
-	public Tabela(long codigo, String descricao, String tipo, BigDecimal juros) {
-		super();
-		this.codigo = codigo;
-		this.descricao = descricao;
-		this.tipo = tipo;
-		this.juros = juros;
-	}
-
-	public Tabela() {
-		super();
-	}
-	
-
-	
 }
