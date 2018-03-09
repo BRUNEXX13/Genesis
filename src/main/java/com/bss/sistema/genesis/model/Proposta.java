@@ -2,7 +2,6 @@ package com.bss.sistema.genesis.model;
 
 import java.math.BigDecimal;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -27,7 +26,6 @@ public class Proposta {
 
 	@NotBlank(message = "Código é obrigatório")
 	private String ade;
-
 
 	@NotBlank(message = "Descrição é obrigatório") // Nao deixa inserir nulos e espacos
 	@Size(min = 1, max = 50)

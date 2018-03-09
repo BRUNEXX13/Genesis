@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.bss.sistema.genesis.model.Origem;
 import com.bss.sistema.genesis.model.Proposta;
 import com.bss.sistema.genesis.model.Sabor;
 import com.bss.sistema.genesis.repository.Bancos;
@@ -26,6 +27,7 @@ public class PropostasController {
 		ModelAndView mv = new ModelAndView("/proposta/CadastroProposta");
 		mv.addObject("sabores", Sabor.values());
 		mv.addObject("bancos",bancos.findAll());
+		mv.addObject("origens", Origem.values());
 		
 		return mv;
 	}

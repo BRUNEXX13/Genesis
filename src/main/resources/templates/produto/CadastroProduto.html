@@ -3,9 +3,16 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="'layout/LayoutPadrao'">
-	
+
 <head>
-<title>Cadastro de Produto</title>
+<title>Cadastro de Usuário</title>
+
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/stylesheets/vendors/bootstrap-switch.min.css}" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/stylesheets/vendors/bootstrap-switch.css}" />
+
 
 </head>
 <body>
@@ -24,34 +31,71 @@
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<i class="fa  fa-exclamation-circle"></i>Já existe um banco  com o nome informado.
+					<i class="fa  fa-exclamation-circle"></i>Já Existe um Produto com Nome Informado.
 				</div>
 
 				<form method="POST" th:object="${produto}" class="form-vertical  js-form-loading">
 
 					<div class="row">
 						<div class="col-sm-2 form-group">
-							<label for="ade">CODIGO</label>
-							<input id="ade" type="text" class="form-control">
+							<label for="codigo">Código</label>
+							<input id="codigo" type="text" class="form-control">
 					</div>
 					
 					
-						<div class="col-sm-10 form-group">
-								<label for="nome">NOME DO PRODUTO</label>
-								<input id="nome" type="text" class="form-control">
+						<div class="col-sm-3 form-group">
+								<label for="descricao">Descricao</label>
+								<input id="descricao" type="text" class="form-control">
 							</div>
+						
+						
+					<div class="col-sm-3  form-group">
+							<label for="tabela">Tabela</label>
+							<div class="gn-field-action">
+								<select id="banco" class="form-control" >
+									<option value="">Selecione a Tabela</option>
+									<option th:each="banco : ${bancos}" th:value="${banco.codigo}" th:text="${banco.nome}">Itau</option>
+									
+								</select>
+							<div class="gn-field-action__icon">
+									<a href="#" data-toggle="modal" data-target="#modalCadastroRapidoTabela">
+									<i class="glyphicon glyphicon-plus-sign  gn-glyphicon-plus-large"></i>
+								</a>
+								</div>
+							</div>
+					</div>
+					
+					<div class="col-sm-3  form-group">
+							<label for="banco">Banco</label>
+							<div class="gn-field-action">
+								<select id="banco" class="form-control">
+								<option value="">Selecione o Banco</option>
+								<option value="1">341 -Itau</option>
+								<option value="1">222- Banco do Brasil</option>
+								<option value="1">232 -Santander</option>
+						</select>
+							<div class="gn-field-action__icon">
+									<a href="#" data-toggle="modal" data-target="#modalCadastroRapidoBanco">
+									<i class="glyphicon glyphicon-plus-sign  gn-glyphicon-plus-large"></i>
+								</a>
+								</div>
+							</div>
+					</div>
+					
+					
+						
+				
 						</div>
 						
 							<div class="row">
-							<div class="col-sm-3 form-group">
-									<label for="status">STATUS</label>
-									<select id="status" class="form-control">
-									<option value="">Selecione o Status</option>
-									<option value="1">Ativo</option>
-									<option value="2">Inativo</option>
-									</select>
-									
-								</div>
+							<div class="form-group  col-sm-3">
+						<label class="control-label">Status</label>
+						<div>
+							<input type="checkbox" class="js-status" data-size="small"
+								data-off-color="danger" data-on-text="Ativo"
+								data-off-text="Inativo" />
+						</div>
+					</div>
 
 						</div>
 						
@@ -63,8 +107,20 @@
 
 				</form>
 			</div>
+			
+				<div th:replace="estilo/CadastroRapidoTabela :: modal"></div>
+				<div th:replace="estilo/CadastroRapidoBanco :: modal"></div>
+			
 
 		</section>
+		
+		<th:block layout:fragment="javascript-extra">
+		<script th:src="@{/javascripts/vendors/bootstrap-switch.min.js}"></script>
+		<script>
+		$('.js-status').bootstrapSwitch();
+	</script>
+	</th:block>
+		
 	
 	</body>
 </html>

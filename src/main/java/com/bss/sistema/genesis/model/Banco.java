@@ -3,7 +3,6 @@ package com.bss.sistema.genesis.model;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,6 +25,15 @@ public class Banco implements Serializable {
 	@OneToMany(mappedBy = "banco")
 	@NotBlank
 	private List<Proposta> propostas;
+	
+	@OneToMany(mappedBy = "banco")
+	@NotBlank
+	private List<Produto> produtos;
+	
+
+	@OneToMany(mappedBy = "banco")
+	@NotBlank
+	private List<Tabela> tabelas;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -73,4 +81,23 @@ public class Banco implements Serializable {
 		return serialVersionUID;
 	}
 
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
+	}
+
+	public List<Tabela> getTabelas() {
+		return tabelas;
+	}
+
+	public void setTabelas(List<Tabela> tabelas) {
+		this.tabelas = tabelas;
+	}
+	
+	
+
+	
 }
