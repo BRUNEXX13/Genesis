@@ -48,6 +48,7 @@ public class Proposta implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private Sabor sabor;
 
+
 	public Tabela getTabela() {
 		return tabela;
 	}
@@ -55,6 +56,10 @@ public class Proposta implements Serializable {
 	public void setTabela(Tabela tabela) {
 		this.tabela = tabela;
 	}
+
+	@ManyToOne
+	@JoinColumn(name = "codigo_tabela")
+	private Tabela tabela;
 
 	public Long getCodigo() {
 		return codigo;
@@ -118,6 +123,14 @@ public class Proposta implements Serializable {
 
 	public void setSabor(Sabor sabor) {
 		this.sabor = sabor;
+	}
+
+	public Tabela getTabela() {
+		return tabela;
+	}
+
+	public void setTabela(Tabela tabela) {
+		this.tabela = tabela;
 	}
 
 	@Override
