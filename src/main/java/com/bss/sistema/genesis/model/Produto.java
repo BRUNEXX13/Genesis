@@ -28,12 +28,8 @@ public class Produto implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	@OneToMany(mappedBy = "produto")
-	private List<Tabela> tabelas;
-
 	
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long codigo;
@@ -49,14 +45,9 @@ public class Produto implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "codigo_banco")
 	private Banco banco;
-
-	public List<Tabela> getTabelas() {
-		return tabelas;
-	}
-
-	public void setTabelas(List<Tabela> tabelas) {
-		this.tabelas = tabelas;
-	}
+	
+	@OneToMany(mappedBy = "produto")
+	private List<Tabela> tabelas;
 
 	public long getCodigo() {
 		return codigo;
@@ -111,6 +102,7 @@ public class Produto implements Serializable {
 			return false;
 		return true;
 	}
+
 	
 	
 

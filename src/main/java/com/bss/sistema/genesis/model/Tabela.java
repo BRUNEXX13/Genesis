@@ -15,16 +15,11 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-import com.bss.sistema.genesis.repository.Propostas;
-
 @Entity
 @Table(name = "tabela")
 public class Tabela implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
-	@OneToMany(mappedBy = "tabela")
-	private List<Propostas> propostas;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,30 +36,9 @@ public class Tabela implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "codigo_produto")
 	private Produto produto;
-	
-	@ManyToOne
-	@JoinColumn(name = "codigo_banco")
-	private Banco banco;
-	
-	
 
-	
-	
-	public List<Propostas> getPropostas() {
-		return propostas;
-	}
-
-	public void setPropostas(List<Propostas> propostas) {
-		this.propostas = propostas;
-	}
-
-	public Banco getBanco() {
-		return banco;
-	}
-
-	public void setBanco(Banco banco) {
-		this.banco = banco;
-	}
+	@OneToMany(mappedBy = "tabela")
+	private List<Proposta> propostas;
 
 	public long getCodigo() {
 		return codigo;
