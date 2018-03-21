@@ -40,10 +40,12 @@
 						<input id="descricao" type="text" class="form-control"   th:field="*{descricao}" />
 					</div>
 					
+					<!-- 
 					<div class="col-sm-3 form-group">
 						<label for="data">Data Proposta</label>
 						<input id="data" type="date" class="form-control" >
 						</div>
+						 -->
 						
 				</div>
 				
@@ -78,88 +80,90 @@
 						</select>
 					</div>
 					
-		
-					
-					<div class="col-lg-3  col-sm-6  form-group">
-						<label for="origem">Origem</label>
-						<div>
+						<div class="col-sm-3  form-group">
+							<label for="tabela">Tabela</label>
+							<div class="gn-field-action">
+								<select id="tabela" class="form-control"  >
+									<option value="">Selecione a Tabela</option>
+									<option th:each="tabela : ${tabelas}" th:value="${tabela.codigo}" th:text="${tabela.descricao}">Itau</option>
+									
+								</select>
+						
+							<div class="gn-field-action__icon">
+									<a href="#" data-toggle="modal" data-target="#modalCadastroRapidoTabela">
+									<i class="glyphicon glyphicon-plus-sign  gn-glyphicon-plus-large"></i>
+								</a>
+								</div>
+							</div>
+						</div>
+						
+						
+						
+				<div class=" col-sm-3  form-group">
+					<label for="origem">Origem</label>
+					<div>
 						<th:block th:each="origem : ${origens}">
 							<div class="radio  radio-inline">
-								<input th:id="|id_${origem}|" type="radio" th:value="${origem}" > 
+								<input th:id="|id_${origem}|" type="radio" th:value="${origem}" th:field="*{origem}"> 
 								<label th:for="|id_${origem}|" th:text="${origem.descricao}">Nacional</label>
 							</div>
-							</th:block>
-							
-						</div>
+						</th:block>
 					</div>
 				</div>
 				
+			
+			</div>
+						
+						
+						
+						
+						
+					
+
+				
 				<div class="row">
-					<div class="col-sm-3  form-group">
+					<div class="col-sm-4  form-group">
 						<label for="valorParcela">Valor Parcela</label>
 						<div class="input-group">
 							<div class="input-group-addon">R$</div>
 							<input id="valorParcela" type="text" class="form-control js-decimal" th:field="*{valorParcela}"/>
-						</div>
+						</div>                                                                              <!-- Repository Proposta -->
 						
 					</div>
 					
-					<div class="col-sm-3  form-group">
+					<div class="col-sm-4  form-group">
 						<label for="valorTotal">Valor Total</label>
 						<div class="input-group">
 							<input id="valorTotal" type="text" class="form-control  js-decimal"  th:field="*{valorTotal}"   />
-							<div class="input-group-addon">R$</div>
+							<div class="input-group-addon">R$</div>										 <!-- Repository Proposta -->
 						</div>
 					</div>
 					
-							<div class="col-sm-3  form-group">
+							<div class="col-sm-4  form-group">
 						<label for="valorLiquido">Valor Líquido</label>
 						<div class="input-group">
 							<input id="valorLiquido" type="text" class="form-control  js-decimal" th:field="*{valorLiquido}"/>
-							<div class="input-group-addon">R$</div>
+							<div class="input-group-addon">R$</div>                               <!-- Repository Proposta -->
 						</div>
 					</div>
-					
-					
 
-					<div class="col-sm-3  form-group">
-						<label for="valorLíquido">Valor Líquido</label>
+				</div>
+				
+			<!-- 
+				<div class="row">
+				
+				<div class="col-sm-3  form-group">
+						<label for="comissao">Comissao</label>
 						<div class="input-group">
-							<input id="valorTotal" type="text" class="form-control  js-decimal" th:field="*{valorTotal}"/>
-							<div class="input-group-addon">R$</div>
-						</div>
-					</div>
-					
-		
-					
-
-					<div class="col-sm-3  form-group">
-						<label for="comissao">Comissão</label>
-						<div class="input-group">
-							<input id="comissao" type="text"  class="form-control  js-plain"  th:field="*{comissao}"/>
+							<input id="comissao" type="text" class="form-control  js-decimal" th:field="*{comissao}"/>
 							<div class="input-group-addon">%</div>
 						</div>
 					</div>
-					
-					
+			
 				</div>
-				
-				<div class="row">
-				<div class="col-sm-3  form-group">
-						<label for="sabor">Sabor</label>
-						<select id="sabor" class="form-control" th:field=*{sabor}>
-							<option value="">Selecione o sabor</option>
-							<option th:each="sabor : ${sabores}" th:value="${sabor}" th:text="${sabor.descricao}">Adocicada</option>
-									
-						</select>
-					</div>
-				
-				</div>
-				
-				
-				
-				
-				
+					-->
+			
+	
 				<div class="form-group">
 					<button class="btn  btn-primary" type="submit">Salvar</button>
 				</div>
@@ -168,6 +172,8 @@
 			</form>
 		</div>
 					<div th:replace="estilo/CadastroRapidoBanco :: modal"></div>
+					<div th:replace="estilo/CadastroRapidoTabela :: modal"></div>
+					
 
 	</section>
 	

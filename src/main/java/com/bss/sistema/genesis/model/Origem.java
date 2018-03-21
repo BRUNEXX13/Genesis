@@ -1,6 +1,6 @@
 package com.bss.sistema.genesis.model;
 
-public enum Origem {
+public enum Origem  {
 	
 
 	NACIONAL("Nacional"),

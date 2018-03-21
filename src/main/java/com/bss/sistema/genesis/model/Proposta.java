@@ -37,16 +37,14 @@ public class Proposta implements Serializable {
 	@Size(min = 1, max = 50)
 	private String descricao;
 
+	@Enumerated(EnumType.STRING)
+	private Origem origem;
+
 	private BigDecimal valorParcela;
 
 	private BigDecimal valorTotal;
 
 	private BigDecimal valorLiquido;
-
-	private BigDecimal comissao;
-
-	@Enumerated(EnumType.STRING)
-	private Sabor sabor;
 
 	public Tabela getTabela() {
 		return tabela;
@@ -80,6 +78,14 @@ public class Proposta implements Serializable {
 		this.descricao = descricao;
 	}
 
+	public Origem getOrigem() {
+		return origem;
+	}
+
+	public void setOrigem(Origem origem) {
+		this.origem = origem;
+	}
+
 	public BigDecimal getValorParcela() {
 		return valorParcela;
 	}
@@ -102,22 +108,6 @@ public class Proposta implements Serializable {
 
 	public void setValorLiquido(BigDecimal valorLiquido) {
 		this.valorLiquido = valorLiquido;
-	}
-
-	public BigDecimal getComissao() {
-		return comissao;
-	}
-
-	public void setComissao(BigDecimal comissao) {
-		this.comissao = comissao;
-	}
-
-	public Sabor getSabor() {
-		return sabor;
-	}
-
-	public void setSabor(Sabor sabor) {
-		this.sabor = sabor;
 	}
 
 	@Override
