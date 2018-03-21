@@ -46,6 +46,15 @@ public class Proposta implements Serializable {
 
 	private BigDecimal valorLiquido;
 
+<<<<<<< HEAD
+=======
+	private BigDecimal comissao;
+
+	@Enumerated(EnumType.STRING)
+	private Sabor sabor;
+
+
+>>>>>>> 92bf253e60da26e463747880df058d8c7e2a8197
 	public Tabela getTabela() {
 		return tabela;
 	}
@@ -53,6 +62,10 @@ public class Proposta implements Serializable {
 	public void setTabela(Tabela tabela) {
 		this.tabela = tabela;
 	}
+
+	@ManyToOne
+	@JoinColumn(name = "codigo_tabela")
+	private Tabela tabela;
 
 	public Long getCodigo() {
 		return codigo;
@@ -110,6 +123,33 @@ public class Proposta implements Serializable {
 		this.valorLiquido = valorLiquido;
 	}
 
+<<<<<<< HEAD
+=======
+	public BigDecimal getComissao() {
+		return comissao;
+	}
+
+	public void setComissao(BigDecimal comissao) {
+		this.comissao = comissao;
+	}
+
+	public Sabor getSabor() {
+		return sabor;
+	}
+
+	public void setSabor(Sabor sabor) {
+		this.sabor = sabor;
+	}
+
+	public Tabela getTabela() {
+		return tabela;
+	}
+
+	public void setTabela(Tabela tabela) {
+		this.tabela = tabela;
+	}
+
+>>>>>>> 92bf253e60da26e463747880df058d8c7e2a8197
 	@Override
 	public int hashCode() {
 		final int prime = 31;

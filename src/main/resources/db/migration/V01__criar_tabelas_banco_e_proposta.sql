@@ -10,7 +10,6 @@ numero BIGINT(20) NOT NULL UNIQUE,
 nome VARCHAR (50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
 CREATE TABLE produto (
 codigo BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
 descricao TEXT NOT NULL,
@@ -25,6 +24,7 @@ codigo BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
 descricao VARCHAR (50) NOT NULL,
 tipo VARCHAR(50) NOT NULL,
 coeficiente DECIMAL (10,2) NOT NULL,
+valor_liquido DECIMAL (10,2) NOT NULL,
 codigo_produto BIGINT(20) NOT NULL,
 FOREIGN KEY (codigo_produto) REFERENCES produto(codigo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -42,7 +42,8 @@ valorLiquido DECIMAL (10,2) NOT NULL,
 codigo_tabela BIGINT(20) NOT NULL,
 FOREIGN KEY (codigo_tabela) REFERENCES tabela(codigo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-	
+
+
 
 
 
@@ -65,9 +66,17 @@ FOREIGN KEY (codigo_proposta) REFERENCES proposta(codigo)
 	INSERT INTO produto VALUES (0, 'Refinanceamento', 'Cartão', 1);
 	INSERT INTO produto VALUES (0, 'Novo', 'Teste', 2);
 	INSERT INTO produto VALUES (0, 'Cartao', 'Teste', 3);
+<<<<<<< HEAD
 	
 	INSERT INTO tabela VALUES (0, 'Taxa Itau', 'Cartão', 1, 1);
 	
 	INSERT INTO proposta VALUES (0, '007', 'James Bond', 'Nacional', 10.00, 20.00, 30.00, 1);
 	
 	
+=======
+
+	INSERT INTO banco VALUES (0, 341, 'ITAU');
+	INSERT INTO banco VALUES (0, 777, 'SANTANDER');
+	INSERT INTO produto VALUES (0, 'TESTE1', 'CARTAO', 1);
+
+>>>>>>> 92bf253e60da26e463747880df058d8c7e2a8197
