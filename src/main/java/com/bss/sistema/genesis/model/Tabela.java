@@ -30,7 +30,6 @@ public class Tabela implements Serializable {
 	@JoinColumn(name = "codigo_produto")
 	private Produto produto;
 
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long codigo;
@@ -44,7 +43,6 @@ public class Tabela implements Serializable {
 	@Size(min = 1, max = 50)
 	private String tipo;
 
-
 	private BigDecimal coeficiente;
 
 	public Produto getProduto() {
@@ -54,13 +52,6 @@ public class Tabela implements Serializable {
 	public void setProduto(Produto produto) {
 		this.produto = produto;
 	}
-
-	@ManyToOne
-	@JoinColumn(name = "codigo_produto")
-	private Produto produto;
-
-	@OneToMany(mappedBy = "tabela")
-	private List<Proposta> propostas;
 
 	public long getCodigo() {
 		return codigo;

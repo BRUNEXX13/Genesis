@@ -39,7 +39,8 @@ public class Banco implements Serializable {
 
 	@OneToMany(mappedBy = "banco")
 	private List<Produto> produtos;
-  
+	
+	
 	public Long getCodigo() {
 		return codigo;
 	}
