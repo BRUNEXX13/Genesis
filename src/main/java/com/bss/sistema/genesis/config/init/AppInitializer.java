@@ -1,6 +1,4 @@
-package com.bss.sistema.genesis.init;
-
-import java.util.ServiceConfigurationError;
+package com.bss.sistema.genesis.config.init;
 
 import javax.servlet.Filter;
 
@@ -17,6 +15,7 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 	protected Class<?>[] getRootConfigClasses() {
 		
 		return new Class<?>[] {JPAConfig.class , ServiceConfig.class};
+		                                            // Classa Em ServiceConfg - 
 	}
 
 	@Override   // 2º  O que é de Web configurado em Serveletconfig --

@@ -19,10 +19,10 @@ import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
-import com.bss.sistema.genesis.controller.PropostasController;
-import com.bss.sistema.genesis.controller.converter.BancoConverter;
-
 import nz.net.ultraq.thymeleaf.LayoutDialect;
+
+import com.bss.sistema.genesis.controller.PropostasController;
+import com.bss.sistema.genesis.controller.converter.TabelaConverter;
 
 @Configuration
 @ComponentScan(basePackageClasses = { PropostasController.class })
@@ -75,10 +75,9 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 	@Bean
 	public FormattingConversionService mvcConversionService() {
 		DefaultFormattingConversionService conversionService = new DefaultFormattingConversionService();
-		conversionService.addConverter(new BancoConverter());
+		conversionService.addConverter(new TabelaConverter());
 
 		return conversionService;
-
 	}
 
 }

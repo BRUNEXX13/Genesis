@@ -14,7 +14,7 @@
 		<div class="page-header">
 			<div class="container-fluid">
 				<h1>
-					Cadastro de Proposta
+					 <strong>Cadastro de Proposta</strong>
 				</h1>
 			</div>
 		</div>
@@ -83,7 +83,7 @@
 						<div class="col-sm-3  form-group">
 							<label for="tabela">Tabela</label>
 							<div class="gn-field-action">
-								<select id="tabela" class="form-control"  >
+								<select id="tabela" class="form-control"  th:field="*{tabela}">
 									<option value="">Selecione a Tabela</option>
 									<option th:each="tabela : ${tabelas}" th:value="${tabela.codigo}" th:text="${tabela.descricao}">Itau</option>
 									
