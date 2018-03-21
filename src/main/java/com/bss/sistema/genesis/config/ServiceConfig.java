@@ -5,7 +5,8 @@ import org.springframework.context.annotation.Configuration;
 
 import com.bss.sistema.genesis.service.CadastroPropostaService;
 
-@Configuration
+
+@Configuration					   // Nessa Classe e procurada os services
 @ComponentScan(basePackageClasses = CadastroPropostaService.class)
 public class ServiceConfig {
 

@@ -13,13 +13,14 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.bss.sistema.genesis.model.Proposta;
 import com.bss.sistema.genesis.repository.Propostas;
 
 @Configuration
-@EnableJpaRepositories(basePackageClasses = Propostas.class) // Chamando Propostas.interface = Repository
-
+@EnableJpaRepositories(basePackageClasses = Propostas.class , enableDefaultTransactions = false) // Chamando Propostas.interface = Repository
+@EnableTransactionManagement
 public class JPAConfig {
 
 	// jdbc/genesisDB = context.xml apontando
