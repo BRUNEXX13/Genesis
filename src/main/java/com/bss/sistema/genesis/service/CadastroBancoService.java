@@ -14,7 +14,7 @@ public class CadastroBancoService {
 	private Bancos bancos;
 	
 	@Transactional
-	public void salvar(Banco banco)  {
+	public void salvar(Banco banco) {
 		bancos.save(banco);
 	}
 	

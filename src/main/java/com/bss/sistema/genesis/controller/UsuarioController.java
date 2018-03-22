@@ -2,16 +2,20 @@ package com.bss.sistema.genesis.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.bss.sistema.genesis.model.Proposta;
+import com.bss.sistema.genesis.model.Usuario;
 
 @Controller
 public class UsuarioController {
 
 	// Apontamento para Propostas
 	@RequestMapping("/propostas/usuario")
-	public String usuario(Proposta proposta) // Propost Disponivel na Requiscao
+	public ModelAndView banco(Usuario usuario) // Propost Disponivel na Requiscao
 	{
-		return "usuario/CadastroUsuario";
+		ModelAndView mv = new ModelAndView("/usuario/CadastroUsuario");
+
+		return mv;
 	}
+
 }

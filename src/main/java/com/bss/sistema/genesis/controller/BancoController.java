@@ -12,8 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bss.sistema.genesis.model.Banco;
-import com.bss.sistema.genesis.model.Proposta;
 import com.bss.sistema.genesis.repository.Bancos;
+import com.bss.sistema.genesis.service.CadastroBancoService;
 
 @Controller
 public class BancoController {
@@ -22,9 +22,13 @@ public class BancoController {
 	@Autowired
 	private Bancos bancos;
 
+	@Autowired
+	private CadastroBancoService cadastroBancoService;
+	
+		
 	// Apontamento para Bancos
 	@RequestMapping("/propostas/banco")
-	public ModelAndView banco(Proposta proposta) { // Propost Disponivel na Requiscao
+	public ModelAndView novo(Banco banco) { // Propost Disponivel na Requiscao
 		ModelAndView mv = new ModelAndView("/banco/CadastroBanco");
 		mv.addObject("bancos", bancos.findAll()); // Referencia Lista de Bancos - AutoWired
 		return mv;
@@ -32,14 +36,16 @@ public class BancoController {
 
 	@RequestMapping(value = "/bancos/novo", method = RequestMethod.POST)
 	public ModelAndView cadastrar(@Valid Banco banco, BindingResult result, Model model, RedirectAttributes attributes) {
-
-		attributes.addFlashAttribute("mensagem", "Banco Salvo com Sucesso");
-		System.out.println(">>>> codigo: " + banco.getCodigo());
-		System.out.println(">>>> numero " + banco.getNumero());
-		System.out.println(">>>> nome: " + banco.getNome());
-
+		  if (result.hasErrors()) {
+			  return novo(banco);
+		   }
+		cadastroBancoService.salvar(banco);
+		attributes.addFlashAttribute("mensagem", "Banco salvo");
+		// Salvar no banco de dados...
+		//attributes.addFlashAttribute("mensagem", "Banco salva com sucesso!");
+		//System.out.println(">>> sku: " + banco.getNumero());
+		//System.out.println(">>> sku: " + banco.getNome());
 		return new ModelAndView("redirect:/bancos/novo");
-
 	}
 
 }

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.bss.sistema.genesis.model.Proposta;
+import com.bss.sistema.genesis.model.Produto;
 import com.bss.sistema.genesis.repository.Bancos;
 
 @Controller
@@ -17,7 +17,7 @@ public class ProdutoController {
 
 	//Apontamento para Propostas 
 	@RequestMapping("/propostas/produto")
-	public ModelAndView novo(Proposta proposta) {   // Propost Disponivel na Requiscao
+	public ModelAndView novo(Produto produto) {   // Propost Disponivel na Requiscao
 	ModelAndView mv = new ModelAndView("/produto/CadastroProduto");
 	mv.addObject("bancos",bancos.findAll());
 		return mv;

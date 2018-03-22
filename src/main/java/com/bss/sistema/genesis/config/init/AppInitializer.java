@@ -2,6 +2,8 @@ package com.bss.sistema.genesis.config.init;
 
 import javax.servlet.Filter;
 
+//Configuracoes da Aplicacaos
+
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
