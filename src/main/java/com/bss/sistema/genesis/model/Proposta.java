@@ -25,7 +25,8 @@ public class Proposta implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "codigo_tabela")
 	private Tabela tabela;
-
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;

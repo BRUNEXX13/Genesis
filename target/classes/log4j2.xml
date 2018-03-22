@@ -8,7 +8,9 @@
 	</Appenders>
 	
 	<Loggers>
-		<Logger name="com.bss.sistema.controller" level="DEBUG"/>
+		<Logger name="com.bss.sismtea..genesis.controller" level="error"/>
+		
+		<Logger name="org.hibernate" level="debug"/>
 	
 		<Root level="error">
 			<AppenderRef ref="Console" />
