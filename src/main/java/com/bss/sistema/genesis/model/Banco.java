@@ -24,23 +24,18 @@ public class Banco implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 
-	@NotBlank
-	@Column(unique=true)
-	private int numero;
 
-	@NotBlank
+	private Integer numero;
+
 	private String nome;
 
 	@OneToMany(mappedBy = "banco")
 	private List<Produto> produtos;
-	
-	
+
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -49,11 +44,11 @@ public class Banco implements Serializable {
 		this.codigo = codigo;
 	}
 
-	public int getNumero() {
+	public Integer getNumero() {
 		return numero;
 	}
 
-	public void setNumero(int numero) {
+	public void setNumero(Integer numero) {
 		this.numero = numero;
 	}
 
@@ -64,6 +59,8 @@ public class Banco implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
+	
 
 	@Override
 	public int hashCode() {
@@ -88,6 +85,18 @@ public class Banco implements Serializable {
 		} else if (!codigo.equals(other.codigo))
 			return false;
 		return true;
+	}
+
+	public Banco(Long codigo, Integer numero, String nome, Boolean status) {
+		super();
+		this.codigo = codigo;
+		this.numero = numero;
+		this.nome = nome;
+	
+	}
+
+	public Banco() {
+		super();
 	}
 
 }

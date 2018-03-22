@@ -7,6 +7,7 @@ import com.bss.sistema.genesis.model.Tabela;
 
 public class TabelaConverter implements Converter<String, Tabela> {
 
+	// Convertendo Tabela Nª para String
 	@Override
 	public Tabela convert(String codigo) {
 		if (!StringUtils.isEmpty(codigo)) {
