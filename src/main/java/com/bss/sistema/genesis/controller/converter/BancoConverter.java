@@ -6,6 +6,7 @@ import com.bss.sistema.genesis.model.Banco;
 
 public class BancoConverter implements Converter<String, Banco> {
 
+	// Convertendo BANCO Nª para String
 	@Override
 	public Banco convert(String codigo) {
 		Banco banco = new Banco();
