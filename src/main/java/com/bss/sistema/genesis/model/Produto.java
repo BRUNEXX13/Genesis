@@ -11,9 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
-
-import org.hibernate.validator.constraints.NotBlank;
 
 // novo
 // cartao
@@ -36,17 +33,16 @@ public class Produto implements Serializable {
 	@OneToMany(mappedBy = "produto")
 	private List<Tabela> tabelas;
 	
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long codigo;
 
-	@NotBlank(message = "Descrição é obrigatório") // Nao deixa inserir nulos e espacos
-	@Size(min = 1, max = 100)
+	//@NotBlank(message = "Descrição é obrigatório") // Nao deixa inserir nulos e espacos
+	//@Size(min = 1, max = 100)
 	private String descricao;
 
-	@NotBlank(message = "Descrição é obrigatório") // Nao deixa inserir nulos e espacos
-	@Size(min = 1, max = 100)
+	//@NotBlank(message = "Descrição é obrigatório") // Nao deixa inserir nulos e espacos
+	//@Size(min = 1, max = 100)
 	private String tipo;
 
 	public Banco getBanco() {
@@ -102,5 +98,11 @@ public class Produto implements Serializable {
 			return false;
 		return true;
 	}
+	
+	
+	
+	
+	
+	
 
 }

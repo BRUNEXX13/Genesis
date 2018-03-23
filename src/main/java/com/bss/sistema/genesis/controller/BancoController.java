@@ -37,7 +37,7 @@ public class BancoController {
 	@RequestMapping(value = "/bancos/novo", method = RequestMethod.POST) // aqui é o post
 	public ModelAndView cadastrar(@Valid Banco banco, BindingResult result, Model model, RedirectAttributes attributes) {
 		  if (result.hasErrors()) {
-			  System.out.println(">>> sku: " + banco.getNumero());
+			  //System.out.println(">>> sku: " + banco.getNumero());
 			  return novo(banco);
 		   }
 		cadastroBancoService.salvar(banco);
