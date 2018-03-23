@@ -22,11 +22,13 @@
 		<div class="container-fluid">
 
 
-			<!-- <th:block th:include="fragments/MensagemSucesso"></th:block>  -->
+		<th:block th:include="fragments/MensagemSucesso"></th:block> 
+				
 
-			<form method="POST" th:object="${banco}" class="form-vertical  js-form-loading">
+		<!--  TH ACTION SEMPRE COLOCAR  -->
+			<form th:action="@{/bancos/novo}" method="POST" th:object="${banco}" class="form-vertical  js-form-loading">
 
-				<!--  <th:block th:include="fragments/MensagensErroValidacao"></th:block>-->
+			<th:block th:include="fragments/MensagensErroValidacao"></th:block>
 
 				<div class="row">
 					<div class="col-sm-2 form-group">

@@ -19,6 +19,7 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 		return new Class<?>[] {JPAConfig.class , ServiceConfig.class};
 		                                            // Classa Em ServiceConfg - 
 	}
+	
 
 	@Override   // 2º  O que é de Web configurado em Serveletconfig --
 	protected Class<?>[] getServletConfigClasses() {

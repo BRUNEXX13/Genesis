@@ -27,25 +27,26 @@ public class BancoController {
 	
 		
 	// Apontamento para Bancos
-	@RequestMapping("/propostas/banco")
-	public ModelAndView novo(Banco banco) { // Propost Disponivel na Requiscao
+	@RequestMapping("/propostas/banco/novo") // aqui é o get. depois muda se quiser
+	public ModelAndView novo(Banco banco) { // Propost Disponivel na Requiscao não sei pq diabos ele consegue achar a u
 		ModelAndView mv = new ModelAndView("/banco/CadastroBanco");
 		mv.addObject("bancos", bancos.findAll()); // Referencia Lista de Bancos - AutoWired
 		return mv;
 	}
 
-	@RequestMapping(value = "/bancos/novo", method = RequestMethod.POST)
+	@RequestMapping(value = "/bancos/novo", method = RequestMethod.POST) // aqui é o post
 	public ModelAndView cadastrar(@Valid Banco banco, BindingResult result, Model model, RedirectAttributes attributes) {
 		  if (result.hasErrors()) {
+			  System.out.println(">>> sku: " + banco.getNumero());
 			  return novo(banco);
 		   }
 		cadastroBancoService.salvar(banco);
-		attributes.addFlashAttribute("mensagem", "Banco salvo");
+		attributes.addFlashAttribute("mensagem", "Banco salvo com sucesso!!");
 		// Salvar no banco de dados...
 		//attributes.addFlashAttribute("mensagem", "Banco salva com sucesso!");
-		//System.out.println(">>> sku: " + banco.getNumero());
+		System.out.println(">>> sku: " + banco.getNumero());
 		//System.out.println(">>> sku: " + banco.getNome());
-		return new ModelAndView("redirect:/bancos/novo");
+		return new ModelAndView("redirect:/propostas/banco/novo");
 	}
 
 }

@@ -17,14 +17,12 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.bss.sistema.genesis.model.Banco;
 import com.bss.sistema.genesis.model.Proposta;
-import com.bss.sistema.genesis.repository.Bancos;
 import com.bss.sistema.genesis.repository.Propostas;
 
 //Classe Configuracoes do Banco 
 
 @Configuration
-@EnableJpaRepositories(basePackageClasses = Propostas.class ,  enableDefaultTransactions = false) // Chamando Propostas.interface = Repository
-@EnableJpaRepositories(basePackageClasses = Bancos.class ,  enableDefaultTransactions = false)
+@EnableJpaRepositories(basePackageClasses = Propostas.class ,   enableDefaultTransactions = false) // Chamando Propostas.interface = Repository
 @EnableTransactionManagement
 public class JPAConfig {
 
