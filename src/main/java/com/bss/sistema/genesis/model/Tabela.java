@@ -39,9 +39,7 @@ public class Tabela implements Serializable {
 	@Size(min = 1, max = 50)
 	private String descricao;
 
-	@NotBlank(message = "Descrição é obrigatório") // Nao deixa inserir nulos e espacos
-	@Size(min = 1, max = 50)
-	private String tipo;
+
 
 	private BigDecimal coeficiente;
 
@@ -69,13 +67,7 @@ public class Tabela implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
+	
 
 	public BigDecimal getCoeficiente() {
 		return coeficiente;

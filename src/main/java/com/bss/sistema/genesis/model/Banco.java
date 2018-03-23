@@ -26,10 +26,9 @@ public class Banco implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
-
-
-	private Integer numero;
 	
+	private int numero;
+
 	@NotBlank(message = "Nome é obrigatorio.")
 	private String nome;
 
@@ -44,11 +43,11 @@ public class Banco implements Serializable {
 		this.codigo = codigo;
 	}
 
-	public Integer getNumero() {
+	public int getNumero() {
 		return numero;
 	}
 
-	public void setNumero(Integer numero) {
+	public void setNumero(int numero) {
 		this.numero = numero;
 	}
 
@@ -60,7 +59,25 @@ public class Banco implements Serializable {
 		this.nome = nome;
 	}
 
-	
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
+	}
+
+	public Banco(Long codigo, int numero, String nome, List<Produto> produtos) {
+		super();
+		this.codigo = codigo;
+		this.numero = numero;
+		this.nome = nome;
+		this.produtos = produtos;
+	}
+
+	public Banco() {
+		super();
+	}
 
 	@Override
 	public int hashCode() {
@@ -85,18 +102,6 @@ public class Banco implements Serializable {
 		} else if (!codigo.equals(other.codigo))
 			return false;
 		return true;
-	}
-
-	public Banco(Long codigo, Integer numero, String nome, Boolean status) {
-		super();
-		this.codigo = codigo;
-		this.numero = numero;
-		this.nome = nome;
-	
-	}
-
-	public Banco() {
-		super();
 	}
 
 }

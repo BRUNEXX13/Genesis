@@ -25,10 +25,13 @@ import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
-import nz.net.ultraq.thymeleaf.LayoutDialect;
-
 import com.bss.sistema.genesis.controller.PropostasController;
+import com.bss.sistema.genesis.controller.converter.BancoConverter;
+import com.bss.sistema.genesis.controller.converter.ProdutoConverter;
+import com.bss.sistema.genesis.controller.converter.PropostaConverter;
 import com.bss.sistema.genesis.controller.converter.TabelaConverter;
+
+import nz.net.ultraq.thymeleaf.LayoutDialect;
 
 @Configuration
 @ComponentScan(basePackageClasses = { PropostasController.class })
@@ -78,11 +81,18 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 
 	}
 
+	
 	// Conversion Service, Convertando o dados Int para String De Tabela na Tela Proposta
 	@Bean
 	public FormattingConversionService mvcConversionService() {
 		DefaultFormattingConversionService conversionService = new DefaultFormattingConversionService();
+		
+		//Adicionando os Conversores /// 
 		conversionService.addConverter(new TabelaConverter());
+		conversionService.addConverter(new BancoConverter());
+		conversionService.addConverter(new ProdutoConverter());
+		conversionService.addConverter(new PropostaConverter());
+		
 		
 		//Convertendo os numeros para casas decimais
 		NumberStyleFormatter bigDecimalFormatter = new NumberStyleFormatter("#,##0.00");

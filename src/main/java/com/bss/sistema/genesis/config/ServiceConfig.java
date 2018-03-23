@@ -4,7 +4,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import com.bss.sistema.genesis.service.CadastroBancoService;
+import com.bss.sistema.genesis.service.CadastroProdutoService;
 import com.bss.sistema.genesis.service.CadastroPropostaService;
+import com.bss.sistema.genesis.service.CadastroTabelaService;
 
 // Aqui eu adicionei tambem o CadastroBancoService esta correto ne ?
 // ja lhe mostro o mapping
@@ -15,6 +17,8 @@ import com.bss.sistema.genesis.service.CadastroPropostaService;
 
 
 @Configuration					   // Nessa Classe e procurada os services
+@ComponentScan(basePackageClasses = CadastroTabelaService.class)
+@ComponentScan(basePackageClasses = CadastroProdutoService.class)
 @ComponentScan(basePackageClasses = CadastroBancoService.class)
 @ComponentScan(basePackageClasses = CadastroPropostaService.class)
 public class ServiceConfig {
