@@ -7,9 +7,7 @@ import com.bss.sistema.genesis.model.Comissao;
 
 // Chamando os Bancos em CadastroProposta no Combobox
 
-@Repository
+@Repository 
 public interface Comissoes extends JpaRepository<Comissao, Long> {
 
-	
-	
 }

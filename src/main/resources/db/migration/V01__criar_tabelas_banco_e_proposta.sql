@@ -59,9 +59,3 @@ genero VARCHAR(50) NOT NULL,
 grupo VARCHAR(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 	
-
-
-
-
-	
-	
