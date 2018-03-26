@@ -22,7 +22,9 @@ import com.bss.sistema.genesis.repository.Propostas;
 //Classe Configuracoes do Banco 
 
 @Configuration
-@EnableJpaRepositories(basePackageClasses = Propostas.class ,   enableDefaultTransactions = false) // Chamando Propostas.interface = Repository
+@EnableJpaRepositories(basePackageClasses = Propostas.class, enableDefaultTransactions = false) // Chamando
+																								// Propostas.interface =
+																								// Repository
 @EnableTransactionManagement
 public class JPAConfig {
 

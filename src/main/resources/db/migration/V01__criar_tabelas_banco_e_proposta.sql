@@ -1,9 +1,3 @@
-CREATE TABLE estilo (
-codigo 	BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
-nome	VARCHAR(50) NOT NULL 	
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
 CREATE TABLE banco (
 codigo BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
 numero BIGINT(20)  NOT NULL,
@@ -34,7 +28,7 @@ FOREIGN KEY (codigo_produto) REFERENCES produto(codigo)
 CREATE TABLE proposta (
 codigo BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
 ade VARCHAR(50) NOT NULL,
-descricao TEXT NOT NULL,
+descricao VARCHAR (50) NOT NULL,
 origem VARCHAR(50) NOT NULL,
 valorParcela DECIMAL (10,2) NOT NULL,
 valorTotal DECIMAL (10,2) NOT NULL,
@@ -47,7 +41,7 @@ FOREIGN KEY (codigo_tabela) REFERENCES tabela(codigo)
 
 CREATE TABLE comissao (
 codigo BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
-descricao VARCHAR(50) NOT NULL,
+descricao VARCHAR (50) NOT NULL,
 valorPaga DECIMAL (10,2) NOT NULL,
 valorRecebida DECIMAL (10,2) NOT NULL,
 codigo_proposta BIGINT(20) NOT NULL,
@@ -55,20 +49,19 @@ FOREIGN KEY (codigo_proposta) REFERENCES proposta(codigo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 	
 
+CREATE TABLE usuario (
+codigo BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR (50) NOT NULL,
+sobrenome VARCHAR (50) NOT NULL,
+email VARCHAR (50) NOT NULL,
+telefone VARCHAR (50) NOT NULL,
+genero VARCHAR(50) NOT NULL,
+grupo VARCHAR(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+	
 
-	INSERT INTO banco VALUES (0, 341, 'Itau');
-	INSERT INTO banco VALUES (0, 743, 'Santander');
-	INSERT INTO banco VALUES (0, 778, 'Hsbc');
-	INSERT INTO banco VALUES (0, 747, 'Banco do Brasil');
-	
-	INSERT INTO produto VALUES (0, 'PIROCOPETERO', 'Cartão', 1);
-	INSERT INTO produto VALUES (0, 'Refinanceamento', 'Cartão', 1);
-	INSERT INTO produto VALUES (0, 'Novo', 'Teste', 2);
-	INSERT INTO produto VALUES (0, 'Cartao', 'Teste', 3);
-	
-	
-	INSERT INTO tabela VALUES (0, 'Taxa Itau', 100, 1);
-	
-	INSERT INTO proposta VALUES (0, '007', 'James Bond', 'Nacional', 10.00, 20.00, 30.00, 1);
+
+
+
 	
 	

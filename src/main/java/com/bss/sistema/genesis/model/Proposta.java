@@ -16,8 +16,6 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-import com.bss.sistema.genesis.validation.ADE;
-
 @Entity
 @Table(name = "proposta") // Vou fazer referencia ao flyway //
 public class Proposta implements Serializable {
@@ -34,7 +32,7 @@ public class Proposta implements Serializable {
 	private Long codigo;
 
 	// Padrao de expressao
-	@ADE
+	//@ADE REMOVENDO A VALIDACAO 
 	@NotBlank(message = "ADE é obrigatório")
 	private String ade;
 
