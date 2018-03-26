@@ -4,76 +4,66 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="'layout/LayoutPadrao'">
 
+
 <head>
 <title>Cadastro de Usuário</title>
-
-
-<link rel="stylesheet" type="text/css"
-	th:href="@{/stylesheets/vendors/bootstrap-switch.min.css}" />
-<link rel="stylesheet" type="text/css"
-	th:href="@{/stylesheets/vendors/bootstrap-switch.css}" />
-
-
 </head>
+
+
+
 <body>
 	<section layout:fragment="conteudo">
 
 		<div class="page-header">
 			<div class="container-fluid">
-				<h1>Cadastro de Usuário</h1>
+				<h1>
+					<strong>Cadastro de Usuário</strong>
+				</h1>
 			</div>
 		</div>
 
 		<div class="container-fluid">
 
-			<!-- <div class="alert  alert-danger  alert-dismissible" role="alert">
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<i class="fa  fa-exclamation-circle"></i> Já existe um produto com o nome informado.
-			</div> -->
 
-			<form method="POST" th:object="${usuario}"
-				class="form-vertical  js-form-loading">
+		<th:block th:include="fragments/MensagemSucesso"></th:block> 
+
+
+			<form th:action="@{/usuarios/novo}" method="POST" th:object="${usuario}" class="form-vertical  js-form-loading">
 
 				<div class="row">
 					<div class="col-sm-3  form-group">
-						<label for="nome">Nome</label> <input id="nome" type="text"
-							class="form-control" />
-					</div>
+						<label for="nome">Nome</label> <input id="nome" type="text" class="form-control"  th:field="*{nome}">
+						</div>
 
 
 					<div class="col-sm-3  form-group">
-						<label for="sobreone">Sobrenome</label> <input id="sobrenome"
-							type="text" class="form-control" />
+						<label for="sobreone">Sobrenome</label> <input id="sobrenome" type="text" class="form-control" th:field="*{sobrenome}"> 
 					</div>
 
 
 					<div class="col-sm-3  form-group">
 						<label for="telefone">Telefone</label> <input id="telefone"
-							type="text" class="form-control phone_with_ddd" />
+							type="text" class="form-control phone_with_ddd" th:field="*{telefone}"> 
 					</div>
 
-
-					<div class="col-lg-3  col-sm-3  form-group">
-						<label for="origem">Gênero</label>
-						<div>
+					<div class=" col-sm-3  form-group">
+					<label for="genero">Gênero</label>
+					<div>
+						<th:block th:each="genero : ${generos}">
 							<div class="radio  radio-inline">
-								<input type="radio" name="grupos"> <label>Masculino</label>
-
+								<input th:id="|id_${genero}|" type="radio" th:value="${genero}" th:field="*{genero}"> 
+								<label th:for="|id_${genero}|" th:text="${genero.descricao}">Nacional</label>
 							</div>
-
-							<div class="radio  radio-inline">
-								<input type="radio" name="grupos"> <label>Feminino</label>
-							</div>
-
-						</div>
+						</th:block>
 					</div>
+				</div>
 
 				</div>
 
 				<div class="row">
 					<div class="col-sm-8  form-group">
 						<label for="nome">E-mail</label> <input id="nome" type="text"
-							class="form-control" />
+							class="form-control"  th:field="*{email}">  
 					</div>
 
 
@@ -107,38 +97,23 @@
 				</div>
 
 				<div class="row">
-
-					<div class="col-lg-5  col-sm-6  form-group">
-						<label for="origem">Grupos</label>
-						<div>
+					<div class=" col-sm-8 form-group">
+					<label for="grupo">Grupos</label>
+					<div class="gn-field-action__icon">
+						<th:block th:each="grupo : ${grupos}">
 							<div class="radio  radio-inline">
-								<input type="radio" name="grupos"> <label>Administrador</label>
-
+								<input th:id="|id_${grupo}|" 	type="radio" th:value="${grupo}" th:field="*{grupo}"> 
+								<label th:for="|id_${grupo}|" th:text="${grupo.descricao}">Administrador</label>
 							</div>
-
-							<div class="radio  radio-inline">
-								<input type="radio" name="grupos"> <label>Gerente</label>
-							</div>
-
-							<div class="radio  radio-inline">
-								<input type="radio" name="grupos"> <label>Supervisor</label>
-							</div>
-
-							<div class="radio  radio-inline">
-								<input type="radio" name="grupos"> <label>Assesor</label>
-							</div>
-
-							
-							<div class="radio  radio-inline">
-								<input type="radio" name="grupos"> 
-								<label>Acessor</label>
-							</div>
-							
-							
-
+						</th:block>
 						</div>
+						<div class="gn-field-action__icon">
+								<a href="#" data-toggle="modal"
+						data-target="#modalCadastroRapidoGrupo">
+						<i class="glyphicon glyphicon-plus-sign  gn-glyphicon-plus-large"></i>
+								</a>
+							</div>
 					</div>
-
 
 					<div class="col-sm-3  form-group">
 						<label for="equipe">Equipe</label>
@@ -152,7 +127,7 @@
 
 							<div class="gn-field-action__icon">
 								<a href="#" data-toggle="modal"
-									data-target="#modalCadastroRapidoBanco"> <i
+									data-target="#modalCadastroRapidoEquipe"> <i
 									class="glyphicon glyphicon-plus-sign  gn-glyphicon-plus-large"></i>
 								</a>
 							</div>
@@ -161,26 +136,32 @@
 
 
 
-				</div>
 
+				</div>
 
 				<div class="form-group">
 					<button class="btn  btn-primary" type="submit">Salvar</button>
 				</div>
+				
+				
 
 
 			</form>
 		</div>
+		
+		
+		
+		<div th:replace="estilo/CadastroRapidoGrupo :: modal"></div>
 		<div th:replace="estilo/CadastroRapidoEquipe :: modal"></div>
 
 	</section>
 
-	<th:block layout:fragment="javascript-extra">
+		<th:block layout:fragment="javascript-extra">
 		<script th:src="@{/javascripts/vendors/bootstrap-switch.min.js}"></script>
 		<script>
 		$('.js-status').bootstrapSwitch();
-	</script>
-	</th:block>
+		</script>
+		</th:block>
 
 
 

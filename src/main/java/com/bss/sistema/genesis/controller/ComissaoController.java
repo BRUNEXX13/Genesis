@@ -11,15 +11,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.bss.sistema.genesis.model.Comissao;
 import com.bss.sistema.genesis.model.Origem;
-import com.bss.sistema.genesis.model.Proposta;
 import com.bss.sistema.genesis.repository.Bancos;
 import com.bss.sistema.genesis.repository.Produtos;
+import com.bss.sistema.genesis.repository.Propostas;
 import com.bss.sistema.genesis.repository.Tabelas;
-import com.bss.sistema.genesis.service.CadastroPropostaService;
+import com.bss.sistema.genesis.service.CadastroComissaoService;
 
 @Controller
-public class PropostasController {
+public class ComissaoController {
 
 	@Autowired
 	private Bancos bancos;
@@ -29,36 +30,40 @@ public class PropostasController {
 
 	@Autowired
 	private Produtos produtos;
+	
+	@Autowired
+	private Propostas propostas;
+	
 
 	// Servicos de Propostas - Salvar - Deletar --
 	@Autowired
-	private CadastroPropostaService cadastroPropostaService;
+	private CadastroComissaoService cadastroComissaoservice;
 
-	@RequestMapping("/propostas/novo")
-	public ModelAndView novo(Proposta proposta) {
-		ModelAndView mv = new ModelAndView("/proposta/CadastroProposta");
+	@RequestMapping("/propostas/comissao/novo")
+	public ModelAndView novo(Comissao comissao) {
+		ModelAndView mv = new ModelAndView("/comissao/CadastroComissao");
 		mv.addObject("bancos", bancos.findAll());
 		mv.addObject("produtos", produtos.findAll());
 		mv.addObject("origens", Origem.values());
 		mv.addObject("tabelas", tabelas.findAll());
+		mv.addObject("propostas", propostas.findAll());
 
 		return mv;
 	}
 
-	@RequestMapping(value = "/propostas/novo", method = RequestMethod.POST)
-	public ModelAndView cadastrar(@Valid Proposta proposta, BindingResult result, Model model,
-			RedirectAttributes attributes) {
-
+	@RequestMapping(value = "/comissoes/novo", method = RequestMethod.POST)
+	public ModelAndView cadastrar(@Valid Comissao comissao, BindingResult result, Model model, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
-			return novo(proposta);
+			System.out.println(">>> COMISSA: " + comissao.getDescricao());
+			return novo(comissao);
 		}
 
 		// Salvar no banco de dados...
 
-		cadastroPropostaService.salvar(proposta);
-		attributes.addFlashAttribute("mensagem", "Proposta Salva com sucesso!");
-
-		return new ModelAndView("redirect:/propostas/novo");
+		cadastroComissaoservice.salvar(comissao);
+		attributes.addFlashAttribute("mensagem", "Comissao Salva com sucesso!");
+		
+		return new ModelAndView("redirect:/propostas/comissao/novo");
 	}
 
 }
