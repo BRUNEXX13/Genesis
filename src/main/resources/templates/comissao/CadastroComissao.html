@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="'layout/LayoutPadrao'">
+
+<head>
+<title>Cadastro de Comissão</title>
+</head>
+
+<body>
+	<section layout:fragment="conteudo">
+
+		<div class="page-header">
+			<div class="container-fluid">
+				<h1>
+					<strong>Cadastro de Comissão</strong>
+				</h1>
+			</div>
+		</div>
+
+		<div class="container-fluid">
+
+
+			<th:block th:include="fragments/MensagemSucesso"></th:block>
+
+
+			<!--  TH ACTION SEMPRE COLOCAR  -->
+			<form th:action="@{/comissoes/novo}" method="POST"
+				th:object="${comissao}" class="form-vertical  js-form-loading">
+
+				<th:block th:include="fragments/MensagensErroValidacao"></th:block>
+
+				<div class="row">
+
+
+					<div class="col-sm-3  form-group">
+						<label for="proposta">Proposta</label>
+						<div class="gn-field-action">
+							<select id="proposta" class="form-control" th:field="*{proposta}">
+								<option value="">Selecione a Proposta</option>
+								<option th:each="proposta : ${propostas}"
+									th:value="${proposta.codigo}" th:text="${proposta.ade}">Teste</option>
+
+							</select>
+
+
+
+						</div>
+					</div>
+
+
+					<div class="col-sm-2 form-group">
+						<label for="descricao">Descricao</label> <input id="descricao"
+							type="text" class="form-control" th:field="*{descricao}">
+					</div>
+
+					<div class="col-sm-2  form-group">
+						<label for="valorPaga">Valor Paga</label>
+						<div class="input-group">
+							<div class="input-group-addon">R$</div>
+							<input id="valorPaga" type="text" class="form-control js-decimal"
+								th:field="*{valorPaga}" />
+						</div>
+						<!-- Repository Proposta -->
+
+					</div>
+
+					<div class="col-sm-2  form-group">
+						<label for="valorRecebida">Valor Recebida</label>
+						<div class="input-group">
+							<div class="input-group-addon">R$</div>
+							<input id="valorRecebida" type="text"
+								class="form-control js-decimal" th:field="*{valorRecebida}" />
+						</div>
+						<!-- Repository Proposta -->
+
+					</div>
+
+					<div class="col-sm-3  form-group">
+						<label for="data">Data Pagamento</label> <input id="data"
+							type="date" class="form-control" />
+					</div>
+
+
+
+				</div>
+
+
+				<div class="form-group">
+					<button class="btn  btn-primary" type="submit">Salvar</button>
+				</div>
+
+
+			</form>
+		</div>
+		<div th:replace="estilo/CadastroRapidoBanco :: modal"></div>
+		<div th:replace="estilo/CadastroRapidoTabela :: modal"></div>
+
+
+	</section>
+
+</body>
+</html>
