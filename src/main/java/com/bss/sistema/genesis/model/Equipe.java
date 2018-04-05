@@ -2,6 +2,7 @@ package com.bss.sistema.genesis.model;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,6 +22,7 @@ public class Equipe {
 	private Long codigo;
 
 	@NotBlank(message = "Nome é obrigatorio.")
+	@Column(unique=true)
 	private String nome;
 
 	// @NotNull(message = "O banco é obrigatório")

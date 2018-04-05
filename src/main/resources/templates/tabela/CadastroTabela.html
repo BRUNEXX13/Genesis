@@ -33,39 +33,19 @@
 				<div class="row">
 
 
-					<div class="col-sm-3 form-group">
+					<div class="col-sm-3 form-group" th:classappend="${#fields.hasErrors('descricao')} ? has-error">
 						<label for="descricao">Descricao</label>
 						<input id="descricao" type="text" class="form-control" th:field="*{descricao}">
 					</div>
 
-					<!--  
-					<div class="col-sm-3  form-group">
-						<label for="banco">Banco</label>
-						<div class="gn-field-action">
-							<select id="banco" class="form-control">
-								<option value="">Selecione o Banco</option>
-								<option th:each="banco : ${bancos}" th:value="${banco.codigo}"
-									th:text="${banco.nome}">Itau</option>
 
-							</select>
-
-							<div class="gn-field-action__icon">
-								<a href="#" data-toggle="modal"
-									data-target="#modalCadastroRapidoBanco"> <i
-									class="glyphicon glyphicon-plus-sign  gn-glyphicon-plus-large"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-
-			 -->
-					<div class="col-sm-3  form-group">
+					<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('produto')} ? has-error">
 						<label for="produto">Produto</label>
 						<div class="gn-field-action">
 							<select id="produto" class="form-control" th:field="*{produto}">
 								<option value="">Selecione o produto</option>
 							<option th:each="produto : ${produtos}"
-									th:value="${produto.codigo}" th:text="${produto.descricao}">Cartao</option>
+									th:value="${produto.codigo}" th:text="${produto.descricao}"></option>
 
 							</select>
 
@@ -79,7 +59,7 @@
 					</div>
 
 	
-					<div class="col-sm-3  form-group">
+					<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('coeficiente')} ? has-error">
 						<label for="coeficiente">Coeficiente</label>
 						<div class="input-group">
 							<input id="coeficiente" type="text" class="form-control  js-plain"  th:field="*{coeficiente}">

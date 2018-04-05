@@ -3,6 +3,7 @@ package com.bss.sistema.genesis.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -54,6 +55,7 @@ public class Proposta implements Serializable {
 	// @ADE
 	@NotBlank(message = "A ADE é obrigatória")
 	@Size(max = 50, message = "O tamanho da ADE deve estar entre 1 e 50")
+	@Column(unique=true)
 	private String ade;
 
 	@NotBlank(message = "A descrição é obrigatória")

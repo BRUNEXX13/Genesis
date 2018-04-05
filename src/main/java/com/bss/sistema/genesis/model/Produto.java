@@ -3,6 +3,7 @@ package com.bss.sistema.genesis.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -45,8 +46,10 @@ public class Produto implements Serializable {
 
 	@NotBlank(message = "A descrição é obrigatória")
 	@Size(max = 50, message = "O tamanho da  descrição deve estar entre 1 e 50")
+	@Column(unique=true)
 	private String descricao;
 
+	@NotBlank(message = "O tipo é obrigatório")
 	@NotNull(message = "O tipo é obrigatório")
 	private String tipo;
 

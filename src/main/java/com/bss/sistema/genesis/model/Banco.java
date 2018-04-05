@@ -3,12 +3,14 @@ package com.bss.sistema.genesis.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -23,9 +25,14 @@ public class Banco implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 
+
+
+	@NotNull(message = "Número do banco é obrigatório.")
+	@Column(unique=true)
 	private int numero;
 
 	@NotBlank(message = "Nome é obrigatorio.")
+	@Column(unique=true)
 	private String nome;
 
 	@OneToMany(mappedBy = "banco")
