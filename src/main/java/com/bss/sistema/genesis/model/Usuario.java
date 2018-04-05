@@ -12,6 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "usuario")
@@ -27,14 +30,26 @@ public class Usuario  implements Serializable{
 	@Column(unique=true)
 	private Long codigo;
 
+	
+
+	@NotBlank(message = "Nome é obrigatório")
+	@Size(max = 50, message = "O tamanho da  descrição deve estar entre 1 e 50")
 	private String nome;
 
+	
+
+	@NotBlank(message = "Sobrenome obrigatório")
+	@Size(max = 50, message = "O tamanho da  descrição deve estar entre 1 e 50")
 	private String sobrenome;
 
+	@NotBlank(message = "Email é obrigatorio")
+	@Column(unique=true)
 	private String email;
 
+	@NotBlank(message = "Telefone é obrigatorio")
 	private String telefone;
 	
+	@NotBlank(message = "CPF é obrigatório")
 	@Column(unique=true)
 	private String cpf;
 	

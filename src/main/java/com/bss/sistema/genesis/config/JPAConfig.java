@@ -16,7 +16,11 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.bss.sistema.genesis.model.Banco;
+import com.bss.sistema.genesis.model.Equipe;
+import com.bss.sistema.genesis.model.Produto;
 import com.bss.sistema.genesis.model.Proposta;
+import com.bss.sistema.genesis.model.Tabela;
+import com.bss.sistema.genesis.model.Usuario;
 import com.bss.sistema.genesis.repository.Propostas;
 
 //Classe Configuracoes do Banco 
@@ -53,6 +57,12 @@ public class JPAConfig {
 		//
 		factory.setPackagesToScan(Banco.class.getPackage().getName());
 		factory.setPackagesToScan(Proposta.class.getPackage().getName());
+		factory.setPackagesToScan(Usuario.class.getPackage().getName());
+		factory.setPackagesToScan(Equipe.class.getPackage().getName());
+		factory.setPackagesToScan(Produto.class.getPackage().getName());
+		factory.setPackagesToScan(Tabela.class.getPackage().getName());
+		
+		
 		factory.afterPropertiesSet();
 
 		return factory.getObject();

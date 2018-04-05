@@ -3,55 +3,56 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="'layout/LayoutPadrao'">
-	
+
 <head>
 <title>Cadastro de Propostas</title>
 </head>
 
 <body>
-<section layout:fragment="conteudo">
+	<section layout:fragment="conteudo">
 
 		<div class="page-header">
 			<div class="container-fluid">
 				<h1>
-					 <strong>Cadastro de Proposta</strong>
+					<strong>Cadastro de Proposta</strong>
 				</h1>
 			</div>
 		</div>
 
 		<div class="container-fluid">
 
-	
-			<th:block th:include="fragments/MensagemSucesso"></th:block> 
-		 
-		 	<!--  TH ACTION SEMPRE COLOCAR  -->
-		 		
-			<form method="POST" th:object="${proposta}" class="form-vertical  js-form-loading">
-			
-			<th:block th:include="fragments/MensagensErroValidacao"></th:block>
-			
-		
+
+			<th:block th:include="fragments/MensagemSucesso"></th:block>
+
+			<!--  TH ACTION SEMPRE COLOCAR  -->
+
+			<form method="POST" th:object="${proposta}"
+				class="form-vertical  js-form-loading">
+
+				<th:block th:include="fragments/MensagensErroValidacao"></th:block>
+
+
 				<div class="row">
-					<div class="col-sm-2  form-group">
-						<label for="ade">ADE</label>
-						<input id="ade" type="text" class="form-control" th:field="*{ade}"  />
+					<div class="col-sm-2  form-group" th:classappend="${#fields.hasErrors('ade')} ? has-error">
+						<label for="ade">ADE</label> <input id="ade" type="text"
+							class="form-control" th:field="*{ade}" />
 					</div>
-					
-					
-					<div class="col-sm-3  form-group">
-						<label for="descricao">Descrição</label>
-						<input id="descricao" type="text" class="form-control"  th:field="*{descricao}" />
+
+
+					<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('descricao')} ? has-error">
+						<label for="descricao">Descrição</label> <input id="descricao"
+							type="text" class="form-control" th:field="*{descricao}" />
 					</div>
-					
-				
+
+
 				</div>
-				
+
 				<div class="row">
-				
-				 		<div class="col-sm-3  form-group">
+
+					<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('banco')} ? has-error">
 						<label for="banco">Banco</label>
-						<div class="gn-field-action">          <!--  temq ue ter o * -->
-							<select id="banco" class="form-control"  th:field="*{banco}">
+						<div class="gn-field-action">
+							<select id="banco" class="form-control" th:field="*{banco}">
 								<option value="">Selecione o Banco</option>
 								<option th:each="banco : ${bancos}" th:value="${banco.codigo}"
 									th:text="${banco.nome}">Itau</option>
@@ -68,85 +69,94 @@
 							</div>
 						</div>
 					</div>
-					
-						
-						<div class="col-sm-3  form-group">
+
+
+					<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('produto')} ? has-error">
 						<label for="produto">Produto</label>
 						<div class="gn-field-action">
-							<select id="produto" class="form-control" th:field="*{produto}">  
+							<select id="produto" class="form-control" th:field="*{produto}">
 								<option value="">Selecione o Produto</option>
-								<option th:each="produto : ${produtos}" th:value="${produto.codigo}"
-									th:text="${produto.descricao}">??</option>
+								<option th:each="produto : ${produtos}"
+									th:value="${produto.codigo}" th:text="${produto.descricao}">??</option>
 
 							</select>
-							
+
 						</div>
 					</div>
-			
-						<div class="col-sm-3  form-group">
-							<label for="tabela">Tabela</label>
-							<div class="gn-field-action">
-								<select id="tabela" class="form-control" th:field="*{tabela}">
-									<option value="">Selecione a Tabela</option>
-									<option th:each="tabela : ${tabelas}" th:value="${tabela.codigo}" th:text="${tabela.descricao}">Itau</option>
-									
-								</select>
-						
+
+					<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('tabela')} ? has-error">
+						<label for="tabela">Tabela</label>
+						<div class="gn-field-action">
+							<select id="tabela" class="form-control" th:field="*{tabela}">
+								<option value="">Selecione a Tabela</option>
+								<option th:each="tabela : ${tabelas}"
+									th:value="${tabela.codigo}" th:text="${tabela.descricao}">Itau</option>
+
+							</select>
+
 							<div class="gn-field-action__icon">
-									<a href="#" data-toggle="modal" data-target="#modalCadastroRapidoTabela">
-									<i class="glyphicon glyphicon-plus-sign  gn-glyphicon-plus-large"></i>
+								<a href="#" data-toggle="modal"
+									data-target="#modalCadastroRapidoTabela"> <i
+									class="glyphicon glyphicon-plus-sign  gn-glyphicon-plus-large"></i>
 								</a>
-								</div>
 							</div>
 						</div>
-						
-						
-						
-				<div class=" col-sm-3  form-group">
-					<label for="origem">Origem</label>
-					<div>
-						<th:block th:each="origem : ${origens}">
-							<div class="radio  radio-inline">
-								<input th:id="|id_${origem}|" type="radio" th:value="${origem}" th:field="*{origem}"> 
-								<label th:for="|id_${origem}|" th:text="${origem.descricao}">Nacional</label>
-							</div>
-						</th:block>
 					</div>
+
+
+
+					<div class=" col-sm-3  form-group"  th:classappend="${#fields.hasErrors('origem')} ? has-error">
+						<label for="origem">Origem</label>
+						<div>
+							<th:block th:each="origem : ${origens}">
+								<div class="radio  radio-inline">
+									<input th:id="|id_${origem}|" type="radio" th:value="${origem}"
+										th:field="*{origem}"> <label th:for="|id_${origem}|"
+										th:text="${origem.descricao}">Nacional</label>
+								</div>
+							</th:block>
+						</div>
+					</div>
+
+
 				</div>
-				
-			
-			</div>
-						
+
 
 				<div class="row">
-					<div class="col-sm-4  form-group">
+					<div class="col-sm-4  form-group" th:classappend="${#fields.hasErrors('valorParcela')} ? has-error">
 						<label for="valorParcela">Valor Parcela</label>
 						<div class="input-group">
 							<div class="input-group-addon">R$</div>
-							<input id="valorParcela" type="text" class="form-control js-decimal" th:field="*{valorParcela}"/>
-						</div>                                                                              <!-- Repository Proposta -->
-						
+							<input id="valorParcela" type="text"
+								class="form-control js-decimal" th:field="*{valorParcela}" />
+						</div>
+						<!-- Repository Proposta -->
+
 					</div>
-					
-					<div class="col-sm-4  form-group">
+
+					<div class="col-sm-4  form-group" th:classappend="${#fields.hasErrors('valorTotal')} ? has-error">
 						<label for="valorTotal">Valor Total</label>
 						<div class="input-group">
-							<input id="valorTotal" type="text" class="form-control  js-decimal"  th:field="*{valorTotal}"   />
-							<div class="input-group-addon">R$</div>										 <!-- Repository Proposta -->
+							<input id="valorTotal" type="text"
+								class="form-control  js-decimal" th:field="*{valorTotal}" />
+							<div class="input-group-addon">R$</div>
+							<!-- Repository Proposta -->
 						</div>
 					</div>
-					
-							<div class="col-sm-4  form-group">
+
+					<div class="col-sm-4  form-group" th:classappend="${#fields.hasErrors('valorLiquido')} ? has-error">
 						<label for="valorLiquido">Valor Líquido</label>
 						<div class="input-group">
-							<input id="valorLiquido" type="text" class="form-control  js-decimal" th:field="*{valorLiquido}"/>
-							<div class="input-group-addon">R$</div>                               <!-- Repository Proposta -->
+							<input id="valorLiquido" type="text"
+								class="form-control  js-decimal" th:field="*{valorLiquido}" />
+							<div class="input-group-addon">R$</div>
+							<!-- Repository Proposta -->
 						</div>
 					</div>
 
 				</div>
-				
-			<!-- 
+
+				<!-- 
 				<div class="row">
 				
 				<div class="col-sm-3  form-group">
@@ -159,20 +169,20 @@
 			
 				</div>
 					-->
-			
-	
+
+
 				<div class="form-group">
 					<button class="btn  btn-primary" type="submit">Salvar</button>
 				</div>
-		
-				
+
+
 			</form>
 		</div>
-					<div th:replace="estilo/CadastroRapidoBanco :: modal"></div>
-					<div th:replace="estilo/CadastroRapidoTabela :: modal"></div>
-					
+		<div th:replace="estilo/CadastroRapidoBanco :: modal"></div>
+		<div th:replace="estilo/CadastroRapidoTabela :: modal"></div>
+
 
 	</section>
-	
+
 </body>
 </html>

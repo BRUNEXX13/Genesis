@@ -31,13 +31,13 @@
 			<th:block th:include="fragments/MensagensErroValidacao"></th:block>
 
 				<div class="row">
-					<div class="col-sm-2 form-group">
-						<label for="numero">NUMERO</label>
+					<div class="col-sm-2 form-group" th:classappend="${#fields.hasErrors('numero')} ? has-error">
+						<label for="numero">NÚMERO</label>
 						<input id="numero" type="text" class="form-control" th:field="*{numero}" >
 					</div>
 
 
-					<div class="col-sm-10 form-group">
+					<div class="col-sm-10 form-group" th:classappend="${#fields.hasErrors('nome')} ? has-error">
 						<label for="nome">NOME DO BANCO</label>
 						<input id="nome" type="text" class="form-control" th:field="*{nome}">
 					</div>
