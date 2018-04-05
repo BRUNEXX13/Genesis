@@ -64,19 +64,14 @@ public class PropostasController {
 		//System.out.println(">>>> codigo : "	    + proposta.getCodigo());
 		//System.out.println(">>>> ade : " 		+ proposta.getAde());
 		//System.out.println(">>>> descricao : " 	+ proposta.getDescricao());
-		//System.out.println(">>>> origem : " 	+ proposta.getOrigem());
-		
-		
+		//System.out.println(">>>> origem : " 	+ proposta.getOrigem());		
 		///System.out.println(">>>> parcela : " 	+ proposta.getValorParcela());
 		//System.out.println(">>>> total : " 		+ proposta.getValorTotal());
 		//System.out.println(">>>> liquido : " 	+ proposta.getValorLiquido());
-		
-		
 		//System.out.println("proposta.getTabela()"+ proposta.getTabela()) ;
 		//if(proposta.getTabela() !=null)
 		//	System.out.println(">>>> TABELA : " 	+ proposta.getTabela().getCodigo());
-		
-		
+
 		//System.out.println(">>>>>> banco :" 	+ proposta.getb
 		
 		

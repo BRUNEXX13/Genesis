@@ -31,9 +31,11 @@ public class Usuario  implements Serializable{
 
 	private String telefone;
 
+		
 	@Enumerated(EnumType.STRING)
 	private Genero genero;
-
+	
+	//@NotNull(message = "O genêro é obrigatório")
 	@Enumerated(EnumType.STRING)
 	private Grupo grupo;
 

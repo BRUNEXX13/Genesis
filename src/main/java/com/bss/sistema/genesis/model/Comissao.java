@@ -9,9 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
-
-import org.hibernate.validator.constraints.NotBlank;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
 
 @Entity
 @Table(name = "comissao")
@@ -21,15 +20,14 @@ public class Comissao {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 
-	@NotBlank(message = "Descrição é obrigatório") // Nao deixa inserir nulos e espacos
-	@Size(min = 1, max = 50)
 	private String descricao;
 
-	@NotBlank(message = "Descrição é obrigatório")
-	private BigDecimal valorPaga;
+	@DecimalMin("0.01")
+	@DecimalMax(value = "9999999.99", message = "O valor da proposta deve ser menor que R$9.999.999,99")
+	private BigDecimal bonus;
 
-	@NotBlank(message = "Descrição é obrigatório")
-	private BigDecimal valorRecebida;
+	@DecimalMax(value = "100.0", message = "A comissão deve ser igual ou menor que 100")
+	private BigDecimal comissao;
 
 	@ManyToOne
 	@JoinColumn(name = "codigo_proposta")
@@ -51,20 +49,20 @@ public class Comissao {
 		this.descricao = descricao;
 	}
 
-	public BigDecimal getValorPaga() {
-		return valorPaga;
+	public BigDecimal getBonus() {
+		return bonus;
 	}
 
-	public void setValorPaga(BigDecimal valorPaga) {
-		this.valorPaga = valorPaga;
+	public void setBonus(BigDecimal bonus) {
+		this.bonus = bonus;
 	}
 
-	public BigDecimal getValorRecebida() {
-		return valorRecebida;
+	public BigDecimal getComissao() {
+		return comissao;
 	}
 
-	public void setValorRecebida(BigDecimal valorRecebida) {
-		this.valorRecebida = valorRecebida;
+	public void setComissao(BigDecimal comissao) {
+		this.comissao = comissao;
 	}
 
 	public Proposta getProposta() {
@@ -75,6 +73,4 @@ public class Comissao {
 		this.proposta = proposta;
 	}
 
-	
-	
 }

@@ -27,6 +27,7 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 
 import com.bss.sistema.genesis.controller.PropostasController;
 import com.bss.sistema.genesis.controller.converter.BancoConverter;
+import com.bss.sistema.genesis.controller.converter.ComissaoConverter;
 import com.bss.sistema.genesis.controller.converter.ProdutoConverter;
 import com.bss.sistema.genesis.controller.converter.PropostaConverter;
 import com.bss.sistema.genesis.controller.converter.TabelaConverter;
@@ -92,8 +93,9 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 		conversionService.addConverter(new BancoConverter());
 		conversionService.addConverter(new ProdutoConverter());
 		conversionService.addConverter(new PropostaConverter());
+		conversionService.addConverter(new ComissaoConverter());
 		
-		
+
 		//Convertendo os numeros para casas decimais
 		NumberStyleFormatter bigDecimalFormatter = new NumberStyleFormatter("#,##0.00");
 		conversionService.addFormatterForFieldType(BigDecimal.class, bigDecimalFormatter);
@@ -104,7 +106,7 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 		return conversionService;
 	}
 
-	// Fixando o Pais de Origem // Independe do Browser, vai trtar como formato BR //
+	// Fixando o Pais de Origem // Independe do Browser, vai tratar no formato BR  Browser//
 	@Bean 
 	public LocaleResolver localeResolver () {
 		return new FixedLocaleResolver(new Locale("pt","BR"));

@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -24,8 +26,7 @@ public class Tabela implements Serializable {
 
 	@OneToMany(mappedBy = "tabela")
 	private List<Proposta> propostas;
-	
-	
+
 	@ManyToOne
 	@JoinColumn(name = "codigo_produto")
 	private Produto produto;
@@ -33,14 +34,13 @@ public class Tabela implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long codigo;
-	
 
-	@NotBlank(message = "Descrição é obrigatório") // Nao deixa inserir nulos e espacos
-	@Size(min = 1, max = 50)
+	@NotBlank(message = "A descrição é obrigatória")
+	@Size(max = 50, message = "O tamanho da  descrição deve estar entre 1 e 50")
 	private String descricao;
 
-
-
+	@NotNull(message = "O coeficiente é obrigatório")
+	@DecimalMax(value = "100.0", message = "O valor do coeficiente deve ser menor que 100")
 	private BigDecimal coeficiente;
 
 	public Produto getProduto() {
@@ -66,8 +66,6 @@ public class Tabela implements Serializable {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-
-	
 
 	public BigDecimal getCoeficiente() {
 		return coeficiente;

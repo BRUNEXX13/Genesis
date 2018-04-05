@@ -17,16 +17,12 @@ import org.hibernate.validator.constraints.NotBlank;
 @Table(name = "banco")
 public class Banco implements Serializable {
 
-	/**
-	 * 
-	 */
-
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
-	
+
 	private int numero;
 
 	@NotBlank(message = "Nome é obrigatorio.")
@@ -34,6 +30,7 @@ public class Banco implements Serializable {
 
 	@OneToMany(mappedBy = "banco")
 	private List<Produto> produtos;
+	
 
 	public Long getCodigo() {
 		return codigo;
@@ -67,18 +64,6 @@ public class Banco implements Serializable {
 		this.produtos = produtos;
 	}
 
-	public Banco(Long codigo, int numero, String nome, List<Produto> produtos) {
-		super();
-		this.codigo = codigo;
-		this.numero = numero;
-		this.nome = nome;
-		this.produtos = produtos;
-	}
-
-	public Banco() {
-		super();
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -102,6 +87,18 @@ public class Banco implements Serializable {
 		} else if (!codigo.equals(other.codigo))
 			return false;
 		return true;
+	}
+
+	public Banco(Long codigo, int numero, String nome, List<Produto> produtos) {
+		super();
+		this.codigo = codigo;
+		this.numero = numero;
+		this.nome = nome;
+		this.produtos = produtos;
+	}
+
+	public Banco() {
+		super();
 	}
 
 }

@@ -11,6 +11,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 // novo
 // cartao
@@ -26,6 +30,8 @@ public class Produto implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+
+	@NotNull(message = "O banco é obrigatório")
 	@ManyToOne
 	@JoinColumn(name = "codigo_banco")
 	private Banco banco;
@@ -37,12 +43,11 @@ public class Produto implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long codigo;
 
-	//@NotBlank(message = "Descrição é obrigatório") // Nao deixa inserir nulos e espacos
-	//@Size(min = 1, max = 100)
+	@NotBlank(message = "A descrição é obrigatória")
+	@Size(max = 50, message = "O tamanho da  descrição deve estar entre 1 e 50")
 	private String descricao;
 
-	//@NotBlank(message = "Descrição é obrigatório") // Nao deixa inserir nulos e espacos
-	//@Size(min = 1, max = 100)
+	@NotNull(message = "O tipo é obrigatório")
 	private String tipo;
 
 	public Banco getBanco() {
@@ -98,11 +103,5 @@ public class Produto implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
-	
-	
-	
-	
 
 }

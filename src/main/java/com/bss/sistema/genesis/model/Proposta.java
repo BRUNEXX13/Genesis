@@ -12,11 +12,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
-
-import com.bss.sistema.genesis.validation.ADE;
 
 @Entity
 @Table(name = "proposta") // Vou fazer referencia ao flyway //
@@ -24,31 +25,58 @@ public class Proposta implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+
+	// Relacionamento Proposta x Produto
+	@NotNull(message = "O produto é obrigatório")
+	@ManyToOne
+	@JoinColumn(name = "codigo_produto")
+	private Produto produto;
+
+	// Relacionamento Proposta x Banco
+	@NotNull(message = "O banco é obrigatório")
+	@ManyToOne
+	@JoinColumn(name = "codigo_banco")
+	private Banco banco;
+
+	
+
+	@NotNull(message = "A tabela é obrigatório")
 	@ManyToOne
 	@JoinColumn(name = "codigo_tabela")
 	private Tabela tabela;
-	
-	
+
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 
 	// Padrao de expressao
-	//@ADE
-	@NotBlank(message = "ADE é obrigatório")
+	// @ADE
+	@NotBlank(message = "A ADE é obrigatória")
+	@Size(max = 50, message = "O tamanho da ADE deve estar entre 1 e 50")
 	private String ade;
 
-	@NotBlank(message = "Descricao entre 1 e 50.") // Nao deixa inserir nulos e espacos
-	@Size(min = 1, max = 50)
+	@NotBlank(message = "A descrição é obrigatória")
+	@Size(max = 50, message = "O tamanho da  descrição deve estar entre 1 e 50")
 	private String descricao;
 
+	@NotNull(message = "A origem é obrigatório")
 	@Enumerated(EnumType.STRING)
 	private Origem origem;
 
+	@NotNull(message = "O valor Parcela é obrigatório")
+	@DecimalMin("0.01")
+	@DecimalMax(value = "9999999.99", message = "O valor da proposta deve ser menor que R$9.999.999,99")
 	private BigDecimal valorParcela;
 
+	@NotNull(message = "O valor Total é obrigatório")
+	@DecimalMin("0.01")
+	@DecimalMax(value = "9999999.99", message = "O valor da proposta deve ser menor que R$9.999.999,99")
 	private BigDecimal valorTotal;
 
+	@NotNull(message = "O valor Líquido é obrigatório")
+	@DecimalMin("0.01")
+	@DecimalMax(value = "9999999.99", message = "O valor da proposta deve ser menor que R$9.999.999,99")
 	private BigDecimal valorLiquido;
 
 	public Tabela getTabela() {
@@ -113,6 +141,39 @@ public class Proposta implements Serializable {
 
 	public void setValorLiquido(BigDecimal valorLiquido) {
 		this.valorLiquido = valorLiquido;
+	}
+	
+	public Banco getBanco() {
+		return banco;
+	}
+
+	public void setBanco(Banco banco) {
+		this.banco = banco;
+	}
+
+	public Produto getProduto() {
+		return produto;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
+
+	public Proposta(Tabela tabela, Long codigo, String ade, String descricao, Origem origem, BigDecimal valorParcela,
+			BigDecimal valorTotal, BigDecimal valorLiquido) {
+		super();
+		this.tabela = tabela;
+		this.codigo = codigo;
+		this.ade = ade;
+		this.descricao = descricao;
+		this.origem = origem;
+		this.valorParcela = valorParcela;
+		this.valorTotal = valorTotal;
+		this.valorLiquido = valorLiquido;
+	}
+
+	public Proposta() {
+		super();
 	}
 
 	@Override
