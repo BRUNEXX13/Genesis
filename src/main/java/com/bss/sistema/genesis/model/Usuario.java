@@ -1,13 +1,16 @@
 package com.bss.sistema.genesis.model;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,6 +24,7 @@ public class Usuario  implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(unique=true)
 	private Long codigo;
 
 	private String nome;
@@ -30,7 +34,20 @@ public class Usuario  implements Serializable{
 	private String email;
 
 	private String telefone;
+	
+	@Column(unique=true)
+	private String cpf;
+	
+	public String getCpf() {
+		return cpf;
+	}
 
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	@OneToMany(mappedBy = "usuario")
+	private List<Equipe> equipes;
 		
 	@Enumerated(EnumType.STRING)
 	private Genero genero;
@@ -93,6 +110,18 @@ public class Usuario  implements Serializable{
 
 	public void setGrupo(Grupo grupo) {
 		this.grupo = grupo;
+	}
+	
+	
+	
+	
+
+	public List<Equipe> getEquipes() {
+		return equipes;
+	}
+
+	public void setEquipes(List<Equipe> equipes) {
+		this.equipes = equipes;
 	}
 
 	@Override

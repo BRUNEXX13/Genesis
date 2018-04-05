@@ -28,9 +28,11 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 import com.bss.sistema.genesis.controller.PropostasController;
 import com.bss.sistema.genesis.controller.converter.BancoConverter;
 import com.bss.sistema.genesis.controller.converter.ComissaoConverter;
+import com.bss.sistema.genesis.controller.converter.EquipeConverter;
 import com.bss.sistema.genesis.controller.converter.ProdutoConverter;
 import com.bss.sistema.genesis.controller.converter.PropostaConverter;
 import com.bss.sistema.genesis.controller.converter.TabelaConverter;
+import com.bss.sistema.genesis.controller.converter.UsuarioConverter;
 
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 
@@ -94,6 +96,8 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 		conversionService.addConverter(new ProdutoConverter());
 		conversionService.addConverter(new PropostaConverter());
 		conversionService.addConverter(new ComissaoConverter());
+		conversionService.addConverter(new EquipeConverter());
+		conversionService.addConverter(new UsuarioConverter());
 		
 
 		//Convertendo os numeros para casas decimais
