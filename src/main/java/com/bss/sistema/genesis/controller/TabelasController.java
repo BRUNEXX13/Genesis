@@ -16,9 +16,10 @@ import com.bss.sistema.genesis.model.Tipo;
 import com.bss.sistema.genesis.repository.Bancos;
 import com.bss.sistema.genesis.repository.Produtos;
 import com.bss.sistema.genesis.service.CadastroTabelaService;
+import com.bss.sistema.genesis.service.exception.NomeTabelaJaCadastradoException;
 
 @Controller
-public class TabelaController {
+public class TabelasController {
 
 	@Autowired
 	private Bancos bancos;
@@ -46,7 +47,12 @@ public class TabelaController {
 			System.out.println(">>> TATA: " + tabela.getDescricao());
 			return novo(tabela);
 		}
-		cadastroTabelaService.salvar(tabela);
+		try {
+			cadastroTabelaService.salvar(tabela);
+			 } catch(NomeTabelaJaCadastradoException e) {
+				 result.rejectValue("descricao", e.getMessage(), e.getMessage());
+				 return novo(tabela);
+			 }
 		attributes.addFlashAttribute("mensagem", "Tabela Salva com sucesso!!");
 		// Salvar no banco de dados...
 		// System.out.println(">>>Descricao " + produto.getDescricao());

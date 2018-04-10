@@ -35,7 +35,7 @@ public class ComissaoController {
 	private Propostas propostas;
 	
 
-	// Servicos de Propostas - Salvar - Deletar --
+
 	@Autowired
 	private CadastroComissaoService cadastroComissaoservice;
 

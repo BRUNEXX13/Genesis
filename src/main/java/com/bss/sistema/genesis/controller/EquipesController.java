@@ -15,12 +15,14 @@ import com.bss.sistema.genesis.model.Equipe;
 import com.bss.sistema.genesis.repository.Equipes;
 import com.bss.sistema.genesis.repository.Usuarios;
 import com.bss.sistema.genesis.service.CadastroEquipeService;
+import com.bss.sistema.genesis.service.exception.NomeEquipeJaCadastradoException;
 
 
 @Controller
-public class EquipeController {
+public class EquipesController {
 
-	
+	@Autowired
+	private Equipes equipes;
 
 	@Autowired
 	private Usuarios usuarios;
@@ -43,8 +45,14 @@ public class EquipeController {
 			// System.out.println(">>> sku: " + banco.getNumero());
 			return novo(equipe);
 		}
-		cadastroEquipeService.salvar(equipe);
-		attributes.addFlashAttribute("mensagem", "Usuario salvo com sucesso!!");
+		
+		try {
+			cadastroEquipeService.salvar(equipe);
+			 } catch(NomeEquipeJaCadastradoException e) {
+				 result.rejectValue("nome", e.getMessage(), e.getMessage());
+				 return novo(equipe);
+			 }
+		attributes.addFlashAttribute("mensagem", "Equipe salvo com sucesso!!");
 		// Salvar no banco de dados...
 		// attributes.addFlashAttribute("mensagem", "Banco salva com sucesso!");
 		// System.out.println(">>> sku: " + usuario.getClass()

@@ -17,6 +17,7 @@ import com.bss.sistema.genesis.repository.Bancos;
 import com.bss.sistema.genesis.repository.Produtos;
 import com.bss.sistema.genesis.repository.Tabelas;
 import com.bss.sistema.genesis.service.CadastroPropostaService;
+import com.bss.sistema.genesis.service.exception.NomePropostaJaCadastradoException;
 
 @Controller
 public class PropostasController {
@@ -57,8 +58,14 @@ public class PropostasController {
 		// Salvar no banco de dados...
 		// si-nis-tro hahha pera ai vou dar um refresh la 
 		
-		
-		cadastroPropostaService.salvar(proposta);
+		try {
+			cadastroPropostaService.salvar(proposta);
+			
+		}catch (NomePropostaJaCadastradoException e) {
+			result.rejectValue("ade", e.getMessage(), e.getMessage());
+			return novo(proposta);
+			
+		}
 		attributes.addFlashAttribute("mensagem", "Proposta Salva com sucesso!");
 		
 		//System.out.println(">>>> codigo : "	    + proposta.getCodigo());
