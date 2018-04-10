@@ -50,6 +50,9 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<spring-data-jpa.version>1.10.2.RELEASE</spring-data-jpa.version>
 		
 		
+		<!-- Jackson - JSON -->
+		<jackson-core.version>2.7.5</jackson-core.version>
+		
 		
 	</properties>
 
@@ -194,6 +197,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 </dependency>
 	
 	
+
 	<!-- Spring Data JPA -->
 	<dependency>
 	<groupId>org.springframework.data</groupId>
@@ -201,6 +205,15 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	<version>${spring-data-jpa.version}</version>
 	</dependency>
 	
+
+	<!-- Jackson - JSON -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>${jackson-core.version}</version>
+		    <scope>compile</scope>
+		</dependency>
+
 
 	</dependencies>
 	

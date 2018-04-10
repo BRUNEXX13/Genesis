@@ -15,9 +15,10 @@ import com.bss.sistema.genesis.model.Produto;
 import com.bss.sistema.genesis.model.Tipo;
 import com.bss.sistema.genesis.repository.Bancos;
 import com.bss.sistema.genesis.service.CadastroProdutoService;
+import com.bss.sistema.genesis.service.exception.NomeProdutoJaCadastradoException;
 
 @Controller
-public class ProdutoController {
+public class ProdutosController {
 
 	@Autowired
 	private Bancos bancos;
@@ -40,7 +41,13 @@ public class ProdutoController {
 			// System.out.println(">>> sk: " + produto.getDescricao());
 			return novo(produto);
 		}
-		cadastroProdutoService.salvar(produto);
+		
+		try {
+			cadastroProdutoService.salvar(produto);
+			 } catch(NomeProdutoJaCadastradoException e) {
+				 result.rejectValue("descricao", e.getMessage(), e.getMessage());
+				 return novo(produto);
+			 }
 		attributes.addFlashAttribute("mensagem", "Produto Salvo  com sucesso!!");
 		// Salvar no banco de dados...
 		System.out.println(">>>Descricao " + produto.getDescricao());

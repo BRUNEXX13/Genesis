@@ -22,7 +22,7 @@ public class Equipe {
 	private Long codigo;
 
 	@NotBlank(message = "Nome é obrigatorio.")
-	@Column(unique=true)
+	@Column(unique = true)
 	private String nome;
 
 	// @NotNull(message = "O banco é obrigatório")
@@ -30,17 +30,7 @@ public class Equipe {
 	@JoinColumn(name = "codigo_usuario")
 	private Usuario usuario;
 
-	
 	private BigDecimal bonus;
-	
-
-	public BigDecimal getBonus() {
-		return bonus;
-	}
-
-	public void setBonus(BigDecimal bonus) {
-		this.bonus = bonus;
-	}
 
 	public Long getCodigo() {
 		return codigo;
@@ -66,16 +56,27 @@ public class Equipe {
 		this.usuario = usuario;
 	}
 
-	public Equipe(Long codigo, String nome, Usuario usuario) {
-		super();
-		this.codigo = codigo;
-		this.nome = nome;
-		this.usuario = usuario;
+	public BigDecimal getBonus() {
+		return bonus;
+	}
+
+	public void setBonus(BigDecimal bonus) {
+		this.bonus = bonus;
 	}
 
 	public Equipe() {
 		super();
 	}
+
+	public Equipe(Long codigo, String nome, Usuario usuario, BigDecimal bonus) {
+		super();
+		this.codigo = codigo;
+		this.nome = nome;
+		this.usuario = usuario;
+		this.bonus = bonus;
+	}
+
+
 
 	@Override
 	public int hashCode() {
