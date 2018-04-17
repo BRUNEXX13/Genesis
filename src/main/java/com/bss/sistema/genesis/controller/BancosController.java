@@ -21,6 +21,7 @@ import com.bss.sistema.genesis.service.CadastroBancoService;
 import com.bss.sistema.genesis.service.exception.NomeBancoJaCadastradoException;
 
 @Controller
+@RequestMapping("/bancos")
 public class BancosController {
 
 	// Referencia lista de bancos
@@ -31,14 +32,14 @@ public class BancosController {
 	private CadastroBancoService cadastroBancoService;
 
 	// Apontamento para Bancos
-	@RequestMapping("/propostas/banco/novo") // aqui é o get. depois muda se quiser
+	@RequestMapping("/novo") // aqui é o get. depois muda se quiser
 	public ModelAndView novo(Banco banco) { // Propost Disponivel na Requiscao não sei pq diabos ele consegue achar a u
 		ModelAndView mv = new ModelAndView("/banco/CadastroBanco");
 		mv.addObject("bancos", bancos.findAll()); // Referencia Lista de Bancos - AutoWired
 		return mv;
 	}
 
-	@RequestMapping(value = "/bancos/novo", method = RequestMethod.POST) // aqui é o post
+	@RequestMapping(value = "/novo", method = RequestMethod.POST) // aqui é o post
 	public ModelAndView cadastrar(@Valid Banco banco, BindingResult result, Model model,
 			RedirectAttributes attributes) {
 		if (result.hasErrors()) {
@@ -57,22 +58,21 @@ public class BancosController {
 		// attributes.addFlashAttribute("mensagem", "Banco salva com sucesso!");
 		System.out.println(">>> sku: " + banco.getNumero());
 		// System.out.println(">>> sku: " + banco.getNome());
-		return new ModelAndView("redirect:/propostas/banco/novo");
+		return new ModelAndView("redirect:/bancos/novo");
 	}
 
 	// Recebendo Requisivcao Via Posta// Cadastrado Rapido
-	@RequestMapping(value = "/bancos", method = RequestMethod.POST, consumes = { MediaType.APPLICATION_JSON_VALUE })
+	@RequestMapping(method = RequestMethod.POST, consumes = { MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody ResponseEntity<?> salvar(@RequestBody @Valid Banco banco, BindingResult result) {
 		if (result.hasErrors()) {
 			return ResponseEntity.badRequest().body(result.getFieldError("nome").getDefaultMessage());
 		}
 		try {
-			banco =cadastroBancoService.salvar(banco);
+			banco = cadastroBancoService.salvar(banco);
 		} catch (NomeBancoJaCadastradoException e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
 		}
 		return ResponseEntity.ok(banco);
 	}
-		
-	
+
 }

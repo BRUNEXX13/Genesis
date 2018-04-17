@@ -17,6 +17,7 @@ import com.bss.sistema.genesis.model.Usuario;
 import com.bss.sistema.genesis.service.CadastroUsuarioService;
 
 @Controller
+@RequestMapping("/usuarios")
 public class UsuarioController {
 
 
@@ -25,7 +26,7 @@ public class UsuarioController {
 	private CadastroUsuarioService cadastroUsuarioService;
 
 	// Apontamento para Bancos
-	@RequestMapping("/propostas/usuario/novo") //
+	@RequestMapping("/novo") //
 	public ModelAndView novo(Usuario usuario) { //
 		ModelAndView mv = new ModelAndView("/usuario/CadastroUsuario");
 		mv.addObject("generos", Genero.values());
@@ -34,7 +35,7 @@ public class UsuarioController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/usuarios/novo", method = RequestMethod.POST) // aqui é o post
+	@RequestMapping(value = "/novo", method = RequestMethod.POST) // aqui é o post
 	public ModelAndView cadastrar(@Valid Usuario usuario, BindingResult result, Model model,
 			RedirectAttributes attributes) {
 		if (result.hasErrors()) {
@@ -47,7 +48,7 @@ public class UsuarioController {
 		// attributes.addFlashAttribute("mensagem", "Banco salva com sucesso!");
 		// System.out.println(">>> sku: " + usuario.getClass()
 		// System.out.println(">>> sku: " + banco.getNome());
-		return new ModelAndView("redirect:/propostas/usuario/novo");
+		return new ModelAndView("redirect:/usuarios/novo");
 	}
 
 }

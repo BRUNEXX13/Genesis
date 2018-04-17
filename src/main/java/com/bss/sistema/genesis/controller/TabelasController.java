@@ -19,6 +19,7 @@ import com.bss.sistema.genesis.service.CadastroTabelaService;
 import com.bss.sistema.genesis.service.exception.NomeTabelaJaCadastradoException;
 
 @Controller
+@RequestMapping("/tabelas")
 public class TabelasController {
 
 	@Autowired
@@ -31,7 +32,7 @@ public class TabelasController {
 	private CadastroTabelaService cadastroTabelaService;
 
 	// Apontamento para Propostas
-	@RequestMapping("/propostas/tabela/novo")
+	@RequestMapping("/novo")
 	public ModelAndView novo(Tabela tabela) { // Propost Disponivel na Requiscao
 		ModelAndView mv = new ModelAndView("/tabela/CadastroTabela");
 		mv.addObject("bancos", bancos.findAll());
@@ -40,7 +41,7 @@ public class TabelasController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/tabelas/novo", method = RequestMethod.POST) // aqui é o post
+	@RequestMapping(value = "/novo", method = RequestMethod.POST) // aqui é o post
 	public ModelAndView cadastrar(@Valid Tabela tabela, BindingResult result, Model model,
 			RedirectAttributes attributes) {
 		if (result.hasErrors()) {
@@ -58,7 +59,7 @@ public class TabelasController {
 		// System.out.println(">>>Descricao " + produto.getDescricao());
 		System.out.println(">>>TABELA 1: " + tabela.getDescricao());
 		// System.out.println(">>>>> Banco " + produto.getBanco());
-		return new ModelAndView("redirect:/propostas/tabela/novo");
+		return new ModelAndView("redirect:/tabelas/novo");
 	}
 
 }

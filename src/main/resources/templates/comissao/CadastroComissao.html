@@ -26,8 +26,7 @@
 
 
 			<!--  TH ACTION SEMPRE COLOCAR  -->
-			<form th:action="@{/comissoes/novo}" method="POST"
-				th:object="${comissao}" class="form-vertical  js-form-loading">
+			<form th:action="@{/comissoes/novo}" method="POST" th:object="${comissao}" class="form-vertical  js-form-loading">
 
 				<th:block th:include="fragments/MensagensErroValidacao"></th:block>
 

@@ -33,7 +33,8 @@ $(function() {
 			method: 'POST',
 			contentType: 'application/json',
 			data: JSON.stringify({'numero' : numeroBanco, 'nome': nomeBanco }),
-			error: onErroSalvandoBanco
+			error: onErroSalvandoBanco,
+			success: OnBancoSalvo
 		});
 	}
 
@@ -46,7 +47,7 @@ $(function() {
 	
 	function OnBancoSalvo(banco) {
 		var comboBanco = $('#banco');
-		comboBanco.append('<option value=' + banco.codigo + '>' + banco.numero + '>' + banco.nome +'</option>')
+		comboBanco.append('<option value=' + banco.codigo + '>' + banco.nome +'</option>')
 		comboBanco.val(banco.codigo);
 		modal.modal('hide');
 	}

@@ -18,6 +18,7 @@ import com.bss.sistema.genesis.service.CadastroProdutoService;
 import com.bss.sistema.genesis.service.exception.NomeProdutoJaCadastradoException;
 
 @Controller
+@RequestMapping("/produtos")
 public class ProdutosController {
 
 	@Autowired
@@ -27,7 +28,7 @@ public class ProdutosController {
 	private CadastroProdutoService cadastroProdutoService;
 
 	// Apontamento para Propostas
-	@RequestMapping("/propostas/produto/novo")
+	@RequestMapping("/novo")
 	public ModelAndView novo(Produto produto) { // Propost Disponivel na Requiscao
 		ModelAndView mv = new ModelAndView("/produto/CadastroProduto");
 		mv.addObject("tipos", Tipo.values());
@@ -35,7 +36,7 @@ public class ProdutosController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/produtos/novo", method = RequestMethod.POST) // aqui é o post
+	@RequestMapping(value = "/novo", method = RequestMethod.POST) // aqui é o post
 	public ModelAndView cadastrar(@Valid Produto produto, BindingResult result, Model model, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
 			// System.out.println(">>> sk: " + produto.getDescricao());
@@ -53,7 +54,7 @@ public class ProdutosController {
 		System.out.println(">>>Descricao " + produto.getDescricao());
 		System.out.println(">>>Tipo: " + produto.getTipo());
 		System.out.println(">>>>> Banco  " + produto.getBanco());
-		return new ModelAndView("redirect:/propostas/produto/novo");
+		return new ModelAndView("redirect:/produtos/novo");
 	}
 
 }
