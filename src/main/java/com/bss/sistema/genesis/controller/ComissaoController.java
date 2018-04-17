@@ -20,6 +20,7 @@ import com.bss.sistema.genesis.repository.Tabelas;
 import com.bss.sistema.genesis.service.CadastroComissaoService;
 
 @Controller
+@RequestMapping("/comissoes")
 public class ComissaoController {
 
 	@Autowired
@@ -39,7 +40,7 @@ public class ComissaoController {
 	@Autowired
 	private CadastroComissaoService cadastroComissaoservice;
 
-	@RequestMapping("/propostas/comissao/novo")
+	@RequestMapping("/novo")
 	public ModelAndView novo(Comissao comissao) {
 		ModelAndView mv = new ModelAndView("/comissao/CadastroComissao");
 		mv.addObject("bancos", bancos.findAll());
@@ -51,7 +52,7 @@ public class ComissaoController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/comissoes/novo", method = RequestMethod.POST)
+	@RequestMapping(value = "/novo", method = RequestMethod.POST)
 	public ModelAndView cadastrar(@Valid Comissao comissao, BindingResult result, Model model, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
 			System.out.println(">>> COMISSA: " + comissao.getDescricao());
@@ -63,7 +64,7 @@ public class ComissaoController {
 		cadastroComissaoservice.salvar(comissao);
 		attributes.addFlashAttribute("mensagem", "Comissao Salva com sucesso!");
 		
-		return new ModelAndView("redirect:/propostas/comissao/novo");
+		return new ModelAndView("redirect:/comissoes/novo");
 	}
 
 }

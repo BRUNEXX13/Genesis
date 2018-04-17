@@ -20,6 +20,7 @@ import com.bss.sistema.genesis.service.CadastroPropostaService;
 import com.bss.sistema.genesis.service.exception.NomePropostaJaCadastradoException;
 
 @Controller
+@RequestMapping("/propostas")
 public class PropostasController {
 
 	@Autowired
@@ -37,7 +38,7 @@ public class PropostasController {
 	private CadastroPropostaService cadastroPropostaService;
 
 	
-	@RequestMapping("/propostas/novo")
+	@RequestMapping("/novo")
 	public ModelAndView novo(Proposta proposta) {
 		ModelAndView mv = new ModelAndView("/proposta/CadastroProposta");
 		mv.addObject("bancos",bancos.findAll());
@@ -48,7 +49,7 @@ public class PropostasController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/propostas/novo", method = RequestMethod.POST)
+	@RequestMapping(value = "novo", method = RequestMethod.POST)
 	public ModelAndView cadastrar(@Valid Proposta proposta, BindingResult result, Model model, RedirectAttributes attributes) {
 	
 		if (result.hasErrors()) {

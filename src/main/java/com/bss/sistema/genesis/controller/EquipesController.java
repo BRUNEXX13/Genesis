@@ -19,6 +19,7 @@ import com.bss.sistema.genesis.service.exception.NomeEquipeJaCadastradoException
 
 
 @Controller
+@RequestMapping("/equipes")
 public class EquipesController {
 
 	@Autowired
@@ -31,14 +32,14 @@ public class EquipesController {
 	private CadastroEquipeService cadastroEquipeService;
 
 	// Apontamento para Bancos
-	@RequestMapping("/propostas/equipe/novo") //
+	@RequestMapping("/novo") //
 	public ModelAndView novo(Equipe equipe) { //
 		ModelAndView mv = new ModelAndView("/equipe/CadastroEquipe");
 		mv.addObject("usuarios", usuarios.findAll());
 		return mv;
 	}
 
-	@RequestMapping(value = "/equipes/novo", method = RequestMethod.POST) // aqui é o post
+	@RequestMapping(value = "/novo", method = RequestMethod.POST) // aqui é o post
 	public ModelAndView cadastrar(@Valid Equipe equipe, BindingResult result, Model model,
 			RedirectAttributes attributes) {
 		if (result.hasErrors()) {
@@ -57,7 +58,7 @@ public class EquipesController {
 		// attributes.addFlashAttribute("mensagem", "Banco salva com sucesso!");
 		// System.out.println(">>> sku: " + usuario.getClass()
 		// System.out.println(">>> sku: " + banco.getNome());
-		return new ModelAndView("redirect:/propostas/equipe/novo");
+		return new ModelAndView("redirect:/equipes/novo");
 	}
 
 }
