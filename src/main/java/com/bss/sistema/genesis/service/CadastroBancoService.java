@@ -19,7 +19,6 @@ public class CadastroBancoService {
 	@Transactional
 	public Banco salvar(Banco banco) {
 		Optional<Banco> bancoOptional = bancos.findByNomeIgnoreCase(banco.getNome());
-		// Optional<Banco> bancoOptional = findbyNumeroIgnoreCase(banco.getCodigo())/
 		if (bancoOptional.isPresent()) {
 			throw new NomeBancoJaCadastradoException("Nome do banco já cadastrado");
 		}

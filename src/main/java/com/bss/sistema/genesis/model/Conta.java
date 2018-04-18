@@ -1,47 +1,56 @@
 package com.bss.sistema.genesis.model;
 
 import java.io.Serializable;
-import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-//Fix
 @Entity
-@Table(name = "banco")
-public class Banco implements Serializable {
+@Table(name = "conta")
+public class Conta implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 5388668075242875068L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 
-	@NotNull(message = "Número do banco é obrigatório.")
-	@Column(unique = true)
+	private String agencia;
+
 	private int numero;
 
-	@NotBlank(message = "Nome é obrigatorio.")
-	@Column(unique = true)
-	private String nome;
+	@NotBlank(message = "O tipo é obrigatório")
+	@NotNull(message = "O tipo é obrigatório")
+	private String tipoConta;
 
-	@OneToMany(mappedBy = "banco")
-	private List<Produto> produtos;
+	// @NotNull(message = "O banco é obrigatório")
+	@ManyToOne
+	@JoinColumn(name = "codigo_banco")
+	private Banco banco;
 
+	
 	public Long getCodigo() {
 		return codigo;
 	}
 
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
+	}
+
+	public String getAgencia() {
+		return agencia;
+	}
+
+	public void setAgencia(String agencia) {
+		this.agencia = agencia;
 	}
 
 	public int getNumero() {
@@ -52,20 +61,20 @@ public class Banco implements Serializable {
 		this.numero = numero;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getTipoConta() {
+		return tipoConta;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setTipoConta(String tipoConta) {
+		this.tipoConta = tipoConta;
 	}
 
-	public List<Produto> getProdutos() {
-		return produtos;
+	public Banco getBanco() {
+		return banco;
 	}
 
-	public void setProdutos(List<Produto> produtos) {
-		this.produtos = produtos;
+	public void setBanco(Banco banco) {
+		this.banco = banco;
 	}
 
 	@Override
@@ -84,7 +93,7 @@ public class Banco implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Banco other = (Banco) obj;
+		Conta other = (Conta) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;
@@ -93,16 +102,19 @@ public class Banco implements Serializable {
 		return true;
 	}
 
-	public Banco(Long codigo, int numero, String nome, List<Produto> produtos, List<Conta> contas) {
+	public Conta(Long codigo, String agencia, int numero, String tipoConta, Banco banco) {
 		super();
 		this.codigo = codigo;
+		this.agencia = agencia;
 		this.numero = numero;
-		this.nome = nome;
-		this.produtos = produtos;
+		this.tipoConta = tipoConta;
+		this.banco = banco;
 	}
 
-	public Banco() {
+	public Conta() {
 		super();
 	}
 
+	
+	
 }

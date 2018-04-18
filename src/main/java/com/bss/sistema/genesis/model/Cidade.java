@@ -1,40 +1,39 @@
 package com.bss.sistema.genesis.model;
 
 import java.io.Serializable;
-import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-//Fix
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-@Table(name = "banco")
-public class Banco implements Serializable {
+@Table(name = "cidade")
+public class Cidade implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
-
-	@NotNull(message = "Número do banco é obrigatório.")
-	@Column(unique = true)
-	private int numero;
-
-	@NotBlank(message = "Nome é obrigatorio.")
-	@Column(unique = true)
+	
+	@NotBlank(message = "Nome é obrigatório")
 	private String nome;
-
-	@OneToMany(mappedBy = "banco")
-	private List<Produto> produtos;
+	
+	@NotNull(message = "Estado é obrigatório")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "codigo_estado")
+	@JsonIgnore
+	private Estado estado;
 
 	public Long getCodigo() {
 		return codigo;
@@ -42,14 +41,6 @@ public class Banco implements Serializable {
 
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
-	}
-
-	public int getNumero() {
-		return numero;
-	}
-
-	public void setNumero(int numero) {
-		this.numero = numero;
 	}
 
 	public String getNome() {
@@ -60,12 +51,16 @@ public class Banco implements Serializable {
 		this.nome = nome;
 	}
 
-	public List<Produto> getProdutos() {
-		return produtos;
+	public Estado getEstado() {
+		return estado;
 	}
 
-	public void setProdutos(List<Produto> produtos) {
-		this.produtos = produtos;
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
+
+	public boolean temEstado() {
+		return estado != null;
 	}
 
 	@Override
@@ -84,25 +79,13 @@ public class Banco implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Banco other = (Banco) obj;
+		Cidade other = (Cidade) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;
 		} else if (!codigo.equals(other.codigo))
 			return false;
 		return true;
-	}
-
-	public Banco(Long codigo, int numero, String nome, List<Produto> produtos, List<Conta> contas) {
-		super();
-		this.codigo = codigo;
-		this.numero = numero;
-		this.nome = nome;
-		this.produtos = produtos;
-	}
-
-	public Banco() {
-		super();
 	}
 
 }

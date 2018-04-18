@@ -4,7 +4,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import com.bss.sistema.genesis.service.CadastroBancoService;
+import com.bss.sistema.genesis.service.CadastroClienteService;
 import com.bss.sistema.genesis.service.CadastroComissaoService;
+import com.bss.sistema.genesis.service.CadastroContaService;
 import com.bss.sistema.genesis.service.CadastroEquipeService;
 import com.bss.sistema.genesis.service.CadastroProdutoService;
 import com.bss.sistema.genesis.service.CadastroPropostaService;
@@ -22,7 +24,8 @@ import com.bss.sistema.genesis.service.CadastroUsuarioService;
 @ComponentScan(basePackageClasses = CadastroPropostaService.class)
 @ComponentScan(basePackageClasses = CadastroComissaoService.class)
 @ComponentScan(basePackageClasses = CadastroUsuarioService.class)
-
+@ComponentScan(basePackageClasses = CadastroContaService.class)
+@ComponentScan(basePackageClasses = CadastroClienteService.class)
 
 public class ServiceConfig {
 
