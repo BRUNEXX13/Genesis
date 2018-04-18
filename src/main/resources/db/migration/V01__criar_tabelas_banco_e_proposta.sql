@@ -75,7 +75,7 @@ genero VARCHAR(50) NOT NULL,
 grupo VARCHAR(50) NOT NULL,
 codigo_banco BIGINT(20) ,
 FOREIGN KEY (codigo_banco) REFERENCES banco(codigo),
-codigo_conta BIGINT(20),
+codigo_conta BIGINT(20) ,
 FOREIGN KEY (codigo_conta) REFERENCES conta(codigo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

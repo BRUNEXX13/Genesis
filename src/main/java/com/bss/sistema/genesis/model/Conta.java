@@ -36,7 +36,6 @@ public class Conta implements Serializable {
 	@JoinColumn(name = "codigo_banco")
 	private Banco banco;
 
-	
 	public Long getCodigo() {
 		return codigo;
 	}

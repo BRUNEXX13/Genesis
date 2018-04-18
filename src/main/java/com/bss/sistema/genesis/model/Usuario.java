@@ -10,8 +10,11 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -58,6 +61,11 @@ public class Usuario implements Serializable {
 
 	@OneToMany(mappedBy = "usuario")
 	private List<Equipe> equipes;
+
+	@NotNull(message = "O banco é obrigatório")
+	@ManyToOne
+	@JoinColumn(name = "codigo_banco")
+	private Banco banco;
 
 	public Long getCodigo() {
 		return codigo;
@@ -129,6 +137,14 @@ public class Usuario implements Serializable {
 
 	public void setEquipes(List<Equipe> equipes) {
 		this.equipes = equipes;
+	}
+
+	public Banco getBanco() {
+		return banco;
+	}
+
+	public void setBanco(Banco banco) {
+		this.banco = banco;
 	}
 
 	@Override
