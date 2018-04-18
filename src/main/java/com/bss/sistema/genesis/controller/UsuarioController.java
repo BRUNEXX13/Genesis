@@ -14,13 +14,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.bss.sistema.genesis.model.Genero;
 import com.bss.sistema.genesis.model.Grupo;
 import com.bss.sistema.genesis.model.Usuario;
+import com.bss.sistema.genesis.repository.Contas;
 import com.bss.sistema.genesis.service.CadastroUsuarioService;
 
 @Controller
 @RequestMapping("/usuarios")
 public class UsuarioController {
 
-
+	@Autowired
+	private Contas contas;
 
 	@Autowired
 	private CadastroUsuarioService cadastroUsuarioService;
@@ -31,6 +33,7 @@ public class UsuarioController {
 		ModelAndView mv = new ModelAndView("/usuario/CadastroUsuario");
 		mv.addObject("generos", Genero.values());
 		mv.addObject("grupos", Grupo.values());
+		mv.addObject("contas", contas.findAll());
 
 		return mv;
 	}

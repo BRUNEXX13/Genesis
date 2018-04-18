@@ -18,7 +18,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "usuario")
-public class Usuario  implements Serializable{
+public class Usuario implements Serializable {
 
 	/**
 	 * 
@@ -27,49 +27,37 @@ public class Usuario  implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(unique=true)
+	@Column(unique = true)
 	private Long codigo;
-
-	
 
 	@NotBlank(message = "Nome é obrigatório")
 	@Size(max = 50, message = "O tamanho da  descrição deve estar entre 1 e 50")
 	private String nome;
-
-	
 
 	@NotBlank(message = "Sobrenome obrigatório")
 	@Size(max = 50, message = "O tamanho da  descrição deve estar entre 1 e 50")
 	private String sobrenome;
 
 	@NotBlank(message = "Email é obrigatorio")
-	@Column(unique=true)
+	@Column(unique = true)
 	private String email;
 
 	@NotBlank(message = "Telefone é obrigatorio")
 	private String telefone;
-	
-	@NotBlank(message = "CPF é obrigatório")
-	@Column(unique=true)
-	private String cpf;
-	
-	public String getCpf() {
-		return cpf;
-	}
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
+	@NotBlank(message = "CPF é obrigatório")
+	@Column(unique = true)
+	private String cpf;
+
+	@Enumerated(EnumType.STRING)
+	private Genero genero;
+
+	// @NotNull(message = "O genêro é obrigatório")
+	@Enumerated(EnumType.STRING)
+	private Grupo grupo;
 
 	@OneToMany(mappedBy = "usuario")
 	private List<Equipe> equipes;
-		
-	@Enumerated(EnumType.STRING)
-	private Genero genero;
-	
-	//@NotNull(message = "O genêro é obrigatório")
-	@Enumerated(EnumType.STRING)
-	private Grupo grupo;
 
 	public Long getCodigo() {
 		return codigo;
@@ -80,7 +68,7 @@ public class Usuario  implements Serializable{
 	}
 
 	public String getNome() {
-		return nome;	
+		return nome;
 	}
 
 	public void setNome(String nome) {
@@ -111,6 +99,14 @@ public class Usuario  implements Serializable{
 		this.telefone = telefone;
 	}
 
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
 	public Genero getGenero() {
 		return genero;
 	}
@@ -126,10 +122,6 @@ public class Usuario  implements Serializable{
 	public void setGrupo(Grupo grupo) {
 		this.grupo = grupo;
 	}
-	
-	
-	
-	
 
 	public List<Equipe> getEquipes() {
 		return equipes;
