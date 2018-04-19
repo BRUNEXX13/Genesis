@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bss.sistema.genesis.model.Genero;
 import com.bss.sistema.genesis.model.Grupo;
+import com.bss.sistema.genesis.model.TipoConta;
 import com.bss.sistema.genesis.model.Usuario;
 import com.bss.sistema.genesis.repository.Bancos;
 import com.bss.sistema.genesis.repository.Contas;
@@ -41,6 +42,7 @@ public class UsuarioController {
 		mv.addObject("grupos", Grupo.values());
 		mv.addObject("contas", contas.findAll());
 		mv.addObject("bancos", bancos.findAll());
+		mv.addObject("tipos", TipoConta.values());
 
 		return mv;
 	}

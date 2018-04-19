@@ -61,7 +61,7 @@ public class BancosController {
 		return new ModelAndView("redirect:/bancos/novo");
 	}
 
-	// Recebendo Requisivcao Via Posta// Cadastrado Rapido
+	// Recebendo Requisivcao Via Post// Cadastrado Rapido
 	@RequestMapping(method = RequestMethod.POST, consumes = { MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody ResponseEntity<?> salvar(@RequestBody @Valid Banco banco, BindingResult result) {
 		if (result.hasErrors()) {
