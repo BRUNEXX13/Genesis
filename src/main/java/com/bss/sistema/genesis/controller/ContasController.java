@@ -20,6 +20,7 @@ import com.bss.sistema.genesis.model.TipoConta;
 import com.bss.sistema.genesis.repository.Bancos;
 import com.bss.sistema.genesis.service.CadastroContaService;
 import com.bss.sistema.genesis.service.exception.NomeBancoJaCadastradoException;
+import com.bss.sistema.genesis.service.exception.NomeContaJaCadastradoException;
 
 @Controller
 @RequestMapping("/contas")
@@ -60,19 +61,23 @@ public class ContasController {
 
 		return new ModelAndView("redirect:/contas/novo");
 	}
-	
-	//Recebendo dados VIA JSON 
+
+	// Recebendo dados VIA JSON
 	@RequestMapping(method = RequestMethod.POST, consumes = { MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody ResponseEntity<?> salvar(@RequestBody @Valid Conta conta, BindingResult result) {
 		if (result.hasErrors()) {
 			return ResponseEntity.badRequest().body(result.getFieldError("agencia").getDefaultMessage());
 		}
-		
-		return ResponseEntity.badRequest().body("Erro ao salvar conta ");
-		
-	}
-	
 
-	
+		try {
+			conta = cadastroContaService.salvar(conta);
+		} catch (NomeContaJaCadastradoException e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+
+		}
+
+		return ResponseEntity.ok(conta);
+
+	}
 
 }
