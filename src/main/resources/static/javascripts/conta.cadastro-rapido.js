@@ -39,11 +39,17 @@ $(function() {
 			var mensagemErro = obj.responseText;
 			containerMensagemErro.removeClass('hidden');
 			containerMensagemErro.html('<span>' + mensagemErro + '</span>');
-			
+			form.find('.form-group').addClass('has-error');
 			
 		}
 		
 
+		function OnContaSalvo(conta){
+			var comboConta = $('#conta');
+			comboConta.append('<option value=' + conta.codigo + '>' + conta.numero + '</option>');
+			comboConta.val(conta.codigo);
+			modal.modal('hide');
+		}
 		
 		
 		

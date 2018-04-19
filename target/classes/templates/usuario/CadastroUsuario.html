@@ -128,34 +128,7 @@
 					</div>
 					
 					
-
-					<div class="col-sm-3  form-group" >
-						<label for="conta">Selecione Agencia</label>
-						<div class="gn-field-action">
-							<select id="conta" class="form-control" th:field="*{conta}">
-								<option value="">Selecione a Agência</option>
-								<option th:each="conta: ${contas}" th:value="${conta.codigo}" th:text="${conta.agencia}"></option>
-
-
-							</select>
-
-							<div class="gn-field-action__icon">
-								<a href="#" data-toggle="modal"
-									data-target="#modalCadastroRapidoConta"> <i
-									class="glyphicon glyphicon-plus-sign  gn-glyphicon-plus-large"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-		
-					 
-					</div>
-				
-					
-					
-					<div class="row">
-					
-					<div class="col-sm-3  form-group">
+						<div class="col-sm-3  form-group">
 						<label for="equipe">Equipe</label>
 						<div class="gn-field-action">
 							<select id="equipe" class="form-control">
@@ -173,6 +146,16 @@
 							</div>
 						</div>
 					</div>
+
+					
+					 
+					</div>
+				
+					
+					
+					<div class="row">
+					
+				
 					
 					
 					<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('banco')} ? has-error">
@@ -197,6 +180,25 @@
 					</div>
 					
 					
+					<div class="col-sm-3  form-group" >
+						<label for="conta">Selecione a Conta</label>
+						<div class="gn-field-action">
+							<select id="conta" class="form-control" th:field="*{conta}">
+								<option value="">Selecione a Conta</option>
+								<option th:each="conta: ${contas}" th:value="${conta.codigo}" th:text="${conta.agencia}"></option>
+
+
+							</select>
+
+							<div class="gn-field-action__icon">
+								<a href="#" data-toggle="modal"
+									data-target="#modalCadastroRapidoConta"> <i
+									class="glyphicon glyphicon-plus-sign  gn-glyphicon-plus-large"></i>
+								</a>
+							</div>
+						</div>
+					</div>
+		
 					
 					
 					

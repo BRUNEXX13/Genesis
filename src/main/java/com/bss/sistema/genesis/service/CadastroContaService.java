@@ -16,13 +16,14 @@ public class CadastroContaService {
 	@Autowired
 	private Contas contas;
 
+	// Salvar e Populando no Banco de dados //
 	@Transactional
 	public Conta salvar(Conta conta) {
 		Optional<Conta> contaOptional = contas.findByAgenciaIgnoreCase(conta.getAgencia());
 		if (contaOptional.isPresent()) {
-			throw new NomeContaJaCadastradoException("Nome da conta  já cadastrado");
+			throw new NomeContaJaCadastradoException("Nome da conta  já cadastrada !!");
 		}
-
+		 // Save And Flush salvar no Banco e Incrementar o cod
 		return contas.saveAndFlush(conta);
 	}
 
