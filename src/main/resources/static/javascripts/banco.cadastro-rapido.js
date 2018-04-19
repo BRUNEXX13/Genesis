@@ -12,7 +12,7 @@ $(function() {
 	var containerMensagemErro = $('.js-mensagem-cadastro-rapido-banco');
 
 	modal.on('shown.bs.modal', onModalShow);
-	modal.on('hide.bs.modal', onModalClose)
+	modal.on('hide.bs.modal', onModalClose);
 	botaoSalvar.on('click', onBotaoSalvarClick);
 
 	function onModalShow() {
@@ -22,6 +22,8 @@ $(function() {
 	function onModalClose() {
 		inputNumeroBanco.val('');
 		inputNomeBanco.val('');
+		containerMensagemErro.addClass('hidden');
+		form.find('.form-group').removeClass('has-error');
 		
 	}
 

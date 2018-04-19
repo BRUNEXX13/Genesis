@@ -126,38 +126,35 @@
 								</a>
 							</div>
 					</div>
+					
+					
 
-					<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('banco')} ? has-error">
-						<label for="banco">Banco</label>
+					<div class="col-sm-3  form-group" >
+						<label for="conta">Selecione Agencia</label>
 						<div class="gn-field-action">
-							<select id="banco" class="form-control" th:field="*{banco}">
-								<option value="">Selecione o Banco</option>
-								<option th:each="banco : ${bancos}" th:value="${banco.codigo}"
-									th:text="${banco.nome}">Itau</option>
+							<select id="conta" class="form-control" th:field="*{conta}">
+								<option value="">Selecione a Agência</option>
+								<option th:each="conta: ${contas}" th:value="${conta.codigo}" th:text="${conta.agencia}"></option>
 
 
 							</select>
 
 							<div class="gn-field-action__icon">
 								<a href="#" data-toggle="modal"
-									data-target="#modalCadastroRapidoBanco"> <i
+									data-target="#modalCadastroRapidoConta"> <i
 									class="glyphicon glyphicon-plus-sign  gn-glyphicon-plus-large"></i>
 								</a>
 							</div>
 						</div>
 					</div>
-
-
-
-
-
-
 		
+					 
 					</div>
 				
 					
 					
 					<div class="row">
+					
 					<div class="col-sm-3  form-group">
 						<label for="equipe">Equipe</label>
 						<div class="gn-field-action">
@@ -177,6 +174,36 @@
 						</div>
 					</div>
 					
+					
+					<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('banco')} ? has-error">
+						<label for="banco">Banco</label>
+						<div class="gn-field-action">
+							<select id="banco" class="form-control" th:field="*{banco}">
+								<option value="">Selecione o Banco</option>
+								<option th:each="banco : ${bancos}" th:value="${banco.codigo}"
+									th:text="${banco.nome}">Itau</option>
+
+
+							</select>
+
+
+							<div class="gn-field-action__icon">
+								<a href="#" data-toggle="modal"
+									data-target="#modalCadastroRapidoBanco"> <i
+									class="glyphicon glyphicon-plus-sign  gn-glyphicon-plus-large"></i>
+								</a>
+							</div>
+						</div>
+					</div>
+					
+					
+					
+					
+					
+					
+					
+					
+					
 					</div>
 	
 				
@@ -187,22 +214,27 @@
 				
 
 
-			</form>
-		</div>
-		
 		
 		
 		<div th:replace="estilo/CadastroRapidoGrupo :: modal"></div>
 		<div th:replace="estilo/CadastroRapidoEquipe :: modal"></div>
-
+		<div th:replace="estilo/CadastroRapidoConta :: modal"></div>
+		
+	</form>
+	</div>
 	</section>
-
-		<th:block layout:fragment="javascript-extra">
+	
+	<th:block layout:fragment="javascript-extra">
+		<script th:src="@{/javascripts/conta.cadastro-rapido.js}"></script>
 		<script th:src="@{/javascripts/vendors/bootstrap-switch.min.js}"></script>
 		<script>
 		$('.js-status').bootstrapSwitch();
 		</script>
 		</th:block>
+			
+		
+
+		
 
 
 

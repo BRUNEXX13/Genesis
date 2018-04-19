@@ -67,6 +67,19 @@ public class Usuario implements Serializable {
 	@JoinColumn(name = "codigo_banco")
 	private Banco banco;
 
+	@NotNull(message = "A conta  é obrigatório")
+	@ManyToOne
+	@JoinColumn(name = "codigo_conta")
+	private Conta conta;
+
+	public Conta getConta() {
+		return conta;
+	}
+
+	public void setConta(Conta conta) {
+		this.conta = conta;
+	}
+
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -172,4 +185,7 @@ public class Usuario implements Serializable {
 		return true;
 	}
 
+
+	
+	
 }

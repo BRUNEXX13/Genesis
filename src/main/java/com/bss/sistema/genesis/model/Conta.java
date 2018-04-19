@@ -1,6 +1,7 @@
 package com.bss.sistema.genesis.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,8 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -23,18 +24,29 @@ public class Conta implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 
+	@NotBlank(message = "Agência é obrigatorio")
 	private String agencia;
 
 	private int numero;
 
-	@NotBlank(message = "O tipo é obrigatório")
-	@NotNull(message = "O tipo é obrigatório")
+
 	private String tipoConta;
 
 	// @NotNull(message = "O banco é obrigatório")
 	@ManyToOne
 	@JoinColumn(name = "codigo_banco")
 	private Banco banco;
+
+	@OneToMany(mappedBy = "banco")
+	private List<Usuario> usuarios;
+
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
 
 	public Long getCodigo() {
 		return codigo;
@@ -114,6 +126,4 @@ public class Conta implements Serializable {
 		super();
 	}
 
-	
-	
 }
