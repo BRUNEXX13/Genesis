@@ -18,8 +18,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.bss.sistema.genesis.model.Conta;
 import com.bss.sistema.genesis.model.TipoConta;
 import com.bss.sistema.genesis.repository.Bancos;
+import com.bss.sistema.genesis.repository.Usuarios;
 import com.bss.sistema.genesis.service.CadastroContaService;
-import com.bss.sistema.genesis.service.exception.NomeBancoJaCadastradoException;
 import com.bss.sistema.genesis.service.exception.NomeContaJaCadastradoException;
 
 @Controller
@@ -28,7 +28,10 @@ public class ContasController {
 
 	@Autowired
 	private Bancos bancos;
-
+	
+	@Autowired
+	private Usuarios usuarios;
+	
 	@Autowired
 	private CadastroContaService cadastroContaService;
 
@@ -38,26 +41,26 @@ public class ContasController {
 		ModelAndView mv = new ModelAndView("/conta/CadastroConta");
 		mv.addObject("bancos", bancos.findAll());
 		mv.addObject("tipos", TipoConta.values());
+		mv.addObject("usuarios", usuarios.findAll());
 		return mv;
 	}
 
 	@RequestMapping(value = "/novo", method = RequestMethod.POST) // aqui é o post
-	public ModelAndView cadastrar(@Valid Conta conta, BindingResult result, Model model,
-			RedirectAttributes attributes) {
+	public ModelAndView cadastrar(@Valid Conta conta, BindingResult result, Model model,RedirectAttributes attributes) {
 		if (result.hasErrors()) {
 			System.out.println(">>> sku: " + conta.getNumero());
 			return novo(conta);
 		}
 		try {
 			cadastroContaService.salvar(conta);
-		} catch (NomeBancoJaCadastradoException e) {
+		} catch (NomeContaJaCadastradoException e) {
 			result.rejectValue("numero", e.getMessage(), e.getMessage());
 			return novo(conta);
 		}
 		attributes.addFlashAttribute("mensagem", "Conta salva com sucesso!!");
 		// Salvar no banco de dados...
 		// attributes.addFlashAttribute("mensagem", "Banco salva com sucesso!");
-		System.out.println(">>> sku: " + conta.getNumero());
+		System.out.println(">>> sku: " + conta.getTipoConta());
 
 		return new ModelAndView("redirect:/contas/novo");
 	}
@@ -68,14 +71,12 @@ public class ContasController {
 		if (result.hasErrors()) {
 			return ResponseEntity.badRequest().body(result.getFieldError("agencia").getDefaultMessage());
 		}
-
 		try {
 			conta = cadastroContaService.salvar(conta);
 		} catch (NomeContaJaCadastradoException e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
 
 		}
-
 		return ResponseEntity.ok(conta);
 
 	}

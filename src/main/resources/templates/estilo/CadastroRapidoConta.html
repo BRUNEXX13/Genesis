@@ -2,7 +2,8 @@
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <body>
-	<div class="modal fade" id="modalCadastroRapidoConta" tabindex="-1" role="dialog"  th:fragment="modal">
+	<div class="modal fade" id="modalCadastroRapidoConta" tabindex="-1"
+		role="dialog" th:fragment="modal">
 		<div class="modal-dialog  modal-md">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -11,41 +12,60 @@
 					</button>
 					<h4 class="modal-title">Cadastro de Conta</h4>
 				</div>
-				
+
 				<div class="modal-body">
-				<div class="alert alert-danger hidden js-mensagem-cadastro-rapido-conta" role="alert"></div>
-				
+					<div
+						class="alert alert-danger hidden js-mensagem-cadastro-rapido-conta"
+						role="alert"></div>
+
 					<form class="form-horizontal" th:action="@{/contas}">
-					<div class="form-group">
-
-
-					
-						<label class="col-sm-3  control-label" for="numeroAgencia">Agência</label>
+						<div class="form-group">
+				
+							<label class="col-sm-3  control-label" for="titular">Titular</label>
 							<div class="col-sm-12">
-								<input id="numeroAgencia" type="text" class="form-control" >
+								<input id="titularConta" type="text" class="form-control">
+							</div>
+			
+
+							<label class="col-sm-3  control-label" for="numeroAgencia">Agência</label>
+							<div class="col-sm-12">
+								<input id="numeroAgencia" type="text" class="form-control">
 							</div>
 
-							<label class="col-sm-3  control-label" for="numero">Número Conta</label>
+							<label class="col-sm-3  control-label" for="numero">Número
+								Conta</label>
 							<div class="col-sm-12">
-								<input id="numeroConta" type="text" class="form-control" >
+								<input id="numeroConta" type="text" class="form-control">
 							</div>
-							
-							
+
+
 							<label class="col-sm-3  control-label" for="tipoConta">Tipo de Conta</label>
 							<div class="col-sm-12">
-							<select id="tipoConta" class="form-control">
+							<select id="tipoConta" class="form-control" th:field="*{conta}">
 							<option value="">Selecione o tipo</option>
 							<option th:each="tipoConta : ${tipos}" th:value="${tipoConta}"
 								th:text="${tipoConta.descricao}">Poupança</option>
 						</select>
 							</div>
-								
 							
-							</div>
-					</form>
-					
+							<label class="col-sm-3  control-label" for="tipoConta">Banco </label>
+							<div class="col-sm-12">
+							<select id="bancoCodigo" class="form-control" th:field="*{banco}">
+								<option value="">Selecione o Banco</option>
+								<option th:each="banco : ${bancos}" th:value="${banco.codigo}" th:text="${banco.nome}">Itau</option>
 								
-					<button type="button" class="btn btn-primary  js-modal-cadastro-conta-salvar-btn">Salvar</button>
+
+							</select>
+							</div>
+							
+
+
+						</div>
+					</form>
+
+
+					<button type="button"
+						class="btn btn-primary  js-modal-cadastro-conta-salvar-btn">Salvar</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
 				</div>
 			</div>
