@@ -58,8 +58,8 @@ codigo BIGINT(20) PRIMARY KEY AUTO_INCREMENT UNIQUE,
 agencia VARCHAR (50) NOT NULL,
 numero VARCHAR (50) NOT NULL,
 titular VARCHAR (50) NOT NULL,
-tipoConta VARCHAR(50),
-codigo_banco BIGINT(20),
+tipoConta VARCHAR(50) NOT NULL,
+codigo_banco BIGINT(20) NOT NULL,
 FOREIGN KEY (codigo_banco) REFERENCES banco(codigo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

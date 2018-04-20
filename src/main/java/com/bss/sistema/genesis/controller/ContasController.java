@@ -69,7 +69,7 @@ public class ContasController {
 	@RequestMapping(method = RequestMethod.POST, consumes = { MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody ResponseEntity<?> salvar(@RequestBody @Valid Conta conta, BindingResult result) {
 		if (result.hasErrors()) {
-			return ResponseEntity.badRequest().body(result.getFieldError("agencia").getDefaultMessage());
+			return ResponseEntity.badRequest().body(result.getFieldErrors());
 		}
 		try {
 			conta = cadastroContaService.salvar(conta);

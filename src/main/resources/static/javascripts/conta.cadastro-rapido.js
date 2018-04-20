@@ -59,7 +59,7 @@ $(function() {
 		
 		function OnContaSalvo(conta){
 			var comboConta = $('#conta');
-			comboConta.append('<option value=' + conta.codigo + '>' + conta.numero + '</option>');
+			comboConta.append('<option value=' + conta.codigo + '>' + conta.titular + '</option>');
 			comboConta.val(conta.codigo);
 			modal.modal('hide');
 		}
