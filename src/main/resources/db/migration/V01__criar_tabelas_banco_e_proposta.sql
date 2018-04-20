@@ -57,6 +57,7 @@ CREATE TABLE conta (
 codigo BIGINT(20) PRIMARY KEY AUTO_INCREMENT UNIQUE,
 agencia VARCHAR (50) NOT NULL,
 numero VARCHAR (50) NOT NULL,
+titular VARCHAR (50) NOT NULL,
 tipoConta VARCHAR(50),
 codigo_banco BIGINT(20),
 FOREIGN KEY (codigo_banco) REFERENCES banco(codigo)
@@ -78,5 +79,4 @@ FOREIGN KEY (codigo_banco) REFERENCES banco(codigo),
 codigo_conta BIGINT(20) ,
 FOREIGN KEY (codigo_conta) REFERENCES conta(codigo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 

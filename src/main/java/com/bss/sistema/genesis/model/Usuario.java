@@ -185,6 +185,26 @@ public class Usuario implements Serializable {
 		return true;
 	}
 
+	public Usuario(Long codigo, String nome, String sobrenome, String email, String telefone, String cpf, Genero genero,
+			Grupo grupo, List<Equipe> equipes, Banco banco, Conta conta) {
+		super();
+		this.codigo = codigo;
+		this.nome = nome;
+		this.sobrenome = sobrenome;
+		this.email = email;
+		this.telefone = telefone;
+		this.cpf = cpf;
+		this.genero = genero;
+		this.grupo = grupo;
+		this.equipes = equipes;
+		this.banco = banco;
+		this.conta = conta;
+	}
+
+	public Usuario() {
+		super();
+	}
+
 
 	
 	

@@ -15,4 +15,10 @@ public enum TipoConta {
 		return descricao;
 	}
 
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	
+	
 }

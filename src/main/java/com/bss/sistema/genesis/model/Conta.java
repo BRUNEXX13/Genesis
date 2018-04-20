@@ -29,8 +29,9 @@ public class Conta implements Serializable {
 
 	private int numero;
 
-
 	private String tipoConta;
+
+	private String titular;
 
 	// @NotNull(message = "O banco é obrigatório")
 	@ManyToOne
@@ -39,14 +40,6 @@ public class Conta implements Serializable {
 
 	@OneToMany(mappedBy = "banco")
 	private List<Usuario> usuarios;
-
-	public List<Usuario> getUsuarios() {
-		return usuarios;
-	}
-
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
-	}
 
 	public Long getCodigo() {
 		return codigo;
@@ -80,12 +73,28 @@ public class Conta implements Serializable {
 		this.tipoConta = tipoConta;
 	}
 
+	public String getTitular() {
+		return titular;
+	}
+
+	public void setTitular(String titular) {
+		this.titular = titular;
+	}
+
 	public Banco getBanco() {
 		return banco;
 	}
 
 	public void setBanco(Banco banco) {
 		this.banco = banco;
+	}
+
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
 	}
 
 	@Override
@@ -113,13 +122,16 @@ public class Conta implements Serializable {
 		return true;
 	}
 
-	public Conta(Long codigo, String agencia, int numero, String tipoConta, Banco banco) {
+	public Conta(Long codigo, String agencia, int numero, String tipoConta, String titular, Banco banco,
+			List<Usuario> usuarios) {
 		super();
 		this.codigo = codigo;
 		this.agencia = agencia;
 		this.numero = numero;
 		this.tipoConta = tipoConta;
+		this.titular = titular;
 		this.banco = banco;
+		this.usuarios = usuarios;
 	}
 
 	public Conta() {

@@ -16,7 +16,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bss.sistema.genesis.model.Banco;
+import com.bss.sistema.genesis.model.TipoConta;
 import com.bss.sistema.genesis.repository.Bancos;
+import com.bss.sistema.genesis.repository.Contas;
 import com.bss.sistema.genesis.service.CadastroBancoService;
 import com.bss.sistema.genesis.service.exception.NomeBancoJaCadastradoException;
 
@@ -27,6 +29,9 @@ public class BancosController {
 	// Referencia lista de bancos
 	@Autowired
 	private Bancos bancos;
+	
+	@Autowired
+	private Contas contas;
 
 	@Autowired
 	private CadastroBancoService cadastroBancoService;
@@ -36,6 +41,7 @@ public class BancosController {
 	public ModelAndView novo(Banco banco) { // Propost Disponivel na Requiscao não sei pq diabos ele consegue achar a u
 		ModelAndView mv = new ModelAndView("/banco/CadastroBanco");
 		mv.addObject("bancos", bancos.findAll()); // Referencia Lista de Bancos - AutoWired
+		mv.addObject("tipos", TipoConta.values());
 		return mv;
 	}
 

@@ -180,6 +180,9 @@
 					</div>
 					
 					
+					
+					
+					
 					<div class="col-sm-3  form-group" >
 						<label for="conta">Selecione a Conta</label>
 						<div class="gn-field-action">
@@ -198,7 +201,6 @@
 							</div>
 						</div>
 					</div>
-		
 					
 					
 					
@@ -206,6 +208,7 @@
 					
 					
 					
+
 					</div>
 	
 				
@@ -220,13 +223,16 @@
 		
 		<div th:replace="estilo/CadastroRapidoGrupo :: modal"></div>
 		<div th:replace="estilo/CadastroRapidoEquipe :: modal"></div>
+		<div th:replace="estilo/CadastroRapidoBanco :: modal"></div>
 		<div th:replace="estilo/CadastroRapidoConta :: modal"></div>
+		
 		
 	</form>
 	</div>
 	</section>
 	
 	<th:block layout:fragment="javascript-extra">
+		<script th:src="@{/javascripts/banco.cadastro-rapido.js}"></script>
 		<script th:src="@{/javascripts/conta.cadastro-rapido.js}"></script>
 		<script th:src="@{/javascripts/vendors/bootstrap-switch.min.js}"></script>
 		<script>
@@ -234,9 +240,6 @@
 		</script>
 		</th:block>
 			
-		
-
-		
 
 
 

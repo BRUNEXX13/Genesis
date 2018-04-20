@@ -31,6 +31,7 @@ public class UsuarioController {
 
 	
 	
+	
 	@Autowired
 	private CadastroUsuarioService cadastroUsuarioService;
 

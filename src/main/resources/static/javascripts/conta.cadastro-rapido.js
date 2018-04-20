@@ -6,6 +6,10 @@ $(function() {
 	form.on('submit', function(event) {event.preventDefault() });
 	var url = form.attr('action');
 	var inputNumeroAgencia = $("#numeroAgencia");
+	var inputNumeroConta = $("#numeroConta");
+	var inputTipoConta = $("#tipoConta");
+	var inputTitularConta = $("#titularConta");
+	var inputBancoCodigo = $("#bancoCodigo");
 	var containerMensagemErro = $('.js-mensagem-cadastro-rapido-conta');
 	
 	
@@ -15,22 +19,32 @@ $(function() {
 	
 	
 		function onModalShow() {
-		inputNumeroAgencia.focus();
+		inputTitularConta.focus();
 		}
 
 		function onModalClose() {
 			inputNumeroAgencia.val('');
+			inputTitularConta.val('');
+			inputNumeroConta.val('');
+			inputTipoConta.val('');
+			inputBancoCodigo.val('');
 		}
 	
 		
 		function onBotaoSalvarClick(){
+			var titularConta  = inputTitularConta.val().trim();
 			var numeroAgencia = inputNumeroAgencia.val().trim();
+			var numeroConta   = inputNumeroConta.val().trim();
+			var tipoConta  	  = inputTipoConta.val().trim();
+			var bancoCodigo   = inputBancoCodigo.val();
+	
 			$.ajax({
 				url: url,
 				method: 'POST',
 				contentType: 'application/json',
-				data: JSON.stringify({ 'agencia'  : numeroAgencia}),
-				error: onErroSalvandoConta
+				data: JSON.stringify({'agencia'  : numeroAgencia , 'numero' : numeroConta , 'tipoConta' : tipoConta , 'titular' : titularConta , 'banco' : { 'codigo' : bancoCodigo}  }),
+				error: onErroSalvandoConta,
+				success: OnContaSalvo
 		});
 		
 		}
@@ -43,14 +57,11 @@ $(function() {
 			
 		}
 		
-
 		function OnContaSalvo(conta){
 			var comboConta = $('#conta');
 			comboConta.append('<option value=' + conta.codigo + '>' + conta.numero + '</option>');
 			comboConta.val(conta.codigo);
 			modal.modal('hide');
 		}
-		
-		
 		
 });
