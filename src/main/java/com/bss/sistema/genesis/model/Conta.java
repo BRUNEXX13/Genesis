@@ -43,7 +43,7 @@ public class Conta implements Serializable {
 	@JoinColumn(name = "codigo_banco")
 	private Banco banco;
 
-	@OneToMany(mappedBy = "banco")
+	@OneToMany(mappedBy = "conta")
 	private List<Usuario> usuarios;
 
 	public Long getCodigo() {

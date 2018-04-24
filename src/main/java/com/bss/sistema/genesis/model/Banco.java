@@ -36,9 +36,6 @@ public class Banco implements Serializable {
 	@OneToMany(mappedBy = "banco")
 	private List<Produto> produtos;
 
-	@OneToMany(mappedBy = "banco")
-	private List<Usuario> usuarios;
-
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -71,14 +68,6 @@ public class Banco implements Serializable {
 		this.produtos = produtos;
 	}
 
-	public List<Usuario> getUsuarios() {
-		return usuarios;
-	}
-
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -103,7 +92,5 @@ public class Banco implements Serializable {
 			return false;
 		return true;
 	}
-
-
 
 }
