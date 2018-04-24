@@ -37,7 +37,7 @@ public class Conta implements Serializable {
 	@NotBlank(message = "Titular é obrigatorio")
 	private String titular;
 
-	// @NotNull(message = "O banco é obrigatório")
+	@NotNull(message = "O banco é obrigatório")
 	@ManyToOne
 	@JoinColumn(name = "codigo_banco")
 	private Banco banco;

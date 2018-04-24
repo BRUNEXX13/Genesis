@@ -15,6 +15,7 @@ import com.bss.sistema.genesis.model.Cliente;
 import com.bss.sistema.genesis.model.Genero;
 import com.bss.sistema.genesis.model.TipoConta;
 import com.bss.sistema.genesis.repository.Bancos;
+import com.bss.sistema.genesis.repository.Clientes;
 import com.bss.sistema.genesis.repository.Contas;
 import com.bss.sistema.genesis.service.CadastroClienteService;
 
@@ -29,7 +30,10 @@ public class ClientesController {
 	private Bancos bancos;
 
 
-
+	@Autowired
+	private Clientes clientes;
+	
+	
 	@Autowired
 	private CadastroClienteService cadastroClienteService;
 
@@ -41,6 +45,7 @@ public class ClientesController {
 		mv.addObject("contas", contas.findAll());
 		mv.addObject("bancos", bancos.findAll());
 		mv.addObject("tipos", TipoConta.values());
+		mv.addObject("clientes", clientes.findAll());
 		return mv;
 	}
 
@@ -48,12 +53,16 @@ public class ClientesController {
 	public ModelAndView cadastrar(@Valid Cliente cliente, BindingResult result, Model model,
 			RedirectAttributes attributes) {
 		if (result.hasErrors()) {
-			// System.out.println(">>> sku: " + banco.getNumero());
+			 System.out.println(">>> Nome: "+ 		cliente.getNome());
+			 System.out.println(">>> Sobrenome:"+ cliente.getSobrenome());
+			 System.out.println(">>> Genero:"+ 	cliente.getGenero());
+			 System.out.println(">>> Email:"+ 	cliente.getEmail());
+			 System.out.println(">>> CPF: "+ 	cliente.getCpf());
+			 System.out.println(">>> Conta:"+	 cliente.getConta());
 			return novo(cliente);
 		}
 		cadastroClienteService.salvar(cliente);
 		attributes.addFlashAttribute("mensagem", "Cliente salvo com sucesso!!");
-		;
 		return new ModelAndView("redirect:/clientes/novo");
 	}
 

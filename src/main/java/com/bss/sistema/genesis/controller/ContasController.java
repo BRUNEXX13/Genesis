@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.bss.sistema.genesis.model.Conta;
 import com.bss.sistema.genesis.model.TipoConta;
 import com.bss.sistema.genesis.repository.Bancos;
+import com.bss.sistema.genesis.repository.Clientes;
 import com.bss.sistema.genesis.repository.Usuarios;
 import com.bss.sistema.genesis.service.CadastroContaService;
 import com.bss.sistema.genesis.service.exception.NomeContaJaCadastradoException;
@@ -33,6 +34,10 @@ public class ContasController {
 	private Usuarios usuarios;
 	
 	@Autowired
+	private Clientes clientes;
+	
+	
+	@Autowired
 	private CadastroContaService cadastroContaService;
 
 	// Apontamento para Bancos
@@ -42,6 +47,7 @@ public class ContasController {
 		mv.addObject("bancos", bancos.findAll());
 		mv.addObject("tipos", TipoConta.values());
 		mv.addObject("usuarios", usuarios.findAll());
+		mv.addObject("clientes", clientes.findAll());
 		return mv;
 	}
 

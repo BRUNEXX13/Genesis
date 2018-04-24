@@ -49,6 +49,9 @@ public class Cliente implements Serializable {
 	@Column(unique = true)
 	private String cpf;
 
+	@NotBlank(message = "CPF é obrigatório")
+	private String rg;
+
 	@OneToMany(mappedBy = "usuario")
 	private List<Equipe> equipes;
 
@@ -111,6 +114,14 @@ public class Cliente implements Serializable {
 		this.cpf = cpf;
 	}
 
+	public String getRg() {
+		return rg;
+	}
+
+	public void setRg(String rg) {
+		this.rg = rg;
+	}
+
 	public List<Equipe> getEquipes() {
 		return equipes;
 	}
@@ -168,7 +179,7 @@ public class Cliente implements Serializable {
 		return true;
 	}
 
-	public Cliente(Long codigo, String nome, String sobrenome, String email, String telefone, String cpf,
+	public Cliente(Long codigo, String nome, String sobrenome, String email, String telefone, String cpf, String rg,
 			List<Equipe> equipes, Genero genero, Conta conta, List<Proposta> propostas) {
 		super();
 		this.codigo = codigo;
@@ -177,6 +188,7 @@ public class Cliente implements Serializable {
 		this.email = email;
 		this.telefone = telefone;
 		this.cpf = cpf;
+		this.rg = rg;
 		this.equipes = equipes;
 		this.genero = genero;
 		this.conta = conta;
