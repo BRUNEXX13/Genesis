@@ -40,8 +40,7 @@ public class EquipesController {
 	}
 
 	@RequestMapping(value = "/novo", method = RequestMethod.POST) // aqui é o post
-	public ModelAndView cadastrar(@Valid Equipe equipe, BindingResult result, Model model,
-			RedirectAttributes attributes) {
+	public ModelAndView cadastrar(@Valid Equipe equipe, BindingResult result, Model model, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
 			// System.out.println(">>> sku: " + banco.getNumero());
 			return novo(equipe);

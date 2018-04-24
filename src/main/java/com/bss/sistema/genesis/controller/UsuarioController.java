@@ -30,12 +30,10 @@ public class UsuarioController {
 	private Bancos bancos;
 
 	
-	
-	
 	@Autowired
 	private CadastroUsuarioService cadastroUsuarioService;
 
-	// Apontamento para Bancos
+	// Apontamento para Usuarios
 	@RequestMapping("/novo") //
 	public ModelAndView novo(Usuario usuario) { //
 		ModelAndView mv = new ModelAndView("/usuario/CadastroUsuario");
@@ -49,8 +47,7 @@ public class UsuarioController {
 	}
 
 	@RequestMapping(value = "/novo", method = RequestMethod.POST) // aqui é o post
-	public ModelAndView cadastrar(@Valid Usuario usuario, BindingResult result, Model model,
-			RedirectAttributes attributes) {
+	public ModelAndView cadastrar(@Valid Usuario usuario, BindingResult result, Model model, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
 			// System.out.println(">>> sku: " + banco.getNumero());
 			return novo(usuario);
