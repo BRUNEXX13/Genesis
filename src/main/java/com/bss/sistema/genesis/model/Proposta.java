@@ -2,6 +2,7 @@ package com.bss.sistema.genesis.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
@@ -26,7 +28,6 @@ public class Proposta implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-
 	// Relacionamento Proposta x Produto
 	@NotNull(message = "O produto é obrigatório")
 	@ManyToOne
@@ -39,13 +40,10 @@ public class Proposta implements Serializable {
 	@JoinColumn(name = "codigo_banco")
 	private Banco banco;
 
-	
-
 	@NotNull(message = "A tabela é obrigatório")
 	@ManyToOne
 	@JoinColumn(name = "codigo_tabela")
 	private Tabela tabela;
-
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,7 +53,7 @@ public class Proposta implements Serializable {
 	// @ADE
 	@NotBlank(message = "A ADE é obrigatória")
 	@Size(max = 50, message = "O tamanho da ADE deve estar entre 1 e 50")
-	@Column(unique=true)
+	@Column(unique = true)
 	private String ade;
 
 	@NotBlank(message = "A descrição é obrigatória")
@@ -80,6 +78,26 @@ public class Proposta implements Serializable {
 	@DecimalMin("0.01")
 	@DecimalMax(value = "9999999.99", message = "O valor da proposta deve ser menor que R$9.999.999,99")
 	private BigDecimal valorLiquido;
+
+	@ManyToOne
+	@JoinColumn(name = "codigo_cliente")
+	private Cliente cliente;
+
+	public Produto getProduto() {
+		return produto;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
+
+	public Banco getBanco() {
+		return banco;
+	}
+
+	public void setBanco(Banco banco) {
+		this.banco = banco;
+	}
 
 	public Tabela getTabela() {
 		return tabela;
@@ -144,38 +162,13 @@ public class Proposta implements Serializable {
 	public void setValorLiquido(BigDecimal valorLiquido) {
 		this.valorLiquido = valorLiquido;
 	}
-	
-	public Banco getBanco() {
-		return banco;
+
+	public Cliente getCliente() {
+		return cliente;
 	}
 
-	public void setBanco(Banco banco) {
-		this.banco = banco;
-	}
-
-	public Produto getProduto() {
-		return produto;
-	}
-
-	public void setProduto(Produto produto) {
-		this.produto = produto;
-	}
-
-	public Proposta(Tabela tabela, Long codigo, String ade, String descricao, Origem origem, BigDecimal valorParcela,
-			BigDecimal valorTotal, BigDecimal valorLiquido) {
-		super();
-		this.tabela = tabela;
-		this.codigo = codigo;
-		this.ade = ade;
-		this.descricao = descricao;
-		this.origem = origem;
-		this.valorParcela = valorParcela;
-		this.valorTotal = valorTotal;
-		this.valorLiquido = valorLiquido;
-	}
-
-	public Proposta() {
-		super();
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	@Override
@@ -201,6 +194,26 @@ public class Proposta implements Serializable {
 		} else if (!codigo.equals(other.codigo))
 			return false;
 		return true;
+	}
+
+	public Proposta(Produto produto, Banco banco, Tabela tabela, Long codigo, String ade, String descricao,
+			Origem origem, BigDecimal valorParcela, BigDecimal valorTotal, BigDecimal valorLiquido, Cliente cliente) {
+		super();
+		this.produto = produto;
+		this.banco = banco;
+		this.tabela = tabela;
+		this.codigo = codigo;
+		this.ade = ade;
+		this.descricao = descricao;
+		this.origem = origem;
+		this.valorParcela = valorParcela;
+		this.valorTotal = valorTotal;
+		this.valorLiquido = valorLiquido;
+		this.cliente = cliente;
+	}
+
+	public Proposta() {
+		super();
 	}
 
 }

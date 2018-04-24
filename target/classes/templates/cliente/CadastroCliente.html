@@ -5,21 +5,30 @@
 	layout:decorator="'layout/LayoutPadrao'">
 
 <head>
-	<title>Cadastro de cliente</title>
+	<title>Cadastro de Clientes</title>
 </head>
 
-<section layout:fragment="conteudo">
 
-	<div class="page-header">
-		<div class="container-fluid">
-			<h1>
-				Cadastro de cliente
-			</h1>
+<body>
+	<section layout:fragment="conteudo">
+
+		<div class="page-header">
+			<div class="container-fluid">
+				<h1>
+					<strong>Cadastro de Clientes</strong>
+				</h1>
+			</div>
 		</div>
-	</div>
 
 	<div class="container-fluid">
-		<form>
+	
+	<th:block th:include="fragments/MensagemSucesso"></th:block> 
+
+			<form th:action="@{/clientes/novo}" method="POST" th:object="${cliente}" class="form-vertical  js-form-loading">
+		
+				<th:block th:include="fragments/MensagensErroValidacao"></th:block>
+
+	
 			<div class="row">
 				<div class="form-group  col-sm-12">
 					<label for="nome">Nome</label>
@@ -98,9 +107,45 @@
 				</div>
 			</div>
 			
-			<button type="submit" class="btn  btn-primary">Salvar</button>				
+			<div class="row">
+			
+					<div class="col-sm-3  form-group" >
+						<label for="conta">Agência e Conta</label>
+						<div class="gn-field-action">
+							<select id="conta" class="form-control">
+								<option value="">Selecione a Conta</option>
+								<option th:each="conta: ${contas}" th:value="${conta.codigo}" th:text="${conta.titular}"></option>
+
+							</select>
+
+							<div class="gn-field-action__icon">
+								<a href="#" data-toggle="modal"
+									data-target="#modalCadastroRapidoConta"> <i
+									class="glyphicon glyphicon-plus-sign  gn-glyphicon-plus-large"></i>
+								</a>
+							</div>
+						</div>
+					</div>
+
+					</div>
+
+			<div class="form-group">
+					<button class="btn  btn-primary" type="submit">Salvar</button>
+				</div>
+
+			<div th:replace="estilo/CadastroRapidoGrupo :: modal"></div>
+			<div th:replace="estilo/CadastroRapidoEquipe :: modal"></div>
+			<div th:replace="estilo/CadastroRapidoConta :: modal"></div>
+			
+			
 		</form>
 	</div>
-</section>
+	</section>
+	
+	<th:block layout:fragment="javascript-extra">
+		<script th:src="@{/javascripts/cliente.cadastro-rapido.js}"></script>
+		<script th:src="@{/javascripts/vendors/bootstrap-switch.min.js}"></script>
+		</th:block>
 
+</body>
 </html>
