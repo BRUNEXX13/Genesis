@@ -3,7 +3,6 @@ package com.bss.sistema.genesis.model;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -45,6 +44,9 @@ public class Conta implements Serializable {
 
 	@OneToMany(mappedBy = "conta")
 	private List<Usuario> usuarios;
+	
+	@OneToMany(mappedBy = "conta")
+	private List<Cliente> clientes;
 
 	public Long getCodigo() {
 		return codigo;
@@ -102,6 +104,31 @@ public class Conta implements Serializable {
 		this.usuarios = usuarios;
 	}
 
+	public List<Cliente> getClientes() {
+		return clientes;
+	}
+
+	public void setClientes(List<Cliente> clientes) {
+		this.clientes = clientes;
+	}
+
+	public Conta(Long codigo, String agencia, int numero, String tipoConta, String titular, Banco banco,
+			List<Usuario> usuarios, List<Cliente> clientes) {
+		super();
+		this.codigo = codigo;
+		this.agencia = agencia;
+		this.numero = numero;
+		this.tipoConta = tipoConta;
+		this.titular = titular;
+		this.banco = banco;
+		this.usuarios = usuarios;
+		this.clientes = clientes;
+	}
+
+	public Conta() {
+		super();
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -127,20 +154,6 @@ public class Conta implements Serializable {
 		return true;
 	}
 
-	public Conta(Long codigo, String agencia, int numero, String tipoConta, String titular, Banco banco,
-			List<Usuario> usuarios) {
-		super();
-		this.codigo = codigo;
-		this.agencia = agencia;
-		this.numero = numero;
-		this.tipoConta = tipoConta;
-		this.titular = titular;
-		this.banco = banco;
-		this.usuarios = usuarios;
-	}
-
-	public Conta() {
-		super();
-	}
+	
 
 }

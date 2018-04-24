@@ -10,62 +10,58 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "cliente")
-public class Cliente  implements Serializable{
-
+public class Cliente implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(unique=true)
+	@Column(unique = true)
 	private Long codigo;
 
-	
 	@NotBlank(message = "Nome é obrigatório")
 	@Size(max = 50, message = "O tamanho da  descrição deve estar entre 1 e 50")
 	private String nome;
-
 
 	@NotBlank(message = "Sobrenome obrigatório")
 	@Size(max = 50, message = "O tamanho da  descrição deve estar entre 1 e 50")
 	private String sobrenome;
 
 	@NotBlank(message = "Email é obrigatorio")
-	@Column(unique=true)
+	@Column(unique = true)
 	private String email;
 
 	@NotBlank(message = "Telefone é obrigatorio")
 	private String telefone;
-	
-	@NotBlank(message = "CPF é obrigatório")
-	@Column(unique=true)
-	private String cpf;
-	
-	public String getCpf() {
-		return cpf;
-	}
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
+	@NotBlank(message = "CPF é obrigatório")
+	@Column(unique = true)
+	private String cpf;
 
 	@OneToMany(mappedBy = "usuario")
 	private List<Equipe> equipes;
-		
+
 	@Enumerated(EnumType.STRING)
 	private Genero genero;
-	
-	//@NotNull(message = "O genêro é obrigatório")
-	@Enumerated(EnumType.STRING)
-	private Grupo grupo;
+
+	@NotNull(message = "A conta  é obrigatório")
+	@ManyToOne
+	@JoinColumn(name = "codigo_conta")
+	private Conta conta;
+
+	@OneToMany(mappedBy = "cliente")
+	private List<Proposta> propostas;
 
 	public Long getCodigo() {
 		return codigo;
@@ -76,7 +72,7 @@ public class Cliente  implements Serializable{
 	}
 
 	public String getNome() {
-		return nome;	
+		return nome;
 	}
 
 	public void setNome(String nome) {
@@ -107,6 +103,22 @@ public class Cliente  implements Serializable{
 		this.telefone = telefone;
 	}
 
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public List<Equipe> getEquipes() {
+		return equipes;
+	}
+
+	public void setEquipes(List<Equipe> equipes) {
+		this.equipes = equipes;
+	}
+
 	public Genero getGenero() {
 		return genero;
 	}
@@ -115,24 +127,20 @@ public class Cliente  implements Serializable{
 		this.genero = genero;
 	}
 
-	public Grupo getGrupo() {
-		return grupo;
+	public Conta getConta() {
+		return conta;
 	}
 
-	public void setGrupo(Grupo grupo) {
-		this.grupo = grupo;
-	}
-	
-	
-	
-	
-
-	public List<Equipe> getEquipes() {
-		return equipes;
+	public void setConta(Conta conta) {
+		this.conta = conta;
 	}
 
-	public void setEquipes(List<Equipe> equipes) {
-		this.equipes = equipes;
+	public List<Proposta> getPropostas() {
+		return propostas;
+	}
+
+	public void setPropostas(List<Proposta> propostas) {
+		this.propostas = propostas;
 	}
 
 	@Override
@@ -158,6 +166,25 @@ public class Cliente  implements Serializable{
 		} else if (!codigo.equals(other.codigo))
 			return false;
 		return true;
+	}
+
+	public Cliente(Long codigo, String nome, String sobrenome, String email, String telefone, String cpf,
+			List<Equipe> equipes, Genero genero, Conta conta, List<Proposta> propostas) {
+		super();
+		this.codigo = codigo;
+		this.nome = nome;
+		this.sobrenome = sobrenome;
+		this.email = email;
+		this.telefone = telefone;
+		this.cpf = cpf;
+		this.equipes = equipes;
+		this.genero = genero;
+		this.conta = conta;
+		this.propostas = propostas;
+	}
+
+	public Cliente() {
+		super();
 	}
 
 }

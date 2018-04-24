@@ -62,10 +62,7 @@ public class Usuario implements Serializable {
 	@OneToMany(mappedBy = "usuario")
 	private List<Equipe> equipes;
 
-	///@NotNull(message = "O BANCO XISTUDO é obrigatório")
-	///@ManyToOne
-	//@JoinColumn(name = "codigo_banco")
-//	private Banco banco;
+
 
 	@NotNull(message = "A conta  é obrigatório")
 	@ManyToOne
