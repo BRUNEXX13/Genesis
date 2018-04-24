@@ -41,16 +41,15 @@
 
 							<label class="col-sm-3  control-label" for="tipoConta">Tipo de Conta</label>
 							<div class="col-sm-12">
-							<select id="tipoConta" class="form-control" th:field="*{conta}">
+							<select id="tipoConta" class="form-control">
 							<option value="">Selecione o tipo</option>
-							<option th:each="tipoConta : ${tipos}" th:value="${tipoConta}"
-								th:text="${tipoConta.descricao}">Poupança</option>
+							<option th:each="tipoConta : ${tipos}" th:value="${tipoConta}" th:text="${tipoConta.descricao}">Poupança</option>
 						</select>
 							</div>
 							
 							<label class="col-sm-3  control-label" for="tipoConta">Banco </label>
 							<div class="col-sm-12">
-							<select id="bancoCodigo" class="form-control" th:field="*{banco}">
+							<select id="bancoCodigo" class="form-control">
 								<option value="">Selecione o Banco</option>
 								<option th:each="banco : ${bancos}" th:value="${banco.codigo}" th:text="${banco.nome}">Itau</option>
 								

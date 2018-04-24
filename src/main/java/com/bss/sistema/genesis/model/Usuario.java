@@ -62,10 +62,10 @@ public class Usuario implements Serializable {
 	@OneToMany(mappedBy = "usuario")
 	private List<Equipe> equipes;
 
-	@NotNull(message = "O banco é obrigatório")
-	@ManyToOne
-	@JoinColumn(name = "codigo_banco")
-	private Banco banco;
+	///@NotNull(message = "O BANCO XISTUDO é obrigatório")
+	///@ManyToOne
+	//@JoinColumn(name = "codigo_banco")
+//	private Banco banco;
 
 	@NotNull(message = "A conta  é obrigatório")
 	@ManyToOne
@@ -152,14 +152,7 @@ public class Usuario implements Serializable {
 		this.equipes = equipes;
 	}
 
-	public Banco getBanco() {
-		return banco;
-	}
-
-	public void setBanco(Banco banco) {
-		this.banco = banco;
-	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -186,7 +179,7 @@ public class Usuario implements Serializable {
 	}
 
 	public Usuario(Long codigo, String nome, String sobrenome, String email, String telefone, String cpf, Genero genero,
-			Grupo grupo, List<Equipe> equipes, Banco banco, Conta conta) {
+			Grupo grupo, List<Equipe> equipes,  Conta conta) {
 		super();
 		this.codigo = codigo;
 		this.nome = nome;
@@ -197,7 +190,6 @@ public class Usuario implements Serializable {
 		this.genero = genero;
 		this.grupo = grupo;
 		this.equipes = equipes;
-		this.banco = banco;
 		this.conta = conta;
 	}
 

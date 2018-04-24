@@ -81,25 +81,7 @@
 				
 					<div class="row">
 					
-					<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('banco')} ? has-error">
-						<label for="banco">Banco</label>
-						<div class="gn-field-action">
-							<select id="banco" class="form-control" th:field="*{banco}">
-								<option value="">Selecione o Banco</option>
-								<option th:each="banco : ${bancos}" th:value="${banco.codigo}"
-									th:text="${banco.nome}">Itau</option>
-
-
-							</select>
-
-							<div class="gn-field-action__icon">
-								<a href="#" data-toggle="modal"
-									data-target="#modalCadastroRapidoBanco"> <i
-									class="glyphicon glyphicon-plus-sign  gn-glyphicon-plus-large"></i>
-								</a>
-							</div>
-						</div>
-					</div>
+					
 		
 					
 					</div>
