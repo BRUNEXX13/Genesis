@@ -33,26 +33,26 @@
 
 
 				<div class="row">
-					<div class="col-sm-3  form-group">
+					<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('nome')} ? has-error">
 						<label for="nome">Nome</label>
 						<input id="nome" type="text" class="form-control"  th:field="*{nome}">
 						</div>
 
 
-					<div class="col-sm-3  form-group">
+					<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('sobrenome')} ? has-error">
 						<label for="sobreone">Sobrenome</label> <input id="sobrenome" type="text" class="form-control" th:field="*{sobrenome}"> 
 					</div>
 
 
-					<div class="col-sm-3  form-group">
+					<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('telefone')} ? has-error">
 						<label for="telefone">Telefone</label> <input id="telefone"
 							type="text" class="form-control phone_with_ddd" th:field="*{telefone}"> 
 					</div>
 
-					<div class=" col-sm-3  form-group">
+					<div class=" col-sm-3  form-group"  th:classappend="${#fields.hasErrors('genero')} ? has-error">
 					<label for="genero">Gênero</label>
 					<div>
-						<th:block th:each="genero : ${generos}">
+						<th:block th:each="genero : ${generos}" >
 							<div class="radio  radio-inline">
 								<input th:id="|id_${genero}|" type="radio" th:value="${genero}" th:field="*{genero}"> 
 								<label th:for="|id_${genero}|" th:text="${genero.descricao}">Nacional</label>
@@ -67,50 +67,51 @@
 
 				<div class="row">
 				
-				<div class="col-sm-4 form-group">
+				<div class="col-sm-4 form-group" th:classappend="${#fields.hasErrors('cpf')} ? has-error">
 						<label for="cpf">CPF</label>
 						<input id="cpf" type="text" class="form-control cpf"  th:field="*{cpf}">  
 					</div>
 				
 				
 				
-					<div class="col-sm-4  form-group">
+					<div class="col-sm-4  form-group" th:classappend="${#fields.hasErrors('email')} ? has-error">
 						<label for="nome">E-mail</label>
 						<input id="nome" type="text" class="form-control"  th:field="*{email}">  
 					</div>
 
 
-					<div class="col-sm-4  form-group">
-						<label for="dataNascimento">Data de nascimento</label> <input
-							id="dataNascimento" type="date" class="form-control" />
+					<div class="col-sm-4  form-group" >
+						<label for="dataNascimento">Data de nascimento</label>
+						 <input id="dataNascimento" type="date" class="form-control"   th:field="*{dataNascimento}"> 
 					</div>
 				</div>
 
 				<div class="row">
 
-					<div class="col-sm-4  form-group">
-						<label for="senha">Senha</label> <input id="senha" type="text"
-							class="form-control" />
+					<div class="col-sm-4  form-group" th:classappend="${#fields.hasErrors('senha')} ? has-error">
+						<label for="senha">Senha</label>
+						<input id="senha" type="text" class="form-control" th:field="*{senha}">  
 					</div>
 
-					<div class="col-sm-4  form-group">
-						<label for="confsenha">Confirmação de senha</label> <input
-							id="confsenha" type="text" class="form-control" />
+					<div class="col-sm-4  form-group" th:classappend="${#fields.hasErrors('confSenha')} ? has-error">
+						<label for="confSenha">Confirmação de senha</label> <input
+							id="confSenha" type="text" class="form-control" th:field="*{confSenha}">  
 					</div>
 
-					<div class="form-group  col-sm-3">
+					<div class="form-group  col-sm-3" >
 						<label class="control-label">Status</label>
 						<div>
-							<input type="checkbox" class="js-status" data-size="small"
-								data-off-color="danger" data-on-text="Ativo"
-								data-off-text="Inativo" />
+						
+							<input type="checkbox" class="js-status" data-size="small" data-off-color="danger" 
+							data-on-text="Ativo" data-off-text="Inativo" th:field="*{ativo}"/>
+							
 						</div>
 					</div>
 
 				</div>
 
 				<div class="row">
-					<div class=" col-sm-8 form-group">
+					<div class=" col-sm-8 form-group"  th:classappend="${#fields.hasErrors('grupo')} ? has-error">
 					<label for="grupo">Grupos</label>
 					<div class="gn-field-action__icon">
 						<th:block th:each="grupo : ${grupos}">
@@ -157,7 +158,7 @@
 					
 
 					
-					<div class="col-sm-3  form-group" >
+					<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('conta')} ? has-error"> 
 						<label for="conta">Agência e Conta</label>
 						<div class="gn-field-action">
 							<select id="conta" class="form-control" th:field="*{conta}">
