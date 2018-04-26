@@ -68,20 +68,26 @@ public class Usuario implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "codigo_conta")
 	private Conta conta;
-	
-	
+
+	@OneToMany(mappedBy = "equipe")
+	private List<Comissao> comissoes;
+
 	@PrePersist
 	@PreUpdate
 	private void prePersistUpdate() {
 		nome = nome.toUpperCase();
 		sobrenome = sobrenome.toUpperCase();
 		email = email.toUpperCase();
-		
+
 	}
 
-	
-	
-	
+	public List<Comissao> getComissoes() {
+		return comissoes;
+	}
+
+	public void setComissoes(List<Comissao> comissoes) {
+		this.comissoes = comissoes;
+	}
 
 	public Conta getConta() {
 		return conta;
@@ -163,7 +169,6 @@ public class Usuario implements Serializable {
 		this.equipes = equipes;
 	}
 
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -190,7 +195,7 @@ public class Usuario implements Serializable {
 	}
 
 	public Usuario(Long codigo, String nome, String sobrenome, String email, String telefone, String cpf, Genero genero,
-			Grupo grupo, List<Equipe> equipes,  Conta conta) {
+			Grupo grupo, List<Equipe> equipes, Conta conta, List<Comissao> comissoes) {
 		super();
 		this.codigo = codigo;
 		this.nome = nome;
@@ -202,13 +207,11 @@ public class Usuario implements Serializable {
 		this.grupo = grupo;
 		this.equipes = equipes;
 		this.conta = conta;
+		this.comissoes = comissoes;
 	}
 
 	public Usuario() {
 		super();
 	}
 
-
-	
-	
 }

@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
@@ -29,10 +31,8 @@ public class Comissao implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 
-	
 	@NotBlank(message = "A descrição é obrigatoria")
 	private String descricao;
-
 
 	@DecimalMin("0.01")
 	@DecimalMax(value = "9999999.99", message = "O valor da proposta deve ser menor que R$9.999.999,99")
@@ -51,14 +51,27 @@ public class Comissao implements Serializable {
 	@JoinColumn(name = "codigo_equipe")
 	private Equipe equipe;
 
-	// @PrePersist
-	// @PreUpdate
-	// private void prePersistUpdate() {
-	// descricao = descricao.toUpperCase();
-	// }
+	@NotNull(message = "O usuário é obrigatório")
+	@ManyToOne
+	@JoinColumn(name = "codigo_usuario")
+	private Usuario usuario;
+
+	@PrePersist
+	@PreUpdate
+	private void prePersistUpdate() {
+		descricao = descricao.toUpperCase();
+	}
 
 	public Long getCodigo() {
 		return codigo;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public void setCodigo(Long codigo) {
@@ -80,8 +93,6 @@ public class Comissao implements Serializable {
 	public void setBonus(BigDecimal bonus) {
 		this.bonus = bonus;
 	}
-
-
 
 	public BigDecimal getVlComissao() {
 		return vlComissao;

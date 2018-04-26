@@ -107,7 +107,9 @@ bonus DECIMAL (10,2) NOT NULL,
 codigo_proposta BIGINT(20) NOT NULL,
 FOREIGN KEY (codigo_proposta) REFERENCES proposta(codigo),
 codigo_equipe BIGINT(20) NOT NULL,
-FOREIGN KEY (codigo_equipe) REFERENCES equipe(codigo)
+FOREIGN KEY (codigo_equipe) REFERENCES equipe(codigo),
+codigo_usuario BIGINT(20) NOT NULL,
+FOREIGN KEY (codigo_usuario) REFERENCES usuario(codigo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 	
 

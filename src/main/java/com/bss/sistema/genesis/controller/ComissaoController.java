@@ -15,6 +15,7 @@ import com.bss.sistema.genesis.model.Comissao;
 import com.bss.sistema.genesis.repository.Comissoes;
 import com.bss.sistema.genesis.repository.Equipes;
 import com.bss.sistema.genesis.repository.Propostas;
+import com.bss.sistema.genesis.repository.Usuarios;
 import com.bss.sistema.genesis.service.CadastroComissaoService;
 
 @Controller
@@ -29,6 +30,10 @@ public class ComissaoController {
 	@Autowired
 	private Comissoes comissoes;
 
+	
+	@Autowired
+	private Usuarios usuarios;
+	
 	@Autowired
 	private CadastroComissaoService cadastroComissaoService;
 
@@ -37,6 +42,7 @@ public class ComissaoController {
 		ModelAndView mv = new ModelAndView("/comissao/CadastroComissao");
 		mv.addObject("equipes", equipes.findAll());
 		mv.addObject("propostas", propostas.findAll());
+		mv.addObject("usuarios", usuarios.findAll());
 		return mv;
 	}
 
