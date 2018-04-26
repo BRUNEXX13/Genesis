@@ -1,3 +1,5 @@
+
+/*
 package com.bss.sistema.genesis.controller;
 
 import javax.validation.Valid;
@@ -42,22 +44,17 @@ public class ComissaoController {
 
 	@RequestMapping(value = "/comissoes/novo", method = RequestMethod.POST)
 	public ModelAndView cadastrar(@Valid Comissao comissao, BindingResult result, Model Model,RedirectAttributes attributes) {
-		if(result.hasErrors() ) {
-			return novo(comissao);
-		}
-		
-		
-		//Salvar no Banco de Dados
-		//System.out.println(">>>>>>>>COMISSAO" + comissao.getVlComissao());
-	//	System.out.println(" >>>>>>>DESCRICAO" + comissao.getDescricao());
-	//	System.out.println(" >>>>>>>DESCRICAO" + comissao.getBonus());
-	//	System.out.println(" >>>>>>>EQUIPE" + comissao.getEquipe());
-	//	System.out.println(" >>>>>>>PROPOSTA" + comissao.getProposta());
-		
-		cadastroComissaoService.salvar(comissao);
-		attributes.addFlashAttribute("mensagem", "Comissao salva com Sucesso");
+
+		attributes.addFlashAttribute("mensagem", "Comissao Salva com Sucesso");
+		System.out.println(">>>>>>>>COMISSAO" + comissao.getVlComissao());
+		System.out.println(" >>>>>>>DESCRICAO" + comissao.getDescricao());
+		System.out.println(" >>>>>>>DESCRICAO" + comissao.getBonus());
+		System.out.println(" >>>>>>>EQUIPE" + comissao.getEquipe());
+		System.out.println(" >>>>>>>PROPOSTA" + comissao.getProposta());
+
 		return new ModelAndView("redirect:/comissoes/novo");
 
 	}
 
 }
+*/

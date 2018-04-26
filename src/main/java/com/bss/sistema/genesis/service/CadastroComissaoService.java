@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bss.sistema.genesis.model.Comissao;
 import com.bss.sistema.genesis.repository.Comissoes;
 
+//Informar que e Regra de Negocio do Spring // @Service
 @Service
 public class CadastroComissaoService {
 

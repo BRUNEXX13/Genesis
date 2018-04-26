@@ -52,7 +52,8 @@ public class ContasController {
 	}
 
 	@RequestMapping(value = "/novo", method = RequestMethod.POST) // aqui é o post
-	public ModelAndView cadastrar(@Valid Conta conta, BindingResult result, Model model,RedirectAttributes attributes) {
+	public ModelAndView cadastrar(@Valid Conta conta, BindingResult result, Model model,
+			RedirectAttributes attributes) {
 		if (result.hasErrors()) {
 			System.out.println(">>> sku: " + conta.getNumero());
 			return novo(conta);

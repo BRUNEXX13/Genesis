@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -44,9 +46,17 @@ public class Conta implements Serializable {
 
 	@OneToMany(mappedBy = "conta")
 	private List<Usuario> usuarios;
-	
+
 	@OneToMany(mappedBy = "conta")
 	private List<Cliente> clientes;
+
+	@PrePersist
+	@PreUpdate
+	private void prePersistUpdate() {
+		agencia = agencia.toUpperCase();
+		titular = titular.toUpperCase();
+		tipoConta = tipoConta.toUpperCase();
+	}
 
 	public Long getCodigo() {
 		return codigo;
@@ -153,7 +163,5 @@ public class Conta implements Serializable {
 			return false;
 		return true;
 	}
-
-	
 
 }

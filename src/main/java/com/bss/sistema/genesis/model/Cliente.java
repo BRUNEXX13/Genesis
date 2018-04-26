@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -66,6 +68,17 @@ public class Cliente implements Serializable {
 	@OneToMany(mappedBy = "cliente")
 	private List<Proposta> propostas;
 
+	
+	@PrePersist
+	@PreUpdate
+	private void prePersistUpdate() {
+		nome = nome.toUpperCase();
+		sobrenome = sobrenome.toUpperCase();
+		email 	= email.toUpperCase();
+	}
+
+	
+	
 	public Long getCodigo() {
 		return codigo;
 	}

@@ -21,6 +21,7 @@ import com.bss.sistema.genesis.repository.Bancos;
 import com.bss.sistema.genesis.repository.Contas;
 import com.bss.sistema.genesis.service.CadastroBancoService;
 import com.bss.sistema.genesis.service.exception.NomeBancoJaCadastradoException;
+import com.bss.sistema.genesis.service.exception.NumeroBancoJacadastradoException;
 
 @Controller
 @RequestMapping("/bancos")
@@ -47,18 +48,29 @@ public class BancosController {
 
 	@RequestMapping(value = "/novo", method = RequestMethod.POST) // aqui é o post
 	public ModelAndView cadastrar(@Valid Banco banco, BindingResult result, Model model,
-			RedirectAttributes attributes) {
+			RedirectAttributes attributes) throws Throwable {
 		if (result.hasErrors()) {
 			// System.out.println(">>> sku: " + banco.getNumero());
 			return novo(banco);
 		}
 
-		try {
+			try {
+			
 			cadastroBancoService.salvar(banco);
 		} catch (NomeBancoJaCadastradoException e) {
 			result.rejectValue("nome", e.getMessage(), e.getMessage());
 			return novo(banco);
+		} catch (NumeroBancoJacadastradoException e) {
+			result.rejectValue("numero", e.getMessage(), e.getMessage());
+			
+			return novo(banco);
+
 		}
+		
+		
+		
+		
+		
 		attributes.addFlashAttribute("mensagem", "Banco salvo com sucesso!!");
 		// Salvar no banco de dados...
 		// attributes.addFlashAttribute("mensagem", "Banco salva com sucesso!");
@@ -69,7 +81,7 @@ public class BancosController {
 
 	// Recebendo Requisivcao Via Post// Cadastrado Rapido
 	@RequestMapping(method = RequestMethod.POST, consumes = { MediaType.APPLICATION_JSON_VALUE })
-	public @ResponseBody ResponseEntity<?> salvar(@RequestBody @Valid Banco banco, BindingResult result) {
+	public @ResponseBody ResponseEntity<?> salvar(@RequestBody @Valid Banco banco, BindingResult result) throws Throwable {
 		if (result.hasErrors()) {
 			return ResponseEntity.badRequest().body(result.getFieldError("nome").getDefaultMessage());
 		}

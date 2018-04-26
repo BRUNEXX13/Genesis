@@ -1,6 +1,7 @@
 package com.bss.sistema.genesis.model;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -25,12 +27,23 @@ public class Equipe {
 	@Column(unique = true)
 	private String nome;
 
+	private BigDecimal percentual;
+
 	// @NotNull(message = "O banco é obrigatório")
 	@ManyToOne
 	@JoinColumn(name = "codigo_usuario")
 	private Usuario usuario;
 
-	private BigDecimal bonus;
+	@OneToMany(mappedBy = "equipe")
+	private List<Comissao> comissoes;
+
+	public BigDecimal getPercentual() {
+		return percentual;
+	}
+
+	public void setPercentual(BigDecimal percentual) {
+		this.percentual = percentual;
+	}
 
 	public Long getCodigo() {
 		return codigo;
@@ -56,27 +69,13 @@ public class Equipe {
 		this.usuario = usuario;
 	}
 
-	public BigDecimal getBonus() {
-		return bonus;
+	public List<Comissao> getComissoes() {
+		return comissoes;
 	}
 
-	public void setBonus(BigDecimal bonus) {
-		this.bonus = bonus;
+	public void setComissoes(List<Comissao> comissoes) {
+		this.comissoes = comissoes;
 	}
-
-	public Equipe() {
-		super();
-	}
-
-	public Equipe(Long codigo, String nome, Usuario usuario, BigDecimal bonus) {
-		super();
-		this.codigo = codigo;
-		this.nome = nome;
-		this.usuario = usuario;
-		this.bonus = bonus;
-	}
-
-
 
 	@Override
 	public int hashCode() {

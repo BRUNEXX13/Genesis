@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -53,6 +55,15 @@ public class Produto implements Serializable {
 	@NotNull(message = "O tipo é obrigatório")
 	private String tipo;
 
+	
+	@PrePersist
+	@PreUpdate
+	private void prePersistUpdate() {
+		descricao = descricao.toUpperCase();
+	}
+
+	
+	
 	public Banco getBanco() {
 		return banco;
 	}

@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.bss.sistema.genesis.model.Origem;
 import com.bss.sistema.genesis.model.Proposta;
 import com.bss.sistema.genesis.repository.Bancos;
+import com.bss.sistema.genesis.repository.Clientes;
 import com.bss.sistema.genesis.repository.Produtos;
 import com.bss.sistema.genesis.repository.Tabelas;
 import com.bss.sistema.genesis.service.CadastroPropostaService;
@@ -32,6 +33,10 @@ public class PropostasController {
 	@Autowired
 	private Produtos produtos;
 	
+	@Autowired
+	private Clientes clientes;
+	
+	
 	
 	// Servicos de Propostas - Salvar - Deletar --
 	@Autowired
@@ -45,6 +50,7 @@ public class PropostasController {
 		mv.addObject("produtos", produtos.findAll());
 		mv.addObject("origens", Origem.values());
 		mv.addObject("tabelas", tabelas.findAll());
+		mv.addObject("clientes", clientes.findAll());
 		
 		return mv;
 	}

@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -62,12 +64,24 @@ public class Usuario implements Serializable {
 	@OneToMany(mappedBy = "usuario")
 	private List<Equipe> equipes;
 
-
-
 	@NotNull(message = "A conta  é obrigatório")
 	@ManyToOne
 	@JoinColumn(name = "codigo_conta")
 	private Conta conta;
+	
+	
+	@PrePersist
+	@PreUpdate
+	private void prePersistUpdate() {
+		nome = nome.toUpperCase();
+		sobrenome = sobrenome.toUpperCase();
+		email = email.toUpperCase();
+		
+	}
+
+	
+	
+	
 
 	public Conta getConta() {
 		return conta;
