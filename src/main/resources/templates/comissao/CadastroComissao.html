@@ -32,12 +32,17 @@
 
 				<div class="row">
 
-					<div class="col-sm-3 form-group">
-						<label for="descricao">Equipe</label> <input id="equipe"
-							type="text" class="form-control">
+					<div class="col-sm-3  form-group" >
+						<label for="equipe">Equipe</label>
+						<div class="gn-field-action">
+							<select id="equipe" class="form-control" th:field="*{equipe}">
+								<option value="">Selecione a Equipe</option>
+								<option th:each="equipe: ${equipes}" th:value="${equipe.codigo}" th:text="${equipe.nome}"></option>
+
+							</select>
+
+						</div>
 					</div>
-
-
 
 
 					<div class="col-sm-3  form-group">
@@ -52,12 +57,12 @@
 						</div>
 					</div>
 
-
+					<!-- 
 					<div class="col-sm-3  form-group">
 						<label for="data">Data Comissão</label> <input id="data"
 							type="date" class="form-control" />
 					</div>
-
+ 						-->
 
 				</div>
 
@@ -70,10 +75,9 @@
 					</div>
 
 					<div class="col-sm-3  form-group">
-						<label for="comissao">Comissão</label>
+						<label for="vlComissao">Comissão</label>
 						<div class="input-group">
-							<input id="comissao" type="text" class="form-control  js-decimal"
-								th:field="*{comissao}" />
+							<input id="vlComissao" type="text" class="form-control  js-decimal" th:field="*{vlComissao}" />
 							<div class="input-group-addon">%</div>
 						</div>
 					</div>
@@ -83,15 +87,11 @@
 						<label for="bonus">Bonus</label>
 						<div class="input-group">
 							<div class="input-group-addon">R$</div>
-							<input id="bonus" type="text" class="form-control js-decimal"
-								th:field="*{bonus}" />
+							<input id="bonus" type="text" class="form-control js-decimal" th:field="*{bonus}" />
 						</div>
 				
 
 					</div>
-
-				
-
 
 
 
@@ -102,14 +102,19 @@
 					<button class="btn  btn-primary" type="submit">Salvar</button>
 				</div>
 
-
-			</form>
-		</div>
-		<div th:replace="estilo/CadastroRapidoBanco :: modal"></div>
-		<div th:replace="estilo/CadastroRapidoTabela :: modal"></div>
-
-
+			<div th:replace="estilo/CadastroRapidoGrupo :: modal"></div>
+			<div th:replace="estilo/CadastroRapidoEquipe :: modal"></div>
+			<div th:replace="estilo/CadastroRapidoConta :: modal"></div>
+			
+			
+		</form>
+	</div>
 	</section>
+	
+	<th:block layout:fragment="javascript-extra">
+		<script th:src="@{/javascripts/cliente.cadastro-rapido.js}"></script>
+		<script th:src="@{/javascripts/vendors/bootstrap-switch.min.js}"></script>
+		</th:block>
 
 </body>
 </html>

@@ -12,6 +12,8 @@ import com.bss.sistema.genesis.model.Banco;
 @Repository
 public interface Bancos extends JpaRepository<Banco, Long> {
 
-	public Optional<Banco> findByNomeIgnoreCase(String nome) ;
-	//public Optional<Banco> findbyNumeroIgnoreCase(Long codigo);
+	public Optional<Banco> findByNumeroAndNomeIgnoreCase(Integer numero, String nome);
+
+
+	
 }

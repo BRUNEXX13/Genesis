@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
@@ -82,6 +84,15 @@ public class Proposta implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "codigo_cliente")
 	private Cliente cliente;
+
+	@OneToMany(mappedBy = "proposta")
+	private List<Comissao> comissoes;
+
+	@PrePersist
+	@PreUpdate
+	private void prePersistUpdate() {
+		descricao = descricao.toUpperCase();
+	}
 
 	public Produto getProduto() {
 		return produto;
@@ -171,6 +182,17 @@ public class Proposta implements Serializable {
 		this.cliente = cliente;
 	}
 
+	public List<Comissao> getComissoes() {
+		return comissoes;
+	}
+
+	public void setComissoes(List<Comissao> comissoes) {
+		this.comissoes = comissoes;
+	}
+
+	
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -197,7 +219,8 @@ public class Proposta implements Serializable {
 	}
 
 	public Proposta(Produto produto, Banco banco, Tabela tabela, Long codigo, String ade, String descricao,
-			Origem origem, BigDecimal valorParcela, BigDecimal valorTotal, BigDecimal valorLiquido, Cliente cliente) {
+			Origem origem, BigDecimal valorParcela, BigDecimal valorTotal, BigDecimal valorLiquido, Cliente cliente,
+			List<Comissao> comissoes) {
 		super();
 		this.produto = produto;
 		this.banco = banco;
@@ -210,10 +233,13 @@ public class Proposta implements Serializable {
 		this.valorTotal = valorTotal;
 		this.valorLiquido = valorLiquido;
 		this.cliente = cliente;
+		this.comissoes = comissoes;
 	}
 
 	public Proposta() {
 		super();
 	}
+	
+	
 
 }

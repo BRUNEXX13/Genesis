@@ -54,6 +54,22 @@ FOREIGN KEY (codigo_produto) REFERENCES produto(codigo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
+
+CREATE TABLE cliente (
+codigo BIGINT(20) PRIMARY KEY AUTO_INCREMENT UNIQUE,
+nome VARCHAR (50) NOT NULL,
+sobrenome VARCHAR (50) NOT NULL,
+cpf VARCHAR (50) NOT NULL UNIQUE,
+rg VARCHAR (50) NOT NULL UNIQUE,
+email VARCHAR (50) NOT NULL UNIQUE,
+telefone VARCHAR (50) NOT NULL,
+genero VARCHAR(50) NOT NULL,
+codigo_conta BIGINT(20) ,
+FOREIGN KEY (codigo_conta) REFERENCES conta(codigo)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
 CREATE TABLE proposta (
 codigo BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
 ade VARCHAR(50) NOT NULL UNIQUE,
@@ -67,17 +83,31 @@ FOREIGN KEY (codigo_tabela) REFERENCES tabela(codigo),
 codigo_banco BIGINT(20) ,
 FOREIGN KEY (codigo_banco) REFERENCES banco(codigo),
 codigo_produto BIGINT(20) ,
-FOREIGN KEY (codigo_produto) REFERENCES produto(codigo)
+FOREIGN KEY (codigo_produto) REFERENCES produto(codigo),
+codigo_cliente BIGINT(20),
+FOREIGN KEY (codigo_cliente) REFERENCES cliente(codigo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE equipe (
+codigo BIGINT(20) PRIMARY KEY AUTO_INCREMENT UNIQUE,
+nome VARCHAR (50) NOT NULL UNIQUE,
+percentual DECIMAL (10,2) NOT NULL,
+codigo_usuario BIGINT(20) NOT NULL ,
+FOREIGN KEY (codigo_usuario) REFERENCES usuario(codigo)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+	
 
 
 CREATE TABLE comissao (
 codigo BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
 descricao VARCHAR (50) NOT NULL,
-comissao DECIMAL(10, 2) NOT NULL,
+vlComissao DECIMAL(10, 2) NOT NULL,
 bonus DECIMAL (10,2) NOT NULL,
 codigo_proposta BIGINT(20) NOT NULL,
-FOREIGN KEY (codigo_proposta) REFERENCES proposta(codigo)
+FOREIGN KEY (codigo_proposta) REFERENCES proposta(codigo),
+codigo_equipe BIGINT(20) NOT NULL,
+FOREIGN KEY (codigo_equipe) REFERENCES equipe(codigo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 	
 

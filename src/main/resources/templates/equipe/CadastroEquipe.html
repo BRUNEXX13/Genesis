@@ -37,10 +37,10 @@
 						<input id="nome" type="text" class="form-control" th:field="*{nome}">
 					</div>
 					
-					<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('bonus')} ? has-error">
-						<label for="bonus">Bônus</label>
+					<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('percentual')} ? has-error">
+						<label for="percentual">Percentual</label>
 						<div class="input-group">
-							<input id="bonus" type="text" class="form-control  js-plain"  th:field="*{bonus}">
+							<input id="percentual" type="text" class="form-control  js-plain"  th:field="*{percentual}">
 							<div class="input-group-addon">%</div>
 						</div>
 					</div>

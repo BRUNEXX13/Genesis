@@ -86,37 +86,40 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 
 	}
 
-	
-	// Conversion Service, Convertando o dados Int para String De Tabela na Tela Proposta
+	// Conversion Service, Convertando o dados Int para String De Tabela na Tela
+	// Proposta
 	@Bean
 	public FormattingConversionService mvcConversionService() {
 		DefaultFormattingConversionService conversionService = new DefaultFormattingConversionService();
-		
-		//Adicionando os Conversores /// 
+
+		// Adicionando os Conversores ///
+
+		conversionService.addConverter(new ComissaoConverter());
 		conversionService.addConverter(new TabelaConverter());
 		conversionService.addConverter(new BancoConverter());
 		conversionService.addConverter(new ProdutoConverter());
 		conversionService.addConverter(new PropostaConverter());
-		conversionService.addConverter(new ComissaoConverter());
 		conversionService.addConverter(new EquipeConverter());
 		conversionService.addConverter(new UsuarioConverter());
 		conversionService.addConverter(new ContaConverter());
 		conversionService.addConverter(new ClienteConverter());
-
-		//Convertendo os numeros para casas decimais
+		
+		
+		// Convertendo os numeros para casas decimais
 		NumberStyleFormatter bigDecimalFormatter = new NumberStyleFormatter("#,##0.00");
 		conversionService.addFormatterForFieldType(BigDecimal.class, bigDecimalFormatter);
-		
+
 		NumberStyleFormatter integerFormatter = new NumberStyleFormatter("#,##0");
 		conversionService.addFormatterForFieldType(Integer.class, integerFormatter);
 
 		return conversionService;
 	}
 
-	// Fixando o Pais de Origem // Independe do Browser, vai tratar no formato BR  Browser//
-	@Bean 
-	public LocaleResolver localeResolver () {
-		return new FixedLocaleResolver(new Locale("pt","BR"));
+	// Fixando o Pais de Origem // Independe do Browser, vai tratar no formato BR
+	// Browser//
+	@Bean
+	public LocaleResolver localeResolver() {
+		return new FixedLocaleResolver(new Locale("pt", "BR"));
 	}
-	
+
 }

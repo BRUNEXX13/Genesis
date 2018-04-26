@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -27,7 +29,7 @@ public class Banco implements Serializable {
 
 	@NotNull(message = "Número do banco é obrigatório.")
 	@Column(unique = true)
-	private int numero;
+	private Integer numero;
 
 	@NotBlank(message = "Nome é obrigatorio.")
 	@Column(unique = true)
@@ -35,6 +37,12 @@ public class Banco implements Serializable {
 
 	@OneToMany(mappedBy = "banco")
 	private List<Produto> produtos;
+
+	@PrePersist
+	@PreUpdate
+	private void prePersistUpdate() {
+		nome = nome.toUpperCase();
+	}
 
 	public Long getCodigo() {
 		return codigo;
@@ -44,11 +52,11 @@ public class Banco implements Serializable {
 		this.codigo = codigo;
 	}
 
-	public int getNumero() {
+	public Integer getNumero() {
 		return numero;
 	}
 
-	public void setNumero(int numero) {
+	public void setNumero(Integer numero) {
 		this.numero = numero;
 	}
 

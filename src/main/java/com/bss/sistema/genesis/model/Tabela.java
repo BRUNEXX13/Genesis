@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.NotNull;
@@ -45,6 +47,17 @@ public class Tabela implements Serializable {
 	@DecimalMax(value = "100.0", message = "O valor do coeficiente deve ser menor que 100")
 	private BigDecimal coeficiente;
 
+	@PrePersist
+	@PreUpdate
+	private void prePersistUpdate() {
+		descricao = descricao.toUpperCase();
+		
+	}
+
+	
+	
+	
+	
 	public Produto getProduto() {
 		return produto;
 	}
