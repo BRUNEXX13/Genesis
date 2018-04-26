@@ -1,6 +1,7 @@
 package com.bss.sistema.genesis.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -50,14 +51,26 @@ public class Usuario implements Serializable {
 	@NotBlank(message = "Telefone é obrigatorio")
 	private String telefone;
 
+	@NotBlank(message = "Senha é obrigatório")
+	private String senha;
+
+	@NotBlank(message = "Confirmação de senha obrigatorio")
+	private String confSenha;
+
 	@NotBlank(message = "CPF é obrigatório")
 	@Column(unique = true)
 	private String cpf;
 
+	private Boolean ativo;
+
+	@Column(name = "data_nascimento")
+	private LocalDate dataNascimento;
+
+	@NotNull(message = "O Gênero é obrigatório")
 	@Enumerated(EnumType.STRING)
 	private Genero genero;
 
-	// @NotNull(message = "O genêro é obrigatório")
+	@NotNull(message = "O grupo é obrigatório")
 	@Enumerated(EnumType.STRING)
 	private Grupo grupo;
 
@@ -79,22 +92,6 @@ public class Usuario implements Serializable {
 		sobrenome = sobrenome.toUpperCase();
 		email = email.toUpperCase();
 
-	}
-
-	public List<Comissao> getComissoes() {
-		return comissoes;
-	}
-
-	public void setComissoes(List<Comissao> comissoes) {
-		this.comissoes = comissoes;
-	}
-
-	public Conta getConta() {
-		return conta;
-	}
-
-	public void setConta(Conta conta) {
-		this.conta = conta;
 	}
 
 	public Long getCodigo() {
@@ -137,12 +134,44 @@ public class Usuario implements Serializable {
 		this.telefone = telefone;
 	}
 
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public String getConfSenha() {
+		return confSenha;
+	}
+
+	public void setConfSenha(String confSenha) {
+		this.confSenha = confSenha;
+	}
+
 	public String getCpf() {
 		return cpf;
 	}
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
+	}
+
+	public LocalDate getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(LocalDate dataNascimento) {
+		this.dataNascimento = dataNascimento;
 	}
 
 	public Genero getGenero() {
@@ -167,6 +196,22 @@ public class Usuario implements Serializable {
 
 	public void setEquipes(List<Equipe> equipes) {
 		this.equipes = equipes;
+	}
+
+	public Conta getConta() {
+		return conta;
+	}
+
+	public void setConta(Conta conta) {
+		this.conta = conta;
+	}
+
+	public List<Comissao> getComissoes() {
+		return comissoes;
+	}
+
+	public void setComissoes(List<Comissao> comissoes) {
+		this.comissoes = comissoes;
 	}
 
 	@Override
@@ -194,15 +239,20 @@ public class Usuario implements Serializable {
 		return true;
 	}
 
-	public Usuario(Long codigo, String nome, String sobrenome, String email, String telefone, String cpf, Genero genero,
-			Grupo grupo, List<Equipe> equipes, Conta conta, List<Comissao> comissoes) {
+	public Usuario(Long codigo, String nome, String sobrenome, String email, String telefone, String senha,
+			String confSenha, String cpf, Boolean ativo, LocalDate dataNascimento, Genero genero, Grupo grupo,
+			List<Equipe> equipes, Conta conta, List<Comissao> comissoes) {
 		super();
 		this.codigo = codigo;
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 		this.email = email;
 		this.telefone = telefone;
+		this.senha = senha;
+		this.confSenha = confSenha;
 		this.cpf = cpf;
+		this.ativo = ativo;
+		this.dataNascimento = dataNascimento;
 		this.genero = genero;
 		this.grupo = grupo;
 		this.equipes = equipes;
@@ -213,5 +263,4 @@ public class Usuario implements Serializable {
 	public Usuario() {
 		super();
 	}
-
 }

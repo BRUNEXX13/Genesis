@@ -25,9 +25,13 @@ nome VARCHAR (50) NOT NULL,
 sobrenome VARCHAR (50) NOT NULL,
 cpf VARCHAR (50) NOT NULL UNIQUE,
 email VARCHAR (50) NOT NULL UNIQUE,
+ativo BOOLEAN DEFAULT true,
+senha VARCHAR (50) NOT NULL,
+confSenha  VARCHAR (50) NOT NULL,
 telefone VARCHAR (50) NOT NULL,
 genero VARCHAR(50) NOT NULL,
 grupo VARCHAR(50) NOT NULL,
+data_nascimento DATE,
 codigo_conta BIGINT(20) ,
 FOREIGN KEY (codigo_conta) REFERENCES conta(codigo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
