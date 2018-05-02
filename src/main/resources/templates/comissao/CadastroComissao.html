@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="'layout/LayoutPadrao'">
+	layout:decorator="'layout/LayoutPadrao'"
+	xmlns:genesis="http://genesis.bsssistemas.com">
 
 <head>
 <title>Cadastro de Comissão</title>
@@ -32,7 +33,7 @@
 
 				<div class="row">
 
-					<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('equipe')} ? has-error">
+					<div class="col-sm-3  form-group" genesis:classforerror="equipe">
 						<label for="equipe">Equipe</label>
 						<div class="gn-field-action">
 							<select id="equipe" class="form-control" th:field="*{equipe}">
@@ -44,7 +45,7 @@
 						</div>
 					</div>
 					
-					<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('usuario')} ? has-error"> 
+					<div class="col-sm-3  form-group" genesis:classforerror="usuario">
 						<label for="usuario">Usuário</label>
 						<div class="gn-field-action">
 							<select id="equipe" class="form-control" th:field="*{usuario}">
@@ -57,7 +58,7 @@
 					</div>
 
 
-					<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('proposta')} ? has-error">
+					<div class="col-sm-3  form-group" genesis:classforerror="proposta">
 						<label for="proposta">Proposta</label>
 						<div class="gn-field-action">
 							<select id="proposta" class="form-control" th:field="*{proposta}">
@@ -81,12 +82,12 @@
 				<div class="row">
 
 
-					<div class="col-sm-3 form-group" th:classappend="${#fields.hasErrors('descricao')} ? has-error">
+					<div class="col-sm-3 form-group" genesis:classforerror="proposta">
 						<label for="descricao">Descrição</label> <input id="descricao"
 							type="text" class="form-control" th:field="*{descricao}">
 					</div>
 
-					<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('vlComissao')} ? has-error">
+					<div class="col-sm-3  form-group" genesis:classforerror="vlComissao">
 						<label for="vlComissao">Comissão</label>
 						<div class="input-group">
 							<input id="vlComissao" type="text" class="form-control  js-decimal" th:field="*{vlComissao}" />
@@ -95,7 +96,7 @@
 					</div>
 
 
-					<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('bonus')} ? has-error">
+					<div class="col-sm-3  form-group" genesis:classforerror="bonus">
 						<label for="bonus">Bonus</label>
 						<div class="input-group">
 							<div class="input-group-addon">R$</div>

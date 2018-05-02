@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.bss.sistema.genesis.model.Conta;
 import com.bss.sistema.genesis.repository.Contas;
-import com.bss.sistema.genesis.service.exception.NomeContaJaCadastradoException;
+import com.bss.sistema.genesis.service.exception.NomeTItularJaCadastradoException;
 
 @Service
 public class CadastroContaService {
@@ -19,11 +19,11 @@ public class CadastroContaService {
 	// Salvar e Populando no Banco de dados //
 	@Transactional
 	public Conta salvar(Conta conta) {
-		Optional<Conta> contaOptional = contas.findByAgenciaIgnoreCase(conta.getAgencia());
+		Optional<Conta> contaOptional = contas.findByTitularIgnoreCase(conta.getTitular());
 		if (contaOptional.isPresent()) {
-			throw new NomeContaJaCadastradoException("Nome da conta  já cadastrada !!");
+			throw new NomeTItularJaCadastradoException("Titular da Conta já cadastrado");
 		}
-		 // Save And Flush salvar no Banco e Incrementar o cod
+		// Save And Flush salvar no Banco e Incrementar o cod
 		return contas.saveAndFlush(conta);
 	}
 

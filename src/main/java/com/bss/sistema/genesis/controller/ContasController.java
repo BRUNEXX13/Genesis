@@ -21,7 +21,7 @@ import com.bss.sistema.genesis.repository.Bancos;
 import com.bss.sistema.genesis.repository.Clientes;
 import com.bss.sistema.genesis.repository.Usuarios;
 import com.bss.sistema.genesis.service.CadastroContaService;
-import com.bss.sistema.genesis.service.exception.NomeContaJaCadastradoException;
+import com.bss.sistema.genesis.service.exception.NomeTItularJaCadastradoException;
 
 @Controller
 @RequestMapping("/contas")
@@ -29,14 +29,13 @@ public class ContasController {
 
 	@Autowired
 	private Bancos bancos;
-	
+
 	@Autowired
 	private Usuarios usuarios;
-	
+
 	@Autowired
 	private Clientes clientes;
-	
-	
+
 	@Autowired
 	private CadastroContaService cadastroContaService;
 
@@ -60,8 +59,8 @@ public class ContasController {
 		}
 		try {
 			cadastroContaService.salvar(conta);
-		} catch (NomeContaJaCadastradoException e) {
-			result.rejectValue("numero", e.getMessage(), e.getMessage());
+		} catch (NomeTItularJaCadastradoException e) {
+			result.rejectValue("titular", e.getMessage(), e.getMessage());
 			return novo(conta);
 		}
 		attributes.addFlashAttribute("mensagem", "Conta salva com sucesso!!");
@@ -80,7 +79,7 @@ public class ContasController {
 		}
 		try {
 			conta = cadastroContaService.salvar(conta);
-		} catch (NomeContaJaCadastradoException e) {
+		} catch (NomeTItularJaCadastradoException e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
 
 		}

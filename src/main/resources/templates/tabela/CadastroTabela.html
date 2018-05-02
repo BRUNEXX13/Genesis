@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="'layout/LayoutPadrao'">
+	layout:decorator="'layout/LayoutPadrao'"
+	xmlns:genesis="http://genesis.bsssistemas.com">
 
 <head>
 <title>Cadastro de Tabela</title>
@@ -33,13 +34,13 @@
 				<div class="row">
 
 
-					<div class="col-sm-3 form-group" th:classappend="${#fields.hasErrors('descricao')} ? has-error">
+					<div class="col-sm-3 form-group" genesis:classforerror="descricao">
 						<label for="descricao">Descricao</label>
 						<input id="descricao" type="text" class="form-control" th:field="*{descricao}">
 					</div>
 
 
-					<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('produto')} ? has-error">
+					<div class="col-sm-3  form-group" genesis:classforerror="produto">
 						<label for="produto">Produto</label>
 						<div class="gn-field-action">
 							<select id="produto" class="form-control" th:field="*{produto}">
@@ -59,7 +60,7 @@
 					</div>
 
 	
-					<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('coeficiente')} ? has-error">
+					<div class="col-sm-3  form-group" genesis:classforerror="coeficiente">
 						<label for="coeficiente">Coeficiente</label>
 						<div class="input-group">
 							<input id="coeficiente" type="text" class="form-control  js-plain"  th:field="*{coeficiente}">

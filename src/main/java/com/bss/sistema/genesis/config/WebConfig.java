@@ -35,6 +35,7 @@ import com.bss.sistema.genesis.controller.converter.ProdutoConverter;
 import com.bss.sistema.genesis.controller.converter.PropostaConverter;
 import com.bss.sistema.genesis.controller.converter.TabelaConverter;
 import com.bss.sistema.genesis.controller.converter.UsuarioConverter;
+import com.bss.sistema.genesis.thymeleaf.GenesisDialect;
 
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 
@@ -67,6 +68,7 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 		engine.setTemplateResolver(templateResolver());
 
 		engine.addDialect(new LayoutDialect());
+		engine.addDialect(new GenesisDialect());
 		return engine;
 	}
 

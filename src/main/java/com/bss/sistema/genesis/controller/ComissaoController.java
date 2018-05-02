@@ -19,6 +19,7 @@ import com.bss.sistema.genesis.repository.Usuarios;
 import com.bss.sistema.genesis.service.CadastroComissaoService;
 
 @Controller
+@RequestMapping("/comissoes")
 public class ComissaoController {
 
 	@Autowired
@@ -37,7 +38,7 @@ public class ComissaoController {
 	@Autowired
 	private CadastroComissaoService cadastroComissaoService;
 
-	@RequestMapping("comissoes/novo")
+	@RequestMapping("/novo")
 	public ModelAndView novo(Comissao comissao) {
 		ModelAndView mv = new ModelAndView("/comissao/CadastroComissao");
 		mv.addObject("equipes", equipes.findAll());
@@ -46,7 +47,7 @@ public class ComissaoController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/comissoes/novo", method = RequestMethod.POST)
+	@RequestMapping(value = "/novo", method = RequestMethod.POST)
 	public ModelAndView cadastrar(@Valid Comissao comissao, BindingResult result, Model Model,RedirectAttributes attributes) {
 		if(result.hasErrors() ) {
 			return novo(comissao);
