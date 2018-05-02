@@ -1,59 +1,65 @@
-$(function() {
+var Genesis = Genesis || {};
 
-	var modal = $('#modalCadastroRapidoConta');
-	var botaoSalvar = modal.find('.js-modal-cadastro-conta-salvar-btn');
-	var form = modal.find('form');
-	form.on('submit', function(event) {event.preventDefault() });
-	var url = form.attr('action');
-	var inputNumeroAgencia = $("#numeroAgencia");
-	var inputNumeroConta = $("#numeroConta");
-	var inputTipoConta = $("#tipoConta");
-	var inputTitularConta = $("#titularConta");
-	var inputBancoCodigo = $("#bancoCodigo");
-	var containerMensagemErro = $('.js-mensagem-cadastro-rapido-conta');
+Genesis.ClienteCadastradoRapido = (function() {
 	
-	
-	modal.on('shown.bs.modal', onModalShow);
-	modal.on('hide.bs.modal', onModalClose);
-	botaoSalvar.on('click', onBotaoSalvarClick);
-	
-	
-		function onModalShow() {
-		inputTitularConta.focus();
+		function ClienteCadastroRapido(){
+			this.modal = $('#modalCadastroRapidoConta');
+			this.botaoSalvar = this.modal.find('.js-modal-cadastro-conta-salvar-btn');
+			this.form = this.modal.find('form');
+			this.url = this.form.attr('action');
+			this.inputNumeroAgencia = $("#numeroAgencia");
+			this.inputNumeroConta = $("#numeroConta");
+			this.inputTipoConta = $("#tipoConta");
+			this.inputTitularConta = $("#titularConta");
+			this.inputBancoCodigo = $("#bancoCodigo");
+			this.containerMensagemErro = $('.js-mensagem-cadastro-rapido-conta');
 		}
-
-		function onModalClose() {
-			inputNumeroAgencia.val('');
-			inputTitularConta.val('');
-			inputNumeroConta.val('');
-			inputTipoConta.val('');
-			inputBancoCodigo.val('');
+		
+		ClienteCadastroRapido.prototype.iniciar = function() {
+			this.form.on('submit', function(event) {event.preventDefault() });
+			this.modal.on('shown.bs.modal', onModalShow.bind(this));
+			this.modal.on('hide.bs.modal', onModalClose.bind(this));
+			this.botaoSalvar.on('click', onBotaoSalvarClick.bind(this));
+			
 		}
 	
 		
+		function onModalShow() {
+			this.inputTitularConta.focus();
+			}
+
+		function onModalClose() {
+			this.inputNumeroAgencia.val('');
+			this.inputTitularConta.val('');
+			this.inputNumeroConta.val('');
+			this.inputTipoConta.val('');
+			this.inputBancoCodigo.val('');
+		}
+			
+
 		function onBotaoSalvarClick(){
-			var titularConta  = inputTitularConta.val().trim();
-			var numeroAgencia = inputNumeroAgencia.val().trim();
-			var numeroConta   = inputNumeroConta.val().trim();
-			var tipoConta  	  = inputTipoConta.val().trim();
-			var bancoCodigo   = inputBancoCodigo.val();
+			var titularConta  = this.inputTitularConta.val().trim();
+			var numeroAgencia = this.inputNumeroAgencia.val().trim();
+			var numeroConta   = this.inputNumeroConta.val().trim();
+			var tipoConta  	  = this.inputTipoConta.val().trim();
+			var bancoCodigo   = this.inputBancoCodigo.val();
 	
 			$.ajax({
-				url: url,
+				url: this.url,
 				method: 'POST',
 				contentType: 'application/json',
 				data: JSON.stringify({'agencia'  : numeroAgencia , 'numero' : numeroConta , 'tipoConta' : tipoConta , 'titular' : titularConta , 'banco' : { 'codigo' : bancoCodigo}  }),
-				error: onErroSalvandoConta,
-				success: OnContaSalvo
+				error: onErroSalvandoConta.bind(this),
+				success: OnContaSalvo.bind(this)
 		});
 		
 		}
 		
 		function onErroSalvandoConta(obj){
 			var mensagemErro = obj.responseText;
-			containerMensagemErro.removeClass('hidden');
-			containerMensagemErro.html('<span>' + mensagemErro + '</span>');
-			form.find('.form-group').addClass('has-error');
+			this.containerMensagemErro.removeClass('hidden');
+			this.containerMensagemErro.html('<span>' + mensagemErro + '</span>');
+			this.form.find('.form-group').addClass('has-error');
 			
 		}
 		
@@ -61,7 +67,16 @@ $(function() {
 			var comboConta = $('#conta');
 			comboConta.append('<option value=' + conta.codigo + '>' + conta.titular + '</option>');
 			comboConta.val(conta.codigo);
-			modal.modal('hide');
+			this.modal.modal('hide');
 		}
 		
+
+		return ClienteCadastroRapido;
+}());
+
+$(function() {
+
+		var clienteCadastroRapido = new Genesis.ClienteCadastradoRapido();
+		clienteCadastroRapido.iniciar();
+	
 });

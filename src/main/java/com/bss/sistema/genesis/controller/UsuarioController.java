@@ -17,6 +17,7 @@ import com.bss.sistema.genesis.model.TipoConta;
 import com.bss.sistema.genesis.model.Usuario;
 import com.bss.sistema.genesis.repository.Bancos;
 import com.bss.sistema.genesis.repository.Contas;
+import com.bss.sistema.genesis.repository.Equipes;
 import com.bss.sistema.genesis.service.CadastroUsuarioService;
 
 @Controller
@@ -31,6 +32,9 @@ public class UsuarioController {
 
 	
 	@Autowired
+	private Equipes equipes;
+	
+	@Autowired
 	private CadastroUsuarioService cadastroUsuarioService;
 
 	// Apontamento para Usuarios
@@ -42,6 +46,8 @@ public class UsuarioController {
 		mv.addObject("contas", contas.findAll());
 		mv.addObject("bancos", bancos.findAll());
 		mv.addObject("tipos", TipoConta.values());
+		mv.addObject("equipes", equipes.findAll());
+		
 
 		return mv;
 	}

@@ -1,0 +1,6 @@
+INSERT INTO banco VALUES (0, 341, 'ITAU');
+
+INSERT INTO produto VALUES (0, 'PRODUTO ITAU', 'NOVO', 1 );
+
+INSERT INTO tabela  VALUES (0, 'TABELA 2018', 10, 1 );
+

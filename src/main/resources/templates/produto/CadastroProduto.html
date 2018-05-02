@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="'layout/LayoutPadrao'">
+	layout:decorator="'layout/LayoutPadrao'"
+	xmlns:genesis="http://genesis.bsssistemas.com">
 
 <head>
 <title>Cadastro de Produto</title>
@@ -34,12 +35,12 @@
 				<div class="row">
 				
 
-					<div class="col-sm-3 form-group" th:classappend="${#fields.hasErrors('descricao')} ? has-error">
+					<div class="col-sm-3 form-group" genesis:classforerror="descricao">
 						<label for="descricao">Descrição</label> <input id="descricao"
 							type="text" class="form-control" th:field="*{descricao}">
 					</div>
 
-					<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('tipo')} ? has-error">
+					<div class="col-sm-3  form-group" genesis:classforerror="tipo">
 						<label for="tipo">Tipo</label>
 						<select id="tipo" class="form-control" th:field="*{tipo}">
 							<option value="">Selecione o tipo</option>
@@ -47,7 +48,7 @@
 						</select>
 					</div>
 
-					<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('banco')} ? has-error">
+					<div class="col-sm-3  form-group" genesis:classforerror="banco">
 						<label for="banco">Banco</label>
 						<div class="gn-field-action">
 							<select id="banco" class="form-control" th:field="*{banco}">

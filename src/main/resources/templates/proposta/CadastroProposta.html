@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="'layout/LayoutPadrao'">
+	layout:decorator="'layout/LayoutPadrao'"
+	xmlns:genesis="http://genesis.bsssistemas.com">
 
 <head>
 <title>Cadastro de Propostas</title>
@@ -33,7 +34,7 @@
 
 				<div class="row">
 				
-					<div class="col-sm-3  form-group" >
+					<div class="col-sm-3  form-group" genesis:classforerror="cliente"> 
 						<label for="cliente">Cliente</label>
 						<div class="gn-field-action">
 							<select id="cliente" class="form-control" th:field="*{cliente}">
@@ -49,13 +50,13 @@
 				
 				
 				
-					<div class="col-sm-2  form-group" th:classappend="${#fields.hasErrors('ade')} ? has-error">
+					<div class="col-sm-2  form-group" genesis:classforerror="ade">
 						<label for="ade">ADE</label> <input id="ade" type="text"
 							class="form-control" th:field="*{ade}" />
 					</div>
 
 
-					<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('descricao')} ? has-error">
+					<div class="col-sm-3  form-group" genesis:classforerror="descricao">
 						<label for="descricao">Descrição</label> <input id="descricao"
 							type="text" class="form-control" th:field="*{descricao}" />
 					</div>
@@ -65,7 +66,7 @@
 
 				<div class="row">
 
-					<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('banco')} ? has-error">
+					<div class="col-sm-3  form-group" genesis:classforerror="banco">
 						<label for="banco">Banco</label>
 						<div class="gn-field-action">
 							<select id="banco" class="form-control" th:field="*{banco}">
@@ -87,7 +88,7 @@
 					</div>
 
 
-					<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('produto')} ? has-error">
+					<div class="col-sm-3  form-group"  genesis:classforerror="produto">
 						<label for="produto">Produto</label>
 						<div class="gn-field-action">
 							<select id="produto" class="form-control" th:field="*{produto}">
@@ -100,7 +101,7 @@
 						</div>
 					</div>
 
-					<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('tabela')} ? has-error">
+					<div class="col-sm-3  form-group"  genesis:classforerror="tabela">
 						<label for="tabela">Tabela</label>
 						<div class="gn-field-action">
 							<select id="tabela" class="form-control" th:field="*{tabela}">
@@ -121,7 +122,7 @@
 
 
 
-					<div class=" col-sm-3  form-group"  th:classappend="${#fields.hasErrors('origem')} ? has-error">
+					<div class=" col-sm-3  form-group"  genesis:classforerror="origem">
 						<label for="origem">Origem</label>
 						<div>
 							<th:block th:each="origem : ${origens}">
@@ -139,7 +140,7 @@
 
 
 				<div class="row">
-					<div class="col-sm-4  form-group" th:classappend="${#fields.hasErrors('valorParcela')} ? has-error">
+					<div class="col-sm-4  form-group"  genesis:classforerror="valorParcela">
 						<label for="valorParcela">Valor Parcela</label>
 						<div class="input-group">
 							<div class="input-group-addon">R$</div>
@@ -150,7 +151,7 @@
 
 					</div>
 
-					<div class="col-sm-4  form-group" th:classappend="${#fields.hasErrors('valorTotal')} ? has-error">
+					<div class="col-sm-4  form-group"  genesis:classforerror="valorTotal">
 						<label for="valorTotal">Valor Total</label>
 						<div class="input-group">
 							<input id="valorTotal" type="text"

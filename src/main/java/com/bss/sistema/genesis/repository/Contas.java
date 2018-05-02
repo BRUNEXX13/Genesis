@@ -10,6 +10,9 @@ import com.bss.sistema.genesis.model.Conta;
 @Repository
 public interface Contas extends JpaRepository<Conta, Long> {
 
-	public Optional<Conta> findByAgenciaIgnoreCase(String agencia);
+	
+
+
+	public Optional<Conta> findByTitularIgnoreCase(String titular);
 
 }

@@ -26,7 +26,7 @@ public class CadastroBancoService {
 				throw new  NumeroBancoJacadastradoException("Número do Banco já cadastrado");
 			}
 			if (bancoOptional.isPresent()) {
-				throw new NomeBancoJaCadastradoException("Nome do banco ja cadastrado PORRA");
+				throw new NomeBancoJaCadastradoException("Nome do banco ja cadastrado !***");
 
 			}
 

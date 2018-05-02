@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="'layout/LayoutPadrao'">
+	layout:decorator="'layout/LayoutPadrao'"
+	xmlns:genesis="http://genesis.bsssistemas.com">
 
 <head>
 <title>Cadastro de Equipes</title>
@@ -32,12 +33,12 @@
 
 				<div class="row">
 				
-					<div class="col-sm-3 form-group"  th:classappend="${#fields.hasErrors('nome')} ? has-error">
+					<div class="col-sm-3 form-group"  genesis:classforerror="nome">
 						<label for="nome">Nome da Equipe</label>
 						<input id="nome" type="text" class="form-control" th:field="*{nome}">
 					</div>
 					
-					<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('percentual')} ? has-error">
+					<div class="col-sm-3  form-group" genesis:classforerror="percentual">
 						<label for="percentual">Percentual</label>
 						<div class="input-group">
 							<input id="percentual" type="text" class="form-control  js-plain"  th:field="*{percentual}">
@@ -45,7 +46,7 @@
 						</div>
 					</div>
 					
-						<div class="col-sm-3  form-group">
+						<div class="col-sm-3  form-group" genesis:classforerror="usuario">
 						<label for="usuario">Usuarios</label>
 						<div class="gn-field-action">
 							<select id="banco" class="form-control" th:field="*{usuario}">
