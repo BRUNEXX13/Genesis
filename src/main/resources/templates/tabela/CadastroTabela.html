@@ -22,17 +22,11 @@
 
 		<div class="container-fluid">
 
-
-			<th:block th:include="fragments/MensagemSucesso"></th:block>
-
-
-			<!--  TH ACTION SEMPRE COLOCAR  -->
+		<!--  TH ACTION SEMPRE COLOCAR  -->
 	 <form th:action="@{/tabelas/novo}" method="POST" th:object="${tabela}" class="form-vertical  js-form-loading">
-
-				<th:block th:include="fragments/MensagensErroValidacao"></th:block>
-
+		<genesis:message/>
+			
 				<div class="row">
-
 
 					<div class="col-sm-3 form-group" genesis:classforerror="descricao">
 						<label for="descricao">Descricao</label>

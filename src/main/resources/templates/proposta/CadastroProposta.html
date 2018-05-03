@@ -23,14 +23,9 @@
 		<div class="container-fluid">
 
 
-			<th:block th:include="fragments/MensagemSucesso"></th:block>
-
 			<!--  TH ACTION SEMPRE COLOCAR  -->
-
 			<form method="POST" th:object="${proposta}" class="form-vertical  js-form-loading">
-
-				<th:block th:include="fragments/MensagensErroValidacao"></th:block>
-
+			<genesis:message/>
 
 				<div class="row">
 				
@@ -195,9 +190,11 @@
 
 			</form>
 		</div>
+		
 		<div th:replace="estilo/CadastroRapidoBanco :: modal"></div>
 		<div th:replace="estilo/CadastroRapidoTabela :: modal"></div>
-
+		
+		
 
 	</section>
 		<th:block layout:fragment="javascript-extra">

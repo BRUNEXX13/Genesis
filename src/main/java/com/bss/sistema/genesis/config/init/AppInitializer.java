@@ -1,6 +1,8 @@
 package com.bss.sistema.genesis.config.init;
 
 import javax.servlet.Filter;
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.ServletRegistration.Dynamic;
 
 //Configuracoes da Aplicacaos
 
@@ -41,5 +43,13 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
 		return new Filter[] { characterEncodingFilter };
 
+	}
+	
+	// Receberr varios tipos de arquivos // JPG/ JPEG //PNG // MultipartConfigConfigElement // CL14.3
+	@Override
+	protected void customizeRegistration(Dynamic registration) {
+	registration.setMultipartConfig(new MultipartConfigElement(""));
+	
+	
 	}
 }

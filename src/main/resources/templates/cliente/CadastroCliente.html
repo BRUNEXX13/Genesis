@@ -23,13 +23,9 @@
 
 	<div class="container-fluid">
 	
-	<th:block th:include="fragments/MensagemSucesso"></th:block> 
+		<form th:action="@{/clientes/novo}" method="POST" th:object="${cliente}" class="form-vertical  js-form-loading">
+		<genesis:message/>
 
-			<form th:action="@{/clientes/novo}" method="POST" th:object="${cliente}" class="form-vertical  js-form-loading">
-		
-				<th:block th:include="fragments/MensagensErroValidacao"></th:block>
-
-	
 			<div class="row">
 				<div class="form-group  col-sm-6">
 				<label for="nome">Nome</label>
