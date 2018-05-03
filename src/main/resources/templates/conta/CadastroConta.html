@@ -23,19 +23,16 @@
 		<div class="container-fluid">
 
 
-		<th:block th:include="fragments/MensagemSucesso"></th:block> 
-				
-
 		<!--  TH ACTION SEMPRE COLOCAR  -->
 			<form th:action="@{/contas/novo}" method="POST" th:object="${conta}" class="form-vertical  js-form-loading">
+			<genesis:message/>
 
-	<th:block th:include="fragments/MensagensErroValidacao"></th:block>
 
 				<div class="row">
 
 				
-				<div class="col-sm-3  form-group" >
-						<label for="banco">Banco</label>
+				<div class="col-sm-3  form-group" genesis:classforerror="banco"> 
+					<label for="banco">Banco</label>
 						<div class="gn-field-action">
 							<select id="banco" class="form-control" th:field="*{banco}">
 								<option value="">Selecione o Banco</option>
@@ -55,20 +52,20 @@
 						</div>
 					</div>
 				
-					<div class="col-sm-3 form-group">
+					<div class="col-sm-3 form-group" genesis:classforerror="agencia"> 
 						<label for="agencia">Agência</label>
 						<input id="agencia" type="text" class="form-control" th:field="*{agencia}">
 					</div>
 			
 				
 				
-					<div class="col-sm-3 form-group">
+					<div class="col-sm-3 form-group" genesis:classforerror="numero"> 
 						<label for="numero">Número</label>
 						<input id="numero" type="text" class="form-control" th:field="*{numero}" >
 					</div>
 
 
-					<div class="col-sm-3  form-group">
+					<div class="col-sm-3  form-group" genesis:classforerror="conta"> 
 						<label for="tipoConta">Conta</label>
 						<select id="tipoConta" class="form-control" th:field="*{tipoConta}">
 							<option value="">Selecione o tipo</option>
