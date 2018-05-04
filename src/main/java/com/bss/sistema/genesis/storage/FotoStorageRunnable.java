@@ -9,7 +9,6 @@ public class FotoStorageRunnable implements Runnable {
 
 	private MultipartFile[] files;
 	private DeferredResult<FotoDTO> resultado;
-	private FotoStorage fotoStorage;
 
 	public FotoStorageRunnable(MultipartFile[] files, DeferredResult<FotoDTO> resultado) {
 		this.files = files;
@@ -19,7 +18,7 @@ public class FotoStorageRunnable implements Runnable {
 
 	@Override
 	public void run() {
-		this.fotoStorage.salvarTemporariamente(files);
+		System.out.println(">>>> files " + files[0].getSize());
 
 		String nomeFoto = files[0].getOriginalFilename();
 		String contentType = files[0].getContentType();

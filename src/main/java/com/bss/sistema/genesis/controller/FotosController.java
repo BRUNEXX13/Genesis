@@ -15,8 +15,7 @@ import com.bss.sistema.genesis.storage.FotoStorageRunnable;
 @RequestMapping("/fotos")
 public class FotosController {
 
-	//@Autowired
-	//private FotoStorage fotoStorage;
+
 
 	@PostMapping
 	public DeferredResult<FotoDTO> upload(@RequestParam("files[]") MultipartFile[] files) {

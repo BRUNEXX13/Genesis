@@ -1,5 +1,6 @@
 package com.bss.sistema.genesis.dto;
 
+//Classe Data transfer Object //
 public class FotoDTO {
 
 	private String nome;
@@ -24,6 +25,10 @@ public class FotoDTO {
 
 	public void setContentType(String contentType) {
 		this.contentType = contentType;
+	}
+
+	public FotoDTO() {
+		super();
 	}
 
 }
