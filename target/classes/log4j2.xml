@@ -8,11 +8,11 @@
 	</Appenders>
 	
 	<Loggers>
-		<Logger name="com.algaworks.brewer.controller" level="error"/>
+		<Logger name="com.algaworks.genesis" level="trace"/>
 		
-		<Logger name="org.hibernate.SQL" level="debug"/>
+		<Logger name="org.hibernate.SQL" level="trace"/>
 	
-		<Root level="error">
+		<Root level="trace">
 			<AppenderRef ref="Console" />
 		</Root>
 	</Loggers>

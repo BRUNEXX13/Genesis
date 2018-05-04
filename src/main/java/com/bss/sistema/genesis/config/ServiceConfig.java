@@ -13,7 +13,10 @@ import com.bss.sistema.genesis.service.CadastroPropostaService;
 import com.bss.sistema.genesis.service.CadastroTabelaService;
 import com.bss.sistema.genesis.service.CadastroUsuarioService;
 
-@Configuration	// Nessa Classe e procurada os services
+ // Nessa Classe e procurada os services // Componente Scan verifica cada Classe
+				// Service
+
+
 @ComponentScan(basePackageClasses = CadastroComissaoService.class)
 @ComponentScan(basePackageClasses = CadastroEquipeService.class)
 @ComponentScan(basePackageClasses = CadastroTabelaService.class)
@@ -24,7 +27,9 @@ import com.bss.sistema.genesis.service.CadastroUsuarioService;
 @ComponentScan(basePackageClasses = CadastroContaService.class)
 @ComponentScan(basePackageClasses = CadastroClienteService.class)
 
-
+@Configuration    // Nessa Classe e procurada os services // Componente Scan verifica cada Classe
 public class ServiceConfig {
+
+
 
 }
