@@ -57,17 +57,17 @@ public class JPAConfig {
 		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
 		factory.setDataSource(dataSource);
 		factory.setJpaVendorAdapter(jpaVendorAdapter);
-		//
-		factory.setPackagesToScan(Banco.class.getPackage().getName());
+		
+		
 		factory.setPackagesToScan(Proposta.class.getPackage().getName());
 		factory.setPackagesToScan(Usuario.class.getPackage().getName());
+		factory.setPackagesToScan(Banco.class.getPackage().getName());
 		factory.setPackagesToScan(Equipe.class.getPackage().getName());
 		factory.setPackagesToScan(Produto.class.getPackage().getName());
 		factory.setPackagesToScan(Tabela.class.getPackage().getName());
 		factory.setPackagesToScan(Conta.class.getPackage().getName());
 		factory.setPackagesToScan(Cliente.class.getPackage().getName());
 		factory.setPackagesToScan(Comissao.class.getPackage().getName());
-		
 		factory.afterPropertiesSet();
 
 		return factory.getObject();

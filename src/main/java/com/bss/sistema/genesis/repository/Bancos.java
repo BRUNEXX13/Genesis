@@ -14,6 +14,4 @@ public interface Bancos extends JpaRepository<Banco, Long> {
 
 	public Optional<Banco> findByNumeroAndNomeIgnoreCase(Integer numero, String nome);
 
-
-	
 }

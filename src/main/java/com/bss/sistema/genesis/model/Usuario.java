@@ -63,6 +63,11 @@ public class Usuario implements Serializable {
 
 	private Boolean ativo;
 
+	private String foto;
+
+	@Column(name = "content_type")
+	private String contentType;
+
 	@Column(name = "data_nascimento")
 	private LocalDate dataNascimento;
 
@@ -166,6 +171,22 @@ public class Usuario implements Serializable {
 		this.ativo = ativo;
 	}
 
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+	public String getContentType() {
+		return contentType;
+	}
+
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
+	}
+
 	public LocalDate getDataNascimento() {
 		return dataNascimento;
 	}
@@ -239,28 +260,4 @@ public class Usuario implements Serializable {
 		return true;
 	}
 
-	public Usuario(Long codigo, String nome, String sobrenome, String email, String telefone, String senha,
-			String confSenha, String cpf, Boolean ativo, LocalDate dataNascimento, Genero genero, Grupo grupo,
-			List<Equipe> equipes, Conta conta, List<Comissao> comissoes) {
-		super();
-		this.codigo = codigo;
-		this.nome = nome;
-		this.sobrenome = sobrenome;
-		this.email = email;
-		this.telefone = telefone;
-		this.senha = senha;
-		this.confSenha = confSenha;
-		this.cpf = cpf;
-		this.ativo = ativo;
-		this.dataNascimento = dataNascimento;
-		this.genero = genero;
-		this.grupo = grupo;
-		this.equipes = equipes;
-		this.conta = conta;
-		this.comissoes = comissoes;
-	}
-
-	public Usuario() {
-		super();
-	}
 }
