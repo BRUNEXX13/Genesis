@@ -12,11 +12,12 @@ import com.bss.sistema.genesis.service.CadastroProdutoService;
 import com.bss.sistema.genesis.service.CadastroPropostaService;
 import com.bss.sistema.genesis.service.CadastroTabelaService;
 import com.bss.sistema.genesis.service.CadastroUsuarioService;
+import com.bss.sistema.genesis.storage.FotoStorage;
 
  // Nessa Classe e procurada os services // Componente Scan verifica cada Classe
 				// Service
 
-
+@Configuration
 @ComponentScan(basePackageClasses = CadastroComissaoService.class)
 @ComponentScan(basePackageClasses = CadastroEquipeService.class)
 @ComponentScan(basePackageClasses = CadastroTabelaService.class)
@@ -26,10 +27,11 @@ import com.bss.sistema.genesis.service.CadastroUsuarioService;
 @ComponentScan(basePackageClasses = CadastroUsuarioService.class)
 @ComponentScan(basePackageClasses = CadastroContaService.class)
 @ComponentScan(basePackageClasses = CadastroClienteService.class)
-
-@Configuration    // Nessa Classe e procurada os services // Componente Scan verifica cada Classe
+@ComponentScan(basePackageClasses = FotoStorage.class)
+    // Nessa Classe e procurada os services // Componente Scan verifica cada Classe
 public class ServiceConfig {
 
+	
 
 
 }

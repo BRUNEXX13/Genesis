@@ -25,6 +25,8 @@ import com.bss.sistema.genesis.model.Proposta;
 import com.bss.sistema.genesis.model.Tabela;
 import com.bss.sistema.genesis.model.Usuario;
 import com.bss.sistema.genesis.repository.Propostas;
+import com.bss.sistema.genesis.storage.FotoStorage;
+import com.bss.sistema.genesis.storage.local.FotoStorageLocal;
 
 //Classe Configuracoes do Banco 
 
@@ -58,7 +60,8 @@ public class JPAConfig {
 		factory.setDataSource(dataSource);
 		factory.setJpaVendorAdapter(jpaVendorAdapter);
 		
-		
+		factory.setPackagesToScan(FotoStorage.class.getPackage().getName());
+		factory.setPackagesToScan(FotoStorageLocal.class.getPackage().getName());
 		factory.setPackagesToScan(Proposta.class.getPackage().getName());
 		factory.setPackagesToScan(Usuario.class.getPackage().getName());
 		factory.setPackagesToScan(Banco.class.getPackage().getName());
@@ -81,5 +84,11 @@ public class JPAConfig {
 		return transactionManager;
 
 	}
+	
+
+	@Bean
+	public FotoStorage fotoStorage() {
+		return new FotoStorageLocal();
+}
 
 }

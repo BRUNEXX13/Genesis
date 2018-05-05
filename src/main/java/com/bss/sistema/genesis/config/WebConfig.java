@@ -105,6 +105,8 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 		conversionService.addConverter(new UsuarioConverter());
 		conversionService.addConverter(new ContaConverter());
 		conversionService.addConverter(new ClienteConverter());
+		conversionService.addConverter(new ClienteConverter());
+		
 		
 		
 		// Convertendo os numeros para casas decimais
