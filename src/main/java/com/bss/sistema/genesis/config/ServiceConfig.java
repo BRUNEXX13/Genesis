@@ -1,5 +1,6 @@
 package com.bss.sistema.genesis.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
@@ -13,6 +14,7 @@ import com.bss.sistema.genesis.service.CadastroPropostaService;
 import com.bss.sistema.genesis.service.CadastroTabelaService;
 import com.bss.sistema.genesis.service.CadastroUsuarioService;
 import com.bss.sistema.genesis.storage.FotoStorage;
+import com.bss.sistema.genesis.storage.local.FotoStorageLocal;
 
  // Nessa Classe e procurada os services // Componente Scan verifica cada Classe
 				// Service
@@ -31,6 +33,10 @@ import com.bss.sistema.genesis.storage.FotoStorage;
     // Nessa Classe e procurada os services // Componente Scan verifica cada Classe
 public class ServiceConfig {
 
+	@Bean
+	public FotoStorage fotoStorage() {
+		return new FotoStorageLocal();
+	}
 	
 
 
