@@ -161,7 +161,10 @@
 				
 					<label class="control-label">Foto</label>
 					
+
+
 					<div class="js-container-foto-usuario" th:attr="data-url-fotos=@{/fotos}">
+
 					<div id="upload-drop" class="gn-upload">
 						<i class="glyphicon  glyphicon-cloud-upload"></i>
 						<span>Arraste a foto aqui ou </span>
@@ -190,7 +193,15 @@
 	</section>
 	
 	<th:block layout:fragment="javascript-extra">
+
 		<script th:src="@{/javascripts/conta.cadastro-rapido.js}"></script>
+
+		<script th:src="@{/javascripts/vendors/uikit.min.js}"></script>
+		<script th:src="@{/javascripts/vendors/upload.min.js}"></script>
+		<script th:src="@{/javascripts/vendors/handlebars.min.js}"></script>
+		<script th:src="@{/javascripts/usuarios.upload-foto.js}"></script>
+		
+
 		<script th:src="@{/javascripts/usuarios.upload-foto.js}"></script>
 		<script th:src="@{/javascripts/vendors/bootstrap-switch.min.js}"></script>
 		<script th:src="@{/javascripts/vendors/uikit.min.js}"></script>
@@ -201,6 +212,7 @@
 		<script>
 		$('.js-status').bootstrapSwitch();
 		</script>
+
 
 		
 		</th:block>

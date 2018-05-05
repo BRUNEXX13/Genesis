@@ -2,6 +2,9 @@ var Genesis = Genesis || {};
 
 Genesis.UploadFoto = (function() {
 	
+ FOTO_COMPLETE
+
+
 	function UploadFoto() {
 		this.inputNomeFoto = $('input[name=foto]');
 		this.inputContentType = $('input[name=contentType]');
@@ -25,6 +28,13 @@ Genesis.UploadFoto = (function() {
 		
 		UIkit.uploadSelect($('#upload-select'), settings);
 		UIkit.uploadDrop(this.uploadDrop, settings);
+
+		
+		if (this.inputNomeFoto.val()) {
+			onUploadCompleto.call(this, { nome:  this.inputNomeFoto.val(), contentType: this.inputContentType.val()});
+		}
+		
+
 	}
 	
 	function onUploadCompleto(resposta) {
