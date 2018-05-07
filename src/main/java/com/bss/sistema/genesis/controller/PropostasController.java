@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,6 +17,7 @@ import com.bss.sistema.genesis.model.Proposta;
 import com.bss.sistema.genesis.repository.Bancos;
 import com.bss.sistema.genesis.repository.Clientes;
 import com.bss.sistema.genesis.repository.Produtos;
+import com.bss.sistema.genesis.repository.Propostas;
 import com.bss.sistema.genesis.repository.Tabelas;
 import com.bss.sistema.genesis.service.CadastroPropostaService;
 import com.bss.sistema.genesis.service.exception.NomePropostaJaCadastradoException;
@@ -36,6 +38,8 @@ public class PropostasController {
 	@Autowired
 	private Clientes clientes;
 	
+	@Autowired
+	private Propostas propostas;
 	
 	
 	// Servicos de Propostas - Salvar - Deletar --
@@ -92,4 +96,16 @@ public class PropostasController {
 		return new ModelAndView("redirect:/propostas/novo");
 	}
 	
+	
+	@GetMapping
+	public ModelAndView pesquisar() {
+		ModelAndView mv = new ModelAndView("proposta/PesquisaPropostas");
+		mv.addObject("bancos",bancos.findAll());
+		mv.addObject("produtos", produtos.findAll());
+		mv.addObject("tabelas", tabelas.findAll());
+		mv.addObject("clientes", clientes.findAll());
+		
+		mv.addObject("propostas", propostas.findAll());
+		return mv;
+	}
 }
