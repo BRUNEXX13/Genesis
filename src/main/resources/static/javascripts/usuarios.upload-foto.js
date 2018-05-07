@@ -2,9 +2,6 @@ var Genesis = Genesis || {};
 
 Genesis.UploadFoto = (function() {
 	
- FOTO_COMPLETE
-
-
 	function UploadFoto() {
 		this.inputNomeFoto = $('input[name=foto]');
 		this.inputContentType = $('input[name=contentType]');

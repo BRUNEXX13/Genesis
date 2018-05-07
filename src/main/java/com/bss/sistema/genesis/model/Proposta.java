@@ -2,6 +2,7 @@ package com.bss.sistema.genesis.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -80,6 +81,9 @@ public class Proposta implements Serializable {
 	@DecimalMin("0.01")
 	@DecimalMax(value = "9999999.99", message = "O valor da proposta deve ser menor que R$9.999.999,99")
 	private BigDecimal valorLiquido;
+
+	@Column(name = "data_proposta")
+	private LocalDate dataProposta;
 
 	@ManyToOne
 	@JoinColumn(name = "codigo_cliente")
@@ -190,9 +194,14 @@ public class Proposta implements Serializable {
 		this.comissoes = comissoes;
 	}
 
-	
-	
-	
+	public LocalDate getDataProposta() {
+		return dataProposta;
+	}
+
+	public void setDataProposta(LocalDate dataProposta) {
+		this.dataProposta = dataProposta;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -239,7 +248,5 @@ public class Proposta implements Serializable {
 	public Proposta() {
 		super();
 	}
-	
-	
 
 }

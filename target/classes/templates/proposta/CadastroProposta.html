@@ -10,16 +10,25 @@
 </head>
 
 <body>
-	<section layout:fragment="conteudo">
+<section layout:fragment="conteudo">
 
-		<div class="page-header">
-			<div class="container-fluid">
-				<h1>
-					<strong>Cadastro de Proposta</strong>
-				</h1>
+	<div class="page-header">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-10">
+					<h1>Cadastro de proposta</h1>
+				</div>
+			
+				<div class="col-sm-2">
+					<div class="aw-page-header-controls">
+						<a class="btn  btn-default" th:href="@{/propostas}">
+							<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs  hidden-sm">Pesquisa</span>
+						</a>
+					</div>
+				</div>
 			</div>
 		</div>
-
+</div>
 		<div class="container-fluid">
 
 
@@ -29,8 +38,8 @@
 
 				<div class="row">
 				
-					<div class="col-sm-3  form-group" genesis:classforerror="cliente"> 
-						<label for="cliente">Cliente</label>
+					<div class="col-sm-3  form-group gn-required" genesis:classforerror="cliente"> 
+						<label for="cliente"  class="control-label">Cliente</label>
 						<div class="gn-field-action">
 							<select id="cliente" class="form-control" th:field="*{cliente}">
 								<option value="">Selecione o Cliente</option>
@@ -45,15 +54,21 @@
 				
 				
 				
-					<div class="col-sm-2  form-group" genesis:classforerror="ade">
-						<label for="ade">ADE</label> <input id="ade" type="text"
+					<div class="col-sm-2  form-group gn-required" genesis:classforerror="ade">
+						<label for="ade"  class="control-label">ADE</label> <input id="ade" type="text"
 							class="form-control" th:field="*{ade}" />
 					</div>
 
 
-					<div class="col-sm-3  form-group" genesis:classforerror="descricao">
-						<label for="descricao">Descrição</label> <input id="descricao"
+					<div class="col-sm-3  form-group gn-required" genesis:classforerror="descricao">
+						<label for="descricao"  class="control-label">Descrição</label> <input id="descricao"
 							type="text" class="form-control" th:field="*{descricao}" />
+					</div>
+					
+					
+					<div class="col-sm-4  form-group gn-required " >
+						<label for="data"  class="control-label">Data</label>
+						 <input id="data" type="date" class="form-control"> 
 					</div>
 
 
@@ -61,8 +76,8 @@
 
 				<div class="row">
 
-					<div class="col-sm-3  form-group" genesis:classforerror="banco">
-						<label for="banco">Banco</label>
+					<div class="col-sm-3  form-group gn-required" genesis:classforerror="banco">
+						<label for="banco" class="control-label">Banco</label>
 						<div class="gn-field-action">
 							<select id="banco" class="form-control" th:field="*{banco}">
 								<option value="">Selecione o Banco</option>
@@ -83,26 +98,24 @@
 					</div>
 
 
-					<div class="col-sm-3  form-group"  genesis:classforerror="produto">
-						<label for="produto">Produto</label>
+					<div class="col-sm-3  form-group gn-required"  genesis:classforerror="produto">
+						<label for="produto"  class="control-label">Produto</label>
 						<div class="gn-field-action">
 							<select id="produto" class="form-control" th:field="*{produto}">
 								<option value="">Selecione o Produto</option>
-								<option th:each="produto : ${produtos}"
-									th:value="${produto.codigo}" th:text="${produto.descricao}">??</option>
+								<option th:each="produto : ${produtos}"th:value="${produto.codigo}" th:text="${produto.descricao}"></option>
 
 							</select>
 
 						</div>
 					</div>
 
-					<div class="col-sm-3  form-group"  genesis:classforerror="tabela">
-						<label for="tabela">Tabela</label>
+					<div class="col-sm-3  form-group gn-required"  genesis:classforerror="tabela">
+						<label for="tabela"  class="control-label">Tabela</label>
 						<div class="gn-field-action">
 							<select id="tabela" class="form-control" th:field="*{tabela}">
 								<option value="">Selecione a Tabela</option>
-								<option th:each="tabela : ${tabelas}"
-									th:value="${tabela.codigo}" th:text="${tabela.descricao}">Itau</option>
+								<option th:each="tabela : ${tabelas}"th:value="${tabela.codigo}" th:text="${tabela.descricao}">Itau</option>
 
 							</select>
 
@@ -117,8 +130,8 @@
 
 
 
-					<div class=" col-sm-3  form-group"  genesis:classforerror="origem">
-						<label for="origem">Origem</label>
+					<div class=" col-sm-3  form-group gn-required"  genesis:classforerror="origem">
+						<label for="origem"  class="control-label">Origem</label>
 						<div>
 							<th:block th:each="origem : ${origens}">
 								<div class="radio  radio-inline">
@@ -135,8 +148,8 @@
 
 
 				<div class="row">
-					<div class="col-sm-4  form-group"  genesis:classforerror="valorParcela">
-						<label for="valorParcela">Valor Parcela</label>
+					<div class="col-sm-4  form-group gn-required"  genesis:classforerror="valorParcela">
+						<label for="valorParcela"  class="control-label">Valor Parcela</label>
 						<div class="input-group">
 							<div class="input-group-addon">R$</div>
 							<input id="valorParcela" type="text"
@@ -146,8 +159,8 @@
 
 					</div>
 
-					<div class="col-sm-4  form-group"  genesis:classforerror="valorTotal">
-						<label for="valorTotal">Valor Total</label>
+					<div class="col-sm-4  form-group gn-required"  genesis:classforerror="valorTotal">
+						<label for="valorTotal"  class="control-label">Valor Total</label>
 						<div class="input-group">
 							<input id="valorTotal" type="text"
 								class="form-control  js-decimal" th:field="*{valorTotal}" />
@@ -156,8 +169,8 @@
 						</div>
 					</div>
 
-					<div class="col-sm-4  form-group" th:classappend="${#fields.hasErrors('valorLiquido')} ? has-error">
-						<label for="valorLiquido">Valor Líquido</label>
+					<div class="col-sm-4  form-group gn-required" th:classappend="${#fields.hasErrors('valorLiquido')} ? has-error">
+						<label for="valorLiquido"  class="control-label">Valor Líquido</label>
 						<div class="input-group">
 							<input id="valorLiquido" type="text"
 								class="form-control  js-decimal" th:field="*{valorLiquido}" />

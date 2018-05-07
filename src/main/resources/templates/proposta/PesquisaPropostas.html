@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="'layout/LayoutPadrao'"
+	xmlns:brewer="http://brewer.algaworks.com">
+	
+<head>
+	<title>Pesquisa de propostas</title>
+</head>
+
+<body>
+<section layout:fragment="conteudo">
+	<div class="page-header">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-10">
+					<h1>Pesquisa de propostas</h1>
+				</div>
+				
+				<div class="col-sm-2">
+					<div class="aw-page-header-controls">
+						<a class="btn  btn-default" th:href="@{/propostas/novo}">
+							<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs  hidden-sm">Nova proposta</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+			<div class="container-fluid">
+					<form method="GET">
+					
+					<!--  Inicio DIV ADE - CLIENTE -->
+					<div class="row">
+					
+					<div class="form-group col-sm-4">
+					<label class="control-label" for="ade">ADE</label>
+					<input type="text" class="form-control" id="ade" autofocus="autofocus"/>
+					</div>
+					
+					<div class="form-group col-sm-4">
+					<label class="control-label" for="cliente">CPF</label>
+					<input type="text" class="form-control" id="cpf" autofocus="autofocus"/>
+					</div>
+					
+					<div class="form-group col-sm-4">
+					<label class="control-label" for="cliente">Cliente</label>
+					<input type="text" class="form-control" id="cliente" autofocus="autofocus"/>
+					</div>
+				
+					</div>
+					
+							<!--  FIM DIV ADE - CLIENTE -->
+					
+					
+					<!--  INICIO DIV BANCO  | PRODUTO | TABELA -->
+					<div class="row">
+					<div class="form-group col-sm-4">
+					<label class="control-label" for="banco">Banco</label>
+					<select id="banco" class="form-control">
+					<option value="">Todos os Bancos</option>
+					<option th:each="banco : ${bancos}" th:value="${banco.codigo}" th:text="${banco.nome}"></option>
+					</select>
+					</div>
+					
+					
+					<div class="form-group col-sm-4">
+					<label class="control-label" for="produto">Produto</label>
+					<select id="produto" class="form-control">
+					<option value="">Todos os Produtos</option>
+					<option th:each="produto : ${produtos}"th:value="${produto.codigo}" th:text="${produto.descricao}"></option>
+					</select>
+					</div>
+					
+					
+					<div class="form-group col-sm-4">
+					<label class="control-label" for="produto">Produto</label>
+					<select id="produto" class="form-control">
+					<option value="">Todos as Tabelas</option>
+					<option th:each="tabela : ${tabelas}"th:value="${tabela.codigo}" th:text="${tabela.descricao}"></option>
+					</select>
+					</div>
+					</div>
+					<!--  END DIV | PRODUTO | TABELA -->
+					
+					
+					
+					<!--  Inicio DIV |PERIODO | VALOR-->
+					<div class="row">
+					
+					<div class="col-sm-6  form-group">
+					<label for="periodo">Período</label>
+					<div class="form-inline">
+						<input type="date" class="form-control  gn-form-control-inline-sm  js-decimal" id="dataIni"/>
+						<label for="periodo" class="gn-form-label-between">até</label>
+						<input type="date" class="form-control  gn-form-control-inline-sm  js-decimal" id="dataFim"/>
+					</div>
+				</div>
+					
+					
+					
+					
+					<div class="col-sm-6  form-group">
+					<label for="valorDe">Valor Total</label>
+					<div class="form-inline">
+						<input type="text" class="form-control  gn-form-control-inline-sm  js-decimal" id="valorDe"/>
+						<label for="precoAte" class="gn-form-label-between">até</label>
+						<input type="text" class="form-control  gn-form-control-inline-sm  js-decimal" id="valorAte"/>
+					</div>
+				</div>
+			</div>
+				<!--  Inicio DIV |PERIODO | VALOR-->
+	
+			
+
+			<div class="form-group">
+			<button type="submit" class="btn  btn-primary">Pesquisar</button>
+				</div>
+				
+				
+				
+			</div>
+			</form>
+			
+			<!-- INICIO DIV TABLES -->
+			<div class="table-responsive gn-tabela-simples" >
+			<table class="table table-hover">
+				<thead>
+					<tr>
+					<th class="table-propostas-col-ade">ADE</th>
+						<th class="table-propostas-col-cpf">CPF</th>
+						<th class="table-propostas-col-banco">Banco</th>
+						<th class="table-propostas-col-produto">Produto</th>
+						<th class="table-propostas-col-produto">Tabela</th>
+						<th class="table-propostas-col-valorTotal">Valor</th>
+						<th class="table-propostas-col-dataProposta">Data</th>
+						<th class="table-propostas-col-acoes"></th>
+					</tr>
+					</thead>
+					<tbody>
+					
+					<tr th:each="proposta : ${propostas}">
+						<td class="text-center" th:text="${proposta.ade}">AA1234</td>
+						<td th:text="${proposta.cliente.cpf}"></td>
+						<td th:text="${proposta.banco.nome}"></td>
+						<td th:text="${proposta.produto.descricao}"></td>
+						<td th:text="${proposta.tabela.descricao}"></td>
+						<td th:text="|R$ ${proposta.valorTotal}|"></td>
+						<td th:text="${proposta.dataProposta}">10/05/2018</td>
+						<td class="text-center">
+							<a class="btn  btn-link  btn-xs" title="Editar"> 
+								<i class="glyphicon glyphicon-pencil"></i>
+							</a>
+							<a class="btn  btn-link  btn-xs" title="Excluir">
+								<i class="glyphicon glyphicon-remove"></i>
+							</a>
+						</td>
+					</tr>
+				</tbody>	
+			</table>
+			</div>
+				<!-- FIM  DIV TABLES -->
+		</div>
+</section>
+</body>
+</html>
