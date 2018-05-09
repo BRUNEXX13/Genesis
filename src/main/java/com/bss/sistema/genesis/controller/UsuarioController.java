@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -18,6 +19,7 @@ import com.bss.sistema.genesis.model.Usuario;
 import com.bss.sistema.genesis.repository.Bancos;
 import com.bss.sistema.genesis.repository.Contas;
 import com.bss.sistema.genesis.repository.Equipes;
+import com.bss.sistema.genesis.repository.Usuarios;
 import com.bss.sistema.genesis.service.CadastroUsuarioService;
 
 @Controller
@@ -33,6 +35,9 @@ public class UsuarioController {
 	
 	@Autowired
 	private Equipes equipes;
+	
+	@Autowired
+	private Usuarios usuarios;
 	
 	@Autowired
 	private CadastroUsuarioService cadastroUsuarioService;
@@ -65,6 +70,15 @@ public class UsuarioController {
 		// System.out.println(">>> sku: " + usuario.getClass()
 		// System.out.println(">>> sku: " + banco.getNome());
 		return new ModelAndView("redirect:/usuarios/novo");
+	}
+	
+	@GetMapping
+	public ModelAndView pesquisar() {
+		ModelAndView mv = new ModelAndView("usuario/PesquisaUsuarios");
+		mv.addObject("contas", contas.findAll());
+		mv.addObject("grupos", Grupo.values());
+		mv.addObject("usuarios",usuarios.findAll());
+		return mv;
 	}
 
 }
