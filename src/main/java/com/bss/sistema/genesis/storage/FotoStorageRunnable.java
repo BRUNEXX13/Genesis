@@ -5,7 +5,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.bss.sistema.genesis.dto.FotoDTO;
 
-
 public class FotoStorageRunnable implements Runnable {
 
 	private MultipartFile[] files;
@@ -17,7 +16,8 @@ public class FotoStorageRunnable implements Runnable {
 		this.resultado = resultado;
 		this.fotoStorage = fotoStorage;
 	}
-
+	
+	// Pega a foto e salva temporariamente na pasta temp
 	@Override
 	public void run() {
 		String nomeFoto = this.fotoStorage.salvarTemporariamente(files);
