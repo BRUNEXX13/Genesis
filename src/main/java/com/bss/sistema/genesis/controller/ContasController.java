@@ -27,6 +27,8 @@ import com.bss.sistema.genesis.service.exception.NomeTItularJaCadastradoExceptio
 @RequestMapping("/contas")
 public class ContasController {
 
+	// Para injetar o Entity Manager Usamos o @AutoWired
+	
 	@Autowired
 	private Bancos bancos;
 

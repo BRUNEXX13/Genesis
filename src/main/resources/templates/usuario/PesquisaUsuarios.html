@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="'layout/LayoutPadrao'"
+		xmlns:genesis="http://genesis.bsssistemas.com">
+	
+<head>
+	<title>Pesquisa de Usuários</title>
+</head>
+
+<body>
+<section layout:fragment="conteudo">
+	<div class="page-header">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-10">
+					<h1>Pesquisa de usuários</h1>
+				</div>
+				
+				<div class="col-sm-2">
+					<div class="aw-page-header-controls">
+						<a class="btn  btn-default" th:href="@{/usuarios/novo}">
+							<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs  hidden-sm">Novo Usuário</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+			<div class="container-fluid">
+			
+				<form  method="GET" th:object="${usuarioFilter}">
+					<!--  Inicio DIV USUARIO | NOME | SOBRENOME | CPF -->
+					<div class="row">
+					
+					<div class="form-group col-sm-4">
+					<label class="control-label" for="nome">Nome</label>
+					<input type="text" class="form-control" id="nome" autofocus="autofocus" th:field="*{nome}"/>
+					</div>
+					
+					<div class="form-group col-sm-4">
+					<label class="control-label" for="sobrenome">Sobrenome</label>
+					<input type="text" class="form-control" id="sobrenome" autofocus="autofocus"  th:field="*{sobrenome}"/>
+					</div>
+					
+					<div class="form-group col-sm-4">
+					<label class="control-label" for="cpf">CPF</label>
+					<input type="text" class="form-control" id="cpf" autofocus="autofocus"  th:field="*{cpf}"/>
+					</div>
+				
+					</div>
+					<!--  FIM DA DIV USUARIO | NOME | SOBRENOME | CPF -->
+					
+							
+					
+					
+					<!--  INICIO DIV CONTA | DATA NASC-->
+					<div class="row">
+					
+					<div class="form-group col-sm-4">
+					<label class="control-label" for="email">Email</label>
+					<input type="text" class="form-control" id="email" autofocus="autofocus"  th:field="*{email}"/>
+					</div>
+					
+					
+					
+					
+					<div class="form-group col-sm-3">
+					<label class="control-label" for="conta">Conta</label>
+					<select id="conta" class="form-control" th:field=*{conta}>
+					<option value="">Todas as Contas</option>
+					<option th:each="conta : ${contas}" th:value="${conta.codigo}" th:text="${conta.numero}"></option>
+					</select>
+					</div>
+					
+									<div class="form-group col-sm-5">
+								<label for="dataNascimento">Data Nascimento</label>
+							<div class="form-inline">
+						<input type="date" class="form-control  gn-form-control-inline-sm" id="dataNascimento"/>
+					</div>
+				</div>
+					</div>
+					
+					
+				
+				<div class="row">
+				<div class="form-group  col-sm-12">
+					<label class="control-label">Grupo</label> 
+					<div>
+	  					<th:block th:each="grupo : ${grupos}">
+	  						<div class="radio  radio-inline">
+		    					<input th:id="|id_${grupo}|" type="radio" th:value="${grupo}"  th:field="*{grupo}"/>
+		    					<label th:for="|id_${grupo}|" th:text="${grupo.descricao}"></label>
+	    					</div>
+	  					</th:block>
+	  					<div class="radio  radio-inline">
+		    				<input id="todosGrupos" type="radio" th:checked="*{grupo} == null" name="grupo"/>
+		    				<label for="todosGrupos" >Todos</label>
+	    				</div>
+					</div>
+					</div>
+					</div>
+
+			<!--  FIM DIV CONTA | DATA NASC | GRUPO-->
+				
+			<div class="form-group">
+			<button type="submit" class="btn  btn-primary">Pesquisar</button>
+		</div>
+	
+			
+					</form>
+				
+			
+			<!-- INICIO DIV TABLES -->
+			<div class="table-responsive gn-tabela-simples" >
+			<table class="table table-hover">
+				<thead>
+					<tr>
+					<th class="table-usuarios-col-foto"></th>
+					<th class="table-usuarios-col-nome">Nome</th>
+						<th class="table-usuarios-col-sobrenome">Sobrenome</th>
+						<th class="table-usuarios-col-cpf">CPF</th>
+						<th class="table-usuarios-col-email">Email</th>
+						<th class="table-usuarios-col-grupo">Grupo</th>
+						<th class="table-usuarios-col-conta">Conta</th>
+						<th class="table-usuarios-col-acoes"></th>
+					</tr>
+					</thead>
+					<tbody>
+					
+					<tr th:each="usuario : ${usuarios}">
+					<td class="text-center">
+							<img th:src="@{/fotos/thumbnail.{foto}(foto=${usuario.fotoOuMock})}" class="img-responsive" />
+						</td>
+						<td class="text-center" th:text="${usuario.nome}">AA1234</td>
+						<td th:text="${usuario.sobrenome}"></td>
+						<td th:text="${usuario.cpf}"></td>
+						<td th:text="${usuario.email}"></td>
+						<td th:text="${usuario.grupo.descricao}">Internacional</td>
+						<td th:text="${usuario.conta.numero}"></td>
+						<td class="text-center">
+							<a class="btn  btn-link  btn-xs" title="Editar"> 
+								<i class="glyphicon glyphicon-pencil"></i>
+							</a>
+							<a class="btn  btn-link  btn-xs" title="Excluir">
+								<i class="glyphicon glyphicon-remove"></i>
+							</a>
+						</td>
+					</tr>
+					<tr>
+					<tr th:if="${#lists.isEmpty(usuarios)}">
+					<td colspan="7">Nehum usuário encontrado</td>
+					</tr>
+				</tbody>	
+			</table>
+			</div>
+			
+			<!-- FIM  DIV TABLES -->
+			
+		</div>
+</section>
+</body>
+</html>

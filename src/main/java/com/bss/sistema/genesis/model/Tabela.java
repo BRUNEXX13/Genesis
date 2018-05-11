@@ -34,9 +34,10 @@ public class Tabela implements Serializable {
 	@JoinColumn(name = "codigo_produto")
 	private Produto produto;
 
+	// Classe Long sempre L maisculo
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long codigo;
+	private Long codigo;
 
 	@NotBlank(message = "A descrição é obrigatória")
 	@Size(max = 50, message = "O tamanho da  descrição deve estar entre 1 e 50")
@@ -66,11 +67,11 @@ public class Tabela implements Serializable {
 		this.produto = produto;
 	}
 
-	public long getCodigo() {
+	public Long getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(long codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 

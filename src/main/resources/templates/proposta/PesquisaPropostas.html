@@ -30,28 +30,27 @@
 	</div>
 	
 			<div class="container-fluid">
-					<form method="GET">
+				<form  method="GET" th:object="${propostaFilter}">
 					
 					<!--  Inicio DIV ADE - CLIENTE -->
 					<div class="row">
 					
 					<div class="form-group col-sm-4">
 					<label class="control-label" for="ade">ADE</label>
-					<input type="text" class="form-control" id="ade" autofocus="autofocus"/>
+					<input type="text" class="form-control" id="ade" autofocus="autofocus" th:field="*{ade}"/>
 					</div>
 					
-					<div class="form-group col-sm-4">
-					<label class="control-label" for="cliente">CPF</label>
-					<input type="text" class="form-control" id="cpf" autofocus="autofocus"/>
-					</div>
 					
 					<div class="form-group col-sm-4">
-					<label class="control-label" for="cliente">Cliente</label>
-					<input type="text" class="form-control" id="cliente" autofocus="autofocus"/>
+					<label class="control-label" for="cpf">CPF</label>
+					<input type="text" class="form-control" id="cpf" autofocus="autofocus"  th:field="*{cliente.cpf}"/>
 					</div>
 				
-					</div>
+			
 					
+				
+				
+					</div>
 							<!--  FIM DIV ADE - CLIENTE -->
 					
 					
@@ -59,7 +58,7 @@
 					<div class="row">
 					<div class="form-group col-sm-4">
 					<label class="control-label" for="banco">Banco</label>
-					<select id="banco" class="form-control">
+					<select id="banco" class="form-control" th:field=*{banco}>
 					<option value="">Todos os Bancos</option>
 					<option th:each="banco : ${bancos}" th:value="${banco.codigo}" th:text="${banco.nome}"></option>
 					</select>
@@ -68,7 +67,7 @@
 					
 					<div class="form-group col-sm-4">
 					<label class="control-label" for="produto">Produto</label>
-					<select id="produto" class="form-control">
+					<select id="produto" class="form-control" th:field=*{produto}>
 					<option value="">Todos os Produtos</option>
 					<option th:each="produto : ${produtos}"th:value="${produto.codigo}" th:text="${produto.descricao}"></option>
 					</select>
@@ -76,8 +75,8 @@
 					
 					
 					<div class="form-group col-sm-4">
-					<label class="control-label" for="produto">Produto</label>
-					<select id="produto" class="form-control">
+					<label class="control-label" for="produto">Tabela</label>
+					<select id="produto" class="form-control" th:field=*{tabela}>
 					<option value="">Todos as Tabelas</option>
 					<option th:each="tabela : ${tabelas}"th:value="${tabela.codigo}" th:text="${tabela.descricao}"></option>
 					</select>
@@ -105,24 +104,26 @@
 					<div class="col-sm-6  form-group">
 					<label for="valorDe">Valor Total</label>
 					<div class="form-inline">
-						<input type="text" class="form-control  gn-form-control-inline-sm  js-decimal" id="valorDe"/>
+						<input type="text" class="form-control  gn-form-control-inline-sm  js-decimal" id="valorDe" th:field=*{valorDe}>
 						<label for="precoAte" class="gn-form-label-between">até</label>
-						<input type="text" class="form-control  gn-form-control-inline-sm  js-decimal" id="valorAte"/>
+						<input type="text" class="form-control  gn-form-control-inline-sm  js-decimal" id="valorAte" th:field=*{valorAte}>
 					</div>
 				</div>
 			</div>
 				<!--  Inicio DIV |PERIODO | VALOR-->
 	
-			
-
+		
+				<!--  FIM DIV CONTA | DATA NASC | GRUPO-->
+				
 			<div class="form-group">
 			<button type="submit" class="btn  btn-primary">Pesquisar</button>
-				</div>
+		</div>
+	
+			
+					</form>
 				
-				
-				
-			</div>
-			</form>
+			
+			
 			
 			<!-- INICIO DIV TABLES -->
 			<div class="table-responsive gn-tabela-simples" >
@@ -142,7 +143,7 @@
 					<tbody>
 					
 					<tr th:each="proposta : ${propostas}">
-						<td class="text-center" th:text="${proposta.ade}">AA1234</td>
+						<td class="text-center" th:text="${proposta.ade}"></td>
 						<td th:text="${proposta.cliente.cpf}"></td>
 						<td th:text="${proposta.banco.nome}"></td>
 						<td th:text="${proposta.produto.descricao}"></td>

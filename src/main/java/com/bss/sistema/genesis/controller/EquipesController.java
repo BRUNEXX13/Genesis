@@ -20,6 +20,7 @@ import com.bss.sistema.genesis.service.exception.NomeEquipeJaCadastradoException
 @RequestMapping("/equipes")
 public class EquipesController {
 
+	// Para injetar o Entity Manager Usamos o @AutoWired
 
 	@Autowired
 	private Usuarios usuarios;

@@ -22,6 +22,8 @@ import com.bss.sistema.genesis.service.CadastroClienteService;
 @Controller
 @RequestMapping("/clientes")
 public class ClientesController {
+	
+	// Para injetar o Entity Manager Usamos o @AutoWired
 
 	@Autowired
 	private Contas contas;

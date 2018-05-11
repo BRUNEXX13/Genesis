@@ -33,37 +33,33 @@ public class Produto implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-
 	@NotNull(message = "O banco é obrigatório")
 	@ManyToOne
 	@JoinColumn(name = "codigo_banco")
 	private Banco banco;
-	
+
 	@OneToMany(mappedBy = "produto")
 	private List<Tabela> tabelas;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long codigo;
+	private Long codigo;
 
 	@NotBlank(message = "A descrição é obrigatória")
 	@Size(max = 50, message = "O tamanho da  descrição deve estar entre 1 e 50")
-	@Column(unique=true)
+	@Column(unique = true)
 	private String descricao;
 
 	@NotBlank(message = "O tipo é obrigatório")
 	@NotNull(message = "O tipo é obrigatório")
 	private String tipo;
 
-	
 	@PrePersist
 	@PreUpdate
 	private void prePersistUpdate() {
 		descricao = descricao.toUpperCase();
 	}
 
-	
-	
 	public Banco getBanco() {
 		return banco;
 	}
@@ -72,11 +68,19 @@ public class Produto implements Serializable {
 		this.banco = banco;
 	}
 
-	public long getCodigo() {
+	public List<Tabela> getTabelas() {
+		return tabelas;
+	}
+
+	public void setTabelas(List<Tabela> tabelas) {
+		this.tabelas = tabelas;
+	}
+
+	public Long getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(long codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 
@@ -100,7 +104,7 @@ public class Produto implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (codigo ^ (codigo >>> 32));
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
 		return result;
 	}
 
@@ -113,7 +117,10 @@ public class Produto implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Produto other = (Produto) obj;
-		if (codigo != other.codigo)
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
 			return false;
 		return true;
 	}

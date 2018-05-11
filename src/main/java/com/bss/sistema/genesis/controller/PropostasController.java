@@ -19,12 +19,18 @@ import com.bss.sistema.genesis.repository.Clientes;
 import com.bss.sistema.genesis.repository.Produtos;
 import com.bss.sistema.genesis.repository.Propostas;
 import com.bss.sistema.genesis.repository.Tabelas;
+import com.bss.sistema.genesis.repository.filter.PropostaFilter;
 import com.bss.sistema.genesis.service.CadastroPropostaService;
 import com.bss.sistema.genesis.service.exception.NomePropostaJaCadastradoException;
 
 @Controller
 @RequestMapping("/propostas")
 public class PropostasController {
+	
+	
+	
+	// Para injetar o Entity Manager Usamos o @AutoWired
+	
 
 	@Autowired
 	private Bancos bancos;
@@ -98,14 +104,13 @@ public class PropostasController {
 	
 	
 	@GetMapping
-	public ModelAndView pesquisar() {
+	public ModelAndView pesquisar(PropostaFilter propostaFilter, BindingResult result) {
 		ModelAndView mv = new ModelAndView("proposta/PesquisaPropostas");
 		mv.addObject("bancos",bancos.findAll());
 		mv.addObject("produtos", produtos.findAll());
 		mv.addObject("tabelas", tabelas.findAll());
 		mv.addObject("clientes", clientes.findAll());
-		
-		mv.addObject("propostas", propostas.findAll());
+		mv.addObject("propostas", propostas.filtrar(propostaFilter));
 		return mv;
 	}
 }

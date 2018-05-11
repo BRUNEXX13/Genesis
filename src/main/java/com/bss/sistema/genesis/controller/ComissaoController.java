@@ -21,6 +21,8 @@ import com.bss.sistema.genesis.service.CadastroComissaoService;
 @Controller
 @RequestMapping("/comissoes")
 public class ComissaoController {
+	
+	// Para injetar o Entity Manager Usamos o @AutoWired
 
 	@Autowired
 	private Equipes equipes;

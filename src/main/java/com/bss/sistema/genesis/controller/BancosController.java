@@ -26,6 +26,9 @@ import com.bss.sistema.genesis.service.exception.NumeroBancoJacadastradoExceptio
 @Controller
 @RequestMapping("/bancos")
 public class BancosController {
+	
+	// Para injetar o Entity Manager Usamos o @AutoWired
+	
 
 	// Referencia lista de bancos
 	@Autowired
