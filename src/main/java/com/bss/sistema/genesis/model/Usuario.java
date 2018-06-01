@@ -21,7 +21,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
-import org.springframework.util.StringUtils;
 
 @Entity
 @Table(name = "usuario")
@@ -173,7 +172,7 @@ public class Usuario implements Serializable {
 	}
 
 	public String getFoto() {
-		return foto; 
+		return foto;
 	}
 
 	public void setFoto(String foto) {
@@ -187,14 +186,7 @@ public class Usuario implements Serializable {
 	public void setContentType(String contentType) {
 		this.contentType = contentType;
 	}
-	
-	public String getFotoOuMock() {
-		return !StringUtils.isEmpty(foto) ? foto : "usuario-mock.png";
-	}
 
-	
-	
-	
 	public LocalDate getDataNascimento() {
 		return dataNascimento;
 	}

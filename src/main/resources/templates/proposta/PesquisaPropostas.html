@@ -19,7 +19,7 @@
 				</div>
 				
 				<div class="col-sm-2">
-					<div class="gn-page-header-controls">
+					<div class="aw-page-header-controls">
 						<a class="btn  btn-default" th:href="@{/propostas/novo}">
 							<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs  hidden-sm">Nova proposta</span>
 						</a>
@@ -114,14 +114,15 @@
 				<!--  Inicio DIV |PERIODO | VALOR-->
 	
 			
-				</form>
+
 			<div class="form-group">
 			<button type="submit" class="btn  btn-primary">Pesquisar</button>
 				</div>
 				
 				
-	
-
+				
+			</div>
+			</form>
 			
 			<!-- INICIO DIV TABLES -->
 			<div class="table-responsive gn-tabela-simples" >
@@ -157,12 +158,6 @@
 							</a>
 						</td>
 					</tr>
-					
-					<tr>
-					<tr th:if="${#lists.isEmpty(propostas)}">
-					<td colspan="7">Nehuma proposta encontrada</td>
-					</tr>
-					
 				</tbody>	
 			</table>
 			</div>

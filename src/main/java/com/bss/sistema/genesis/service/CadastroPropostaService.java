@@ -15,9 +15,6 @@ public class CadastroPropostaService {
 
 	@Autowired
 	private Propostas propostas;
-	
-
-	
 
 	@Transactional
 	public void salvar(Proposta proposta) {
@@ -25,8 +22,6 @@ public class CadastroPropostaService {
 		if(propostaOptional.isPresent()) {
 			throw new NomePropostaJaCadastradoException("ADE já cadastrado");
 		}
-		propostas.save(proposta);	
-
-
+		propostas.save(proposta);
 	}
 }
